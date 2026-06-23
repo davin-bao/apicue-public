@@ -1,0 +1,16 @@
+# When this directory is used as a standalone GitHub repo (apicue-public)
+# no build artifacts or local config
+
+# OS files
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# IDE files
+.idea/
+*.iml
+.vscode/
+
+# Temp files
+*.tmp
+*~
