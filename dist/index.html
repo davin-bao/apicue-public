@@ -1,0 +1,650 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>APICue — API Testing from OpenAPI YAML | IntelliJ IDEA Plugin</title>
+    <meta name="description" content="Test REST APIs directly from OpenAPI 3.0 YAML files in IntelliJ IDEA. Gutter icons, request editor, response viewer, auth auto-discovery — no more switching to Postman." />
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>⚡</text></svg>" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+
+    <style>
+        /* ===== Reset & Base ===== */
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+        html { scroll-behavior: smooth; scroll-padding-top: 6rem; }
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            color: #1a1a2e;
+            background: #f8f9fc;
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+        }
+        a { color: #6366f1; text-decoration: none; transition: color 0.2s; }
+        a:hover { color: #4f46e5; }
+        img { max-width: 100%; height: auto; display: block; }
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 2rem; }
+
+        /* ===== Navigation ===== */
+        nav {
+            position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
+            background: rgba(255,255,255,0.85); backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(0,0,0,0.06);
+            transition: box-shadow 0.3s;
+        }
+        nav.scrolled { box-shadow: 0 1px 8px rgba(0,0,0,0.08); }
+        nav .container { display: flex; align-items: center; justify-content: space-between; height: 4rem; }
+        .nav-logo { font-size: 1.35rem; font-weight: 800; color: #1a1a2e; letter-spacing: -0.02em; }
+        .nav-logo span { color: #6366f1; }
+        .nav-links { display: flex; gap: 2rem; align-items: center; }
+        .nav-links a { font-size: 0.9rem; font-weight: 500; color: #4a4a6a; }
+        .nav-links a:hover { color: #6366f1; }
+        .nav-cta {
+            background: #6366f1; color: #fff !important; padding: 0.5rem 1.25rem;
+            border-radius: 8px; font-weight: 600; font-size: 0.85rem !important;
+            transition: background 0.2s, transform 0.15s;
+        }
+        .nav-cta:hover { background: #4f46e5; transform: translateY(-1px); }
+        .nav-toggle { display: none; background: none; border: none; font-size: 1.5rem; cursor: pointer; color: #1a1a2e; }
+
+        /* ===== Buttons ===== */
+        .btn {
+            display: inline-flex; align-items: center; gap: 0.5rem;
+            padding: 0.8rem 1.75rem; border-radius: 10px; font-weight: 600;
+            font-size: 1rem; cursor: pointer; border: none; transition: all 0.2s;
+        }
+        .btn-primary {
+            background: #6366f1; color: #fff; box-shadow: 0 4px 14px rgba(99,102,241,0.3);
+        }
+        .btn-primary:hover { background: #4f46e5; transform: translateY(-2px); box-shadow: 0 6px 20px rgba(99,102,241,0.4); }
+        .btn-secondary {
+            background: #fff; color: #1a1a2e; border: 1.5px solid #e2e8f0;
+        }
+        .btn-secondary:hover { border-color: #6366f1; color: #6366f1; transform: translateY(-2px); }
+        .btn-dark {
+            background: #1a1a2e; color: #fff;
+        }
+        .btn-dark:hover { background: #2d2d4e; transform: translateY(-2px); }
+
+        /* ===== Hero ===== */
+        .hero {
+            padding: 10rem 0 6rem;
+            background: linear-gradient(135deg, #f8f9fc 0%, #eef0ff 50%, #e8e5ff 100%);
+            position: relative; overflow: hidden;
+        }
+        .hero::before {
+            content: ''; position: absolute; top: -50%; right: -20%;
+            width: 600px; height: 600px; border-radius: 50%;
+            background: radial-gradient(circle, rgba(99,102,241,0.08) 0%, transparent 70%);
+        }
+        .hero::after {
+            content: ''; position: absolute; bottom: -30%; left: -10%;
+            width: 400px; height: 400px; border-radius: 50%;
+            background: radial-gradient(circle, rgba(168,85,247,0.06) 0%, transparent 70%);
+        }
+        .hero .container { position: relative; z-index: 1; display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center; }
+        .hero-badge {
+            display: inline-flex; align-items: center; gap: 0.4rem;
+            background: rgba(99,102,241,0.1); color: #6366f1; padding: 0.35rem 0.9rem;
+            border-radius: 20px; font-size: 0.8rem; font-weight: 600; margin-bottom: 1.5rem;
+        }
+        .hero h1 { font-size: 3.5rem; font-weight: 800; line-height: 1.15; letter-spacing: -0.03em; color: #0f0f23; }
+        .hero h1 span { color: #6366f1; }
+        .hero p {
+            font-size: 1.15rem; color: #5a5a7a; margin: 1.5rem 0 2.5rem; max-width: 520px;
+        }
+        .hero-buttons { display: flex; gap: 1rem; flex-wrap: wrap; }
+        .hero-stats {
+            display: flex; gap: 2.5rem; margin-top: 3rem; padding-top: 2rem;
+            border-top: 1px solid rgba(0,0,0,0.06);
+        }
+        .hero-stat strong { font-size: 1.8rem; font-weight: 800; color: #1a1a2e; display: block; }
+        .hero-stat span { font-size: 0.85rem; color: #7a7a9a; }
+        .hero-visual {
+            background: rgba(255,255,255,0.7); border-radius: 16px;
+            padding: 1.5rem; box-shadow: 0 20px 60px rgba(0,0,0,0.08);
+            backdrop-filter: blur(4px); border: 1px solid rgba(255,255,255,0.8);
+        }
+        .hero-visual img { border-radius: 10px; box-shadow: 0 4px 12px rgba(0,0,0,0.05); }
+
+        /* ===== Section common ===== */
+        section { padding: 5rem 0; }
+        .section-label {
+            display: inline-block; font-size: 0.75rem; font-weight: 700; text-transform: uppercase;
+            letter-spacing: 0.1em; color: #6366f1; margin-bottom: 0.75rem;
+        }
+        .section-title {
+            font-size: 2.5rem; font-weight: 800; letter-spacing: -0.02em;
+            color: #0f0f23; margin-bottom: 1rem; line-height: 1.2;
+        }
+        .section-subtitle {
+            font-size: 1.1rem; color: #6a6a8a; max-width: 600px; margin-bottom: 3rem;
+        }
+        .text-center { text-align: center; }
+        .text-center .section-subtitle { margin-left: auto; margin-right: auto; }
+
+        /* ===== Features ===== */
+        .features-grid {
+            display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem;
+        }
+        .feature-card {
+            background: #fff; border-radius: 14px; padding: 2rem;
+            border: 1px solid #eef0f5; transition: all 0.25s;
+            position: relative; overflow: hidden;
+        }
+        .feature-card:hover {
+            border-color: #d0d3f5; box-shadow: 0 8px 30px rgba(99,102,241,0.08);
+            transform: translateY(-3px);
+        }
+        .feature-icon {
+            width: 48px; height: 48px; border-radius: 12px;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 1.3rem; margin-bottom: 1.2rem;
+        }
+        .feature-card h3 { font-size: 1.1rem; font-weight: 700; margin-bottom: 0.6rem; }
+        .feature-card p { font-size: 0.9rem; color: #6a6a8a; line-height: 1.7; }
+
+        .icon-purple  { background: rgba(99,102,241,0.1);  color: #6366f1; }
+        .icon-green   { background: rgba(16,185,129,0.1);  color: #10b981; }
+        .icon-orange  { background: rgba(245,158,11,0.1);  color: #f59e0b; }
+        .icon-blue    { background: rgba(59,130,246,0.1);  color: #3b82f6; }
+        .icon-pink    { background: rgba(236,72,153,0.1);  color: #ec4899; }
+        .icon-cyan    { background: rgba(6,182,212,0.1);   color: #06b6d4; }
+        .icon-amber   { background: rgba(217,119,6,0.1);   color: #d97706; }
+        .icon-violet  { background: rgba(139,92,246,0.1);  color: #8b5cf6; }
+
+        /* ===== Screenshots ===== */
+        .screenshots { background: #fff; }
+        .screenshot-grid { display: grid; gap: 2rem; }
+        .screenshot-card {
+            background: #f8f9fc; border-radius: 16px; overflow: hidden;
+            border: 1px solid #eef0f5;
+        }
+        .screenshot-card img { width: 100%; }
+        .screenshot-card .caption { padding: 1.25rem 1.5rem; font-size: 0.9rem; color: #5a5a7a; }
+
+        /* ===== How It Works ===== */
+        .steps { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.5rem; counter-reset: step; }
+        .step-card { counter-increment: step; background: #fff; border-radius: 14px; padding: 2rem; border: 1px solid #eef0f5; position: relative; }
+        .step-card::before {
+            content: counter(step); position: absolute; top: 1rem; right: 1.5rem;
+            font-size: 3rem; font-weight: 800; color: rgba(99,102,241,0.08);
+            line-height: 1;
+        }
+        .step-card h3 { font-size: 1.05rem; font-weight: 700; margin-bottom: 0.5rem; }
+        .step-card p { font-size: 0.88rem; color: #6a6a8a; }
+        .step-icon { font-size: 1.8rem; margin-bottom: 1rem; display: block; }
+
+        /* ===== Tech Specs ===== */
+        .specs { background: #fff; }
+        .specs-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; }
+        .specs-list { list-style: none; }
+        .specs-list li {
+            display: flex; align-items: center; gap: 0.75rem;
+            padding: 0.75rem 0; border-bottom: 1px solid #f0f0f5;
+        }
+        .specs-list li:last-child { border-bottom: none; }
+        .specs-list i { color: #6366f1; width: 1.2rem; text-align: center; }
+        .specs-list strong { font-weight: 600; min-width: 140px; }
+        .specs-deps { background: #f8f9fc; border-radius: 14px; padding: 2rem; }
+        .specs-deps h4 { font-size: 1rem; font-weight: 700; margin-bottom: 1rem; }
+        .dep-item { display: flex; justify-content: space-between; padding: 0.6rem 0; border-bottom: 1px solid #eef0f5; font-size: 0.9rem; }
+        .dep-item:last-child { border-bottom: none; }
+        .dep-item .name { font-weight: 500; }
+        .dep-item .version { color: #6a6a8a; }
+
+        /* ===== Pricing ===== */
+        .pricing { background: linear-gradient(135deg, #f8f9fc 0%, #eef0ff 100%); }
+        .pricing-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; max-width: 800px; margin: 0 auto; }
+        .pricing-card {
+            background: #fff; border-radius: 16px; padding: 2.5rem;
+            border: 1px solid #eef0f5; text-align: center;
+            transition: all 0.25s;
+        }
+        .pricing-card.featured {
+            border-color: #6366f1; box-shadow: 0 8px 30px rgba(99,102,241,0.12);
+            position: relative; transform: scale(1.02);
+        }
+        .pricing-card.featured .pricing-badge {
+            display: inline-block; background: #6366f1; color: #fff;
+            padding: 0.25rem 0.9rem; border-radius: 20px; font-size: 0.75rem;
+            font-weight: 600; margin-bottom: 1rem;
+        }
+        .pricing-card h3 { font-size: 1.2rem; font-weight: 700; margin-bottom: 0.5rem; }
+        .pricing-card .price { font-size: 3rem; font-weight: 800; color: #0f0f23; margin: 0.5rem 0; }
+        .pricing-card .price span { font-size: 1rem; font-weight: 500; color: #8a8aaa; }
+        .pricing-card .per { font-size: 0.9rem; color: #7a7a9a; margin-bottom: 1.5rem; }
+        .pricing-card ul { list-style: none; text-align: left; margin: 1.5rem 0; }
+        .pricing-card ul li { padding: 0.5rem 0; font-size: 0.9rem; display: flex; align-items: center; gap: 0.6rem; }
+        .pricing-card ul li i { color: #10b981; width: 1rem; }
+        .pricing-card .btn { width: 100%; justify-content: center; }
+
+        /* ===== FAQ ===== */
+        .faq-list { max-width: 720px; margin: 0 auto; }
+        .faq-item { background: #fff; border-radius: 12px; margin-bottom: 0.75rem; border: 1px solid #eef0f5; overflow: hidden; }
+        .faq-question {
+            width: 100%; padding: 1.25rem 1.5rem; background: none; border: none;
+            text-align: left; font-size: 1rem; font-weight: 600; color: #1a1a2e;
+            cursor: pointer; display: flex; justify-content: space-between; align-items: center;
+            transition: background 0.2s;
+        }
+        .faq-question:hover { background: #f8f9fc; }
+        .faq-question i { transition: transform 0.3s; color: #aaa; font-size: 0.85rem; }
+        .faq-item.open .faq-question i { transform: rotate(180deg); }
+        .faq-answer { padding: 0 1.5rem 1.25rem; font-size: 0.9rem; color: #6a6a8a; display: none; line-height: 1.8; }
+        .faq-item.open .faq-answer { display: block; }
+
+        /* ===== CTA ===== */
+        .cta {
+            background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%);
+            color: #fff; text-align: center; padding: 6rem 0;
+        }
+        .cta h2 { font-size: 2.5rem; font-weight: 800; margin-bottom: 1rem; }
+        .cta p { font-size: 1.1rem; opacity: 0.9; margin-bottom: 2rem; max-width: 500px; margin-left: auto; margin-right: auto; }
+        .cta .btn { background: #fff; color: #6366f1; }
+        .cta .btn:hover { transform: translateY(-2px); box-shadow: 0 8px 25px rgba(0,0,0,0.2); }
+
+        /* ===== Footer ===== */
+        footer { background: #0f0f23; color: #a0a0c0; padding: 4rem 0 2rem; }
+        footer .container { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 2rem; }
+        footer h4 { color: #fff; font-size: 0.9rem; font-weight: 700; margin-bottom: 1rem; }
+        footer p { font-size: 0.85rem; line-height: 1.7; }
+        footer a { color: #a0a0c0; font-size: 0.85rem; display: block; margin-bottom: 0.5rem; }
+        footer a:hover { color: #fff; }
+        .footer-logo { font-size: 1.2rem; font-weight: 800; color: #fff !important; margin-bottom: 0.5rem; }
+        .footer-logo span { color: #8b5cf6; }
+        .footer-bottom { grid-column: 1 / -1; padding-top: 2rem; margin-top: 2rem; border-top: 1px solid rgba(255,255,255,0.06); font-size: 0.8rem; text-align: center; }
+
+        /* ===== Responsive ===== */
+        @media (max-width: 1024px) {
+            .hero .container { grid-template-columns: 1fr; gap: 2.5rem; }
+            .hero h1 { font-size: 2.8rem; }
+            .features-grid { grid-template-columns: repeat(2, 1fr); }
+            .steps { grid-template-columns: repeat(2, 1fr); }
+            footer .container { grid-template-columns: 1fr 1fr; }
+        }
+        @media (max-width: 768px) {
+            .nav-links { display: none; position: fixed; top: 4rem; left: 0; right: 0; background: #fff; flex-direction: column; padding: 1.5rem; gap: 1rem; border-bottom: 1px solid #eef0f5; box-shadow: 0 4px 12px rgba(0,0,0,0.06); }
+            .nav-links.open { display: flex; }
+            .nav-toggle { display: block; }
+            .hero { padding: 7rem 0 3rem; }
+            .hero h1 { font-size: 2.2rem; }
+            .hero-stats { gap: 1.5rem; flex-wrap: wrap; }
+            .hero-stat strong { font-size: 1.4rem; }
+            section { padding: 3rem 0; }
+            .section-title { font-size: 1.8rem; }
+            .features-grid { grid-template-columns: 1fr; }
+            .steps { grid-template-columns: 1fr; }
+            .specs-grid { grid-template-columns: 1fr; }
+            .pricing-grid { grid-template-columns: 1fr; }
+            .pricing-card.featured { transform: none; }
+            footer .container { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+<!-- ===== Navigation ===== -->
+<nav id="navbar">
+    <div class="container">
+        <a href="#" class="nav-logo">APICue <span>⚡</span></a>
+        <div class="nav-links" id="navLinks">
+            <a href="#features">Features</a>
+            <a href="#screenshots">Screenshots</a>
+            <a href="#how-it-works">How It Works</a>
+            <a href="#pricing">Pricing</a>
+            <a href="#faq">FAQ</a>
+            <a href="https://plugins.jetbrains.com/plugin/XXXXX-apicue" class="nav-cta" target="_blank">Install</a>
+        </div>
+        <button class="nav-toggle" id="navToggle" aria-label="Toggle menu">☰</button>
+    </div>
+</nav>
+
+<!-- ===== Hero ===== -->
+<section class="hero">
+    <div class="container">
+        <div>
+            <div class="hero-badge"><i class="fa-solid fa-bolt"></i> IntelliJ IDEA Plugin</div>
+            <h1>Test APIs Directly<br/>from <span>OpenAPI YAML</span></h1>
+            <p>No more switching to Postman or maintaining .http files. Green run buttons appear next to every API operation in your YAML editor — click, review, send.</p>
+            <div class="hero-buttons">
+                <a href="https://plugins.jetbrains.com/plugin/XXXXX-apicue" class="btn btn-primary" target="_blank">
+                    <i class="fa-brands fa-jetbrains"></i> Install from Marketplace
+                </a>
+                <a href="#features" class="btn btn-secondary">Explore Features <i class="fa-solid fa-arrow-down"></i></a>
+            </div>
+            <div class="hero-stats">
+                <div class="hero-stat"><strong>1-Click</strong><span>Send Request</span></div>
+                <div class="hero-stat"><strong>3</strong><span>Request Tabs</span></div>
+                <div class="hero-stat"><strong>i18n</strong><span>EN / 中文</span></div>
+            </div>
+        </div>
+        <div class="hero-visual">
+            <img src="../screenshots/1.png" alt="APICue main tester panel" />
+        </div>
+    </div>
+</section>
+
+<!-- ===== Features ===== -->
+<section id="features">
+    <div class="container">
+        <div class="text-center">
+            <span class="section-label">Features</span>
+            <h2 class="section-title">Everything You Need for API Testing</h2>
+            <p class="section-subtitle">APICue brings Postman-class API testing into your IntelliJ IDEA — tightly coupled with your OpenAPI specifications.</p>
+        </div>
+        <div class="features-grid">
+            <div class="feature-card">
+                <div class="feature-icon icon-purple"><i class="fa-solid fa-play"></i></div>
+                <h3>Gutter Icon Triggers</h3>
+                <p>Green ▶ buttons appear next to every <code>get:</code>, <code>post:</code>, <code>put:</code>, <code>delete:</code>, and <code>patch:</code> operation. Click to open the test panel instantly.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon icon-green"><i class="fa-solid fa-window-restore"></i></div>
+                <h3>Dedicated ToolWindow</h3>
+                <p>Right-side panel shows the full testing interface: environment selector, auth config, request editor (Params / Headers / Body), and split-pane response viewer.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon icon-orange"><i class="fa-solid fa-shield-halved"></i></div>
+                <h3>Auth Auto-Discovery</h3>
+                <p>Reads <code>securitySchemes</code> and <code>security</code> from your spec, auto-generates Bearer JWT, Basic Auth, and API Key headers. No manual setup.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon icon-blue"><i class="fa-solid fa-globe"></i></div>
+                <h3>Multi-Environment Servers</h3>
+                <p>Switch between multiple <code>servers</code> per YAML file. Last-selected URL is remembered per-file across IDE restarts.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon icon-pink"><i class="fa-solid fa-wand-magic-sparkles"></i></div>
+                <h3>Smart Parameter Pre-Fill</h3>
+                <p>Query params, headers, and body auto-filled from <code>example</code>, <code>default</code>, and schema property values following a well-defined priority hierarchy.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon icon-cyan"><i class="fa-solid fa-floppy-disk"></i></div>
+                <h3>Save &amp; Load Examples</h3>
+                <p>Save working request/response payloads back to the YAML as OpenAPI examples. Load them later for reproducible testing and regression checks.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon icon-amber"><i class="fa-solid fa-key"></i></div>
+                <h3>Token Manager</h3>
+                <p>Manage JWT, API Keys per environment with a built-in Token Manager. Tokens stored securely using your IDE's password-safe mechanism.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon icon-purple"><i class="fa-solid fa-link"></i></div>
+                <h3>$Ref Cross-File Resolution</h3>
+                <p>Fully resolves <code>$ref</code> across YAML files (e.g. <code>$ref: 'model.yml#/…'</code>) with caching and circular-reference detection.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon icon-violet"><i class="fa-solid fa-language"></i></div>
+                <h3>i18n (EN / 中文)</h3>
+                <p>Supports both English and Chinese UI. Automatically matches your IDE's language setting. Perfect for global teams.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ===== Screenshots ===== -->
+<section id="screenshots" class="screenshots">
+    <div class="container">
+        <div class="text-center">
+            <span class="section-label">Screenshots</span>
+            <h2 class="section-title">See It in Action</h2>
+            <p class="section-subtitle">A clean, intuitive interface designed for developer workflow.</p>
+        </div>
+        <div class="screenshot-grid">
+            <div class="screenshot-card">
+                <img src="../screenshots/1.png" alt="APICue main tester panel" loading="lazy" />
+                <div class="caption"><i class="fa-solid fa-image"></i> APICue Tester panel — server selector, auth tab, request editor with Params / Headers / Body tabs, and Send button.</div>
+            </div>
+            <div class="screenshot-card">
+                <img src="../screenshots/2.png" alt="APICue response viewer" loading="lazy" />
+                <div class="caption"><i class="fa-solid fa-image"></i> Response viewer — status code, timing info, response headers, and syntax-highlighted JSON body.</div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ===== How It Works ===== -->
+<section id="how-it-works">
+    <div class="container">
+        <div class="text-center">
+            <span class="section-label">How It Works</span>
+            <h2 class="section-title">From Spec to Response in 4 Steps</h2>
+            <p class="section-subtitle">No configuration files, no external tools — just your OpenAPI YAML and APICue.</p>
+        </div>
+        <div class="steps">
+            <div class="step-card">
+                <span class="step-icon">📂</span>
+                <h3>Open an OpenAPI YAML File</h3>
+                <p>Any <code>.yaml</code> or <code>.yml</code> file with valid OpenAPI 3.0 syntax. APICue parses it on the fly.</p>
+            </div>
+            <div class="step-card">
+                <span class="step-icon">▶</span>
+                <h3>Click the Gutter Icon</h3>
+                <p>Green ▶ buttons appear next to every API operation. Click one — the APICue Tester tool window opens instantly.</p>
+            </div>
+            <div class="step-card">
+                <span class="step-icon">⚙️</span>
+                <h3>Review &amp; Configure</h3>
+                <p>Select your target server, review auto-filled params/headers/body, configure auth tokens. Everything is pre-filled from your spec.</p>
+            </div>
+            <div class="step-card">
+                <span class="step-icon">🚀</span>
+                <h3>Send &amp; Inspect</h3>
+                <p>Click <strong>Send Request</strong>. Inspect the response with syntax highlighting, timing, and status code — all inside the IDE.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ===== Tech Specs ===== -->
+<section id="specs" class="specs">
+    <div class="container">
+        <div class="text-center">
+            <span class="section-label">Compatibility</span>
+            <h2 class="section-title">Works Where You Work</h2>
+            <p class="section-subtitle">Built for IntelliJ IDEA with zero external runtime dependencies.</p>
+        </div>
+        <div class="specs-grid">
+            <div>
+                <ul class="specs-list">
+                    <li><i class="fa-solid fa-check"></i><strong>Platform</strong> IntelliJ IDEA Ultimate / Community</li>
+                    <li><i class="fa-solid fa-check"></i><strong>Since Build</strong> 241 (2024.1)</li>
+                    <li><i class="fa-solid fa-check"></i><strong>Until Build</strong> 251.* (2025.1)</li>
+                    <li><i class="fa-solid fa-check"></i><strong>JDK</strong> 17+</li>
+                    <li><i class="fa-solid fa-check"></i><strong>Language</strong> Kotlin + Java</li>
+                    <li><i class="fa-solid fa-check"></i><strong>Plugin ID</strong> <code>com.tpv.scs.openapi.tester</code></li>
+                    <li><i class="fa-solid fa-check"></i><strong>License</strong> Commercial (paid)</li>
+                </ul>
+            </div>
+            <div class="specs-deps">
+                <h4>📦 Built-in Dependencies</h4>
+                <div class="dep-item"><span class="name">OkHttp</span><span class="version">4.12.0</span></div>
+                <div class="dep-item"><span class="name">SnakeYAML</span><span class="version">2.2</span></div>
+                <div class="dep-item"><span class="name">Kotlinx Coroutines</span><span class="version">1.7.3</span></div>
+                <div class="dep-item"><span class="name">Gson</span><span class="version">2.11.0</span></div>
+                <p style="margin-top:1rem;font-size:0.85rem;color:#6a6a8a;">All dependencies are bundled — no separate installation needed.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ===== Pricing ===== -->
+<section id="pricing" class="pricing">
+    <div class="container">
+        <div class="text-center">
+            <span class="section-label">Pricing</span>
+            <h2 class="section-title">Simple, Transparent Pricing</h2>
+            <p class="section-subtitle">Try it free for 30 days. No credit card required.</p>
+        </div>
+        <div class="pricing-grid">
+            <div class="pricing-card">
+                <h3>Monthly</h3>
+                <div class="price">$1 <span>/mo</span></div>
+                <div class="per">per developer</div>
+                <ul>
+                    <li><i class="fa-solid fa-check"></i> Full feature access</li>
+                    <li><i class="fa-solid fa-check"></i> Priority updates</li>
+                    <li><i class="fa-solid fa-check"></i> Email support</li>
+                    <li><i class="fa-solid fa-check"></i> Cancel anytime</li>
+                </ul>
+                <a href="https://github.com/davin-bao/apicue-public" class="btn btn-secondary" target="_blank">View License</a>
+            </div>
+            <div class="pricing-card featured">
+                <span class="pricing-badge">Best Value</span>
+                <h3>Annual</h3>
+                <div class="price">$10 <span>/yr</span></div>
+                <div class="per">per developer — 16% off</div>
+                <ul>
+                    <li><i class="fa-solid fa-check"></i> Full feature access</li>
+                    <li><i class="fa-solid fa-check"></i> Priority updates</li>
+                    <li><i class="fa-solid fa-check"></i> Priority support</li>
+                    <li><i class="fa-solid fa-check"></i> Perpetual fallback license</li>
+                </ul>
+                <a href="https://github.com/davin-bao/apicue-public" class="btn btn-primary" target="_blank">View License</a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ===== FAQ ===== -->
+<section id="faq">
+    <div class="container">
+        <div class="text-center">
+            <span class="section-label">FAQ</span>
+            <h2 class="section-title">Frequently Asked Questions</h2>
+            <p class="section-subtitle">Everything you need to know about APICue.</p>
+        </div>
+        <div class="faq-list">
+            <div class="faq-item">
+                <button class="faq-question">
+                    Why do I need APICue? Isn't the built-in HTTP Client enough?
+                    <i class="fa-solid fa-chevron-down"></i>
+                </button>
+                <div class="faq-answer">The built-in HTTP Client requires you to maintain separate <code>.http</code> files that duplicate your API spec. APICue reads your OpenAPI YAML directly — no duplication, no drift. It auto-discovers auth schemes, pre-fills parameters from examples, and lets you save responses back to the spec.</div>
+            </div>
+            <div class="faq-item">
+                <button class="faq-question">
+                    What IDEs does APICue support?
+                    <i class="fa-solid fa-chevron-down"></i>
+                </button>
+                <div class="faq-answer">APICue runs on IntelliJ IDEA Ultimate and Community Edition (build 241–251.*). Support for other JetBrains IDEs with YAML plugin support may be added in future releases.</div>
+            </div>
+            <div class="faq-item">
+                <button class="faq-question">
+                    Does APICue support Swagger 2.0?
+                    <i class="fa-solid fa-chevron-down"></i>
+                </button>
+                <div class="faq-answer">No, APICue supports OpenAPI 3.0.x only. You can convert your Swagger 2.0 spec using the official Swagger Converter (https://swagger.io/tools/swagger-converter/).</div>
+            </div>
+            <div class="faq-item">
+                <button class="faq-question">
+                    Where are my saved examples stored?
+                    <i class="fa-solid fa-chevron-down"></i>
+                </button>
+                <div class="faq-answer">By default, examples are saved in the plugin's global config directory. You can change this in Settings → Tools → APICue to store them inside your project directory — ideal for sharing via version control.</div>
+            </div>
+            <div class="faq-item">
+                <button class="faq-question">
+                    Is there a free trial?
+                    <i class="fa-solid fa-chevron-down"></i>
+                </button>
+                <div class="faq-answer">Yes! APICue offers a 30-day free trial with full feature access. No credit card required. After the trial, a paid license is required for continued use.</div>
+            </div>
+            <div class="faq-item">
+                <button class="faq-question">
+                    Does APICue support HTTPS / self-signed certificates?
+                    <i class="fa-solid fa-chevron-down"></i>
+                </button>
+                <div class="faq-answer">Yes — any protocol supported by OkHttp works for HTTPS. For development with self-signed certificates, we recommend testing over HTTP first, or configuring your IDE's trust store.</div>
+            </div>
+            <div class="faq-item">
+                <button class="faq-question">
+                    Can I contribute or report bugs?
+                    <i class="fa-solid fa-chevron-down"></i>
+                </button>
+                <div class="faq-answer">Absolutely! APICue is open-source on GitHub. Visit <a href="https://github.com/davin-bao/apicue-public" target="_blank">github.com/davin-bao/apicue-public</a> to open issues, submit pull requests, or start discussions.</div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ===== CTA ===== -->
+<section class="cta">
+    <div class="container">
+        <h2>Ready to Streamline Your API Workflow?</h2>
+        <p>Stop switching between your IDE and Postman. Test, iterate, and document — all from your OpenAPI YAML files.</p>
+        <a href="https://plugins.jetbrains.com/plugin/XXXXX-apicue" class="btn" target="_blank">
+            <i class="fa-brands fa-jetbrains"></i> Install APICue Free
+        </a>
+    </div>
+</section>
+
+<!-- ===== Footer ===== -->
+<footer>
+    <div class="container">
+        <div>
+            <a href="#" class="footer-logo">APICue <span>⚡</span></a>
+            <p>API testing from OpenAPI YAML files,<br/>built right into IntelliJ IDEA.</p>
+            <p style="margin-top:1rem;">
+                <a href="mailto:davin.bao@gmail.com" style="display:inline;margin-right:1rem;"><i class="fa-regular fa-envelope"></i> davin.bao@gmail.com</a>
+                <a href="https://apicue.anreen.com" target="_blank" style="display:inline;"><i class="fa-solid fa-globe"></i> apicue.anreen.com</a>
+            </p>
+        </div>
+        <div>
+            <h4>Product</h4>
+            <a href="#features">Features</a>
+            <a href="#screenshots">Screenshots</a>
+            <a href="#pricing">Pricing</a>
+            <a href="#faq">FAQ</a>
+        </div>
+        <div>
+            <h4>Resources</h4>
+            <a href="https://github.com/davin-bao/apicue-public" target="_blank">GitHub</a>
+            <a href="https://github.com/davin-bao/apicue-public/issues" target="_blank">Issue Tracker</a>
+            <a href="https://plugins.jetbrains.com/plugin/XXXXX-apicue" target="_blank">Marketplace</a>
+        </div>
+        <div>
+            <h4>Company</h4>
+            <a href="https://apicue.anreen.com" target="_blank">Website</a>
+            <a href="mailto:davin.bao@gmail.com">Contact</a>
+            <a href="../LICENSE" target="_blank">License</a>
+        </div>
+        <div class="footer-bottom">
+            &copy; 2025 APICue Development Team. All rights reserved.
+        </div>
+    </div>
+</footer>
+
+<!-- ===== JavaScript ===== -->
+<script>
+    // Navbar scroll shadow
+    window.addEventListener('scroll', () => {
+        document.getElementById('navbar').classList.toggle('scrolled', window.scrollY > 20);
+    });
+
+    // Mobile nav toggle
+    document.getElementById('navToggle').addEventListener('click', () => {
+        document.getElementById('navLinks').classList.toggle('open');
+    });
+
+    // Close mobile nav on link click
+    document.querySelectorAll('#navLinks a').forEach(a => {
+        a.addEventListener('click', () => document.getElementById('navLinks').classList.remove('open'));
+    });
+
+    // FAQ accordion
+    document.querySelectorAll('.faq-question').forEach(btn => {
+        btn.addEventListener('click', () => {
+            const item = btn.parentElement;
+            const isOpen = item.classList.contains('open');
+            // Close all
+            document.querySelectorAll('.faq-item.open').forEach(el => el.classList.remove('open'));
+            if (!isOpen) item.classList.add('open');
+        });
+    });
+</script>
+
+</body>
+</html>
