@@ -3,8 +3,7 @@
 ## [1.0.5] - 2026-06-24
 
 ### Changed
-- **IDE compatibility**: Removed `until-build` upper bound — plugin now supports all future IDE versions (tested up to 2026.1).
-- **Build config fix**: Changed `untilBuild` from `get()` to `orNull?.takeIf { it.isNotBlank() }` so an empty `pluginUntilBuild` property no longer produces an invalid `until-build=""` attribute.
+- **IDE compatibility**: Set `until-build` to `*` (wildcard) — plugin now supports all future IDE versions (tested up to 2026.1).
 
 ### Fixed
 - **Deprecated API migration**: Replaced `JBUI.scale(float)` with `JBUIScale.scale(float)` (2 occurrences) and `ComponentWithBrowseButton.getButton()` with `addActionListener()` (1 occurrence) to eliminate all scheduled-for-removal API usages.
