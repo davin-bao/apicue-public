@@ -9,6 +9,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+    <script src="https://plugins.jetbrains.com/assets/scripts/mp-widget.js"></script>
 
     <style>
         /* ===== Reset & Base ===== */
@@ -295,7 +296,7 @@
             <a href="#how-it-works">How It Works</a>
             <a href="#pricing">Pricing</a>
             <a href="#faq">FAQ</a>
-            <a href="https://plugins.jetbrains.com/plugin/32438-apicue" class="nav-cta" target="_blank">Install</a>
+            <a href="https://plugins.jetbrains.com/plugin/32441-apicue" class="nav-cta" target="_blank">Install</a>
         </div>
         <button class="nav-toggle" id="navToggle" aria-label="Toggle menu">☰</button>
     </div>
@@ -309,9 +310,7 @@
             <h1>Test APIs Directly<br/>from <span>OpenAPI YAML</span></h1>
             <p>No more switching to Postman or maintaining .http files. Green run buttons appear next to every API operation in your YAML editor — click, review, send.</p>
             <div class="hero-buttons">
-                <a href="https://plugins.jetbrains.com/plugin/32438-apicue" class="btn btn-primary" target="_blank">
-                    <i class="fa-brands fa-jetbrains"></i> Install from Marketplace
-                </a>
+                <div id="mp-install-hero"></div>
                 <a href="#features" class="btn btn-secondary">Explore Features <i class="fa-solid fa-arrow-down"></i></a>
             </div>
             <div class="hero-stats">
@@ -400,6 +399,14 @@
             <div class="screenshot-card">
                 <img src="../screenshots/2.png" alt="APICue response viewer" loading="lazy" />
                 <div class="caption"><i class="fa-solid fa-image"></i> Response viewer — status code, timing info, response headers, and syntax-highlighted JSON body.</div>
+            </div>
+            <div class="screenshot-card">
+                <img src="../screenshots/3.png" alt="APICue environment and token manager" loading="lazy" />
+                <div class="caption"><i class="fa-solid fa-image"></i> Environment & Token manager — switch servers, manage JWT and API keys per environment.</div>
+            </div>
+            <div class="screenshot-card">
+                <img src="../screenshots/4.png" alt="APICue saved examples and report export" loading="lazy" />
+                <div class="caption"><i class="fa-solid fa-image"></i> Save & Load examples — export test reports as HTML or Markdown with custom templates.</div>
             </div>
         </div>
     </div>
@@ -575,9 +582,9 @@
     <div class="container">
         <h2>Ready to Streamline Your API Workflow?</h2>
         <p>Stop switching between your IDE and Postman. Test, iterate, and document — all from your OpenAPI YAML files.</p>
-        <a href="https://plugins.jetbrains.com/plugin/32438-apicue" class="btn" target="_blank">
-            <i class="fa-brands fa-jetbrains"></i> Install APICue Free
-        </a>
+                <a href="https://plugins.jetbrains.com/plugin/32441-apicue" class="btn" target="_blank">
+                    <i class="fa-brands fa-jetbrains"></i> Install APICue Free
+                </a>
     </div>
 </section>
 
@@ -604,7 +611,7 @@
             <a href="https://github.com/davin-bao/apicue-public" target="_blank">GitHub</a>
             <a href="https://github.com/davin-bao/apicue-public/blob/master/docs/quickstart.md" target="_blank">Quickstart</a>
             <a href="https://github.com/davin-bao/apicue-public/issues" target="_blank">Issue Tracker</a>
-            <a href="https://plugins.jetbrains.com/plugin/32438-apicue" target="_blank">Marketplace</a>
+            <a href="https://plugins.jetbrains.com/plugin/32441-apicue" target="_blank">Marketplace</a>
             <a href="#faq">FAQ</a>
         </div>
         <div>
@@ -635,6 +642,9 @@
     document.querySelectorAll('#navLinks a').forEach(a => {
         a.addEventListener('click', () => document.getElementById('navLinks').classList.remove('open'));
     });
+
+    // Marketplace widget button (replaces hero install link)
+    MarketplaceWidget.setupMarketplaceWidget('install', 32441, "#mp-install-hero");
 
     // FAQ accordion
     document.querySelectorAll('.faq-question').forEach(btn => {
