@@ -15,7 +15,7 @@ This guide walks you through testing your first API endpoint with APICue.
 4. Click **Install**
 5. Restart your IDE
 
-Alternatively, download the plugin from the [JetBrains Marketplace page](https://plugins.jetbrains.com/) and install via **Settings → Plugins → ⚙ → Install Plugin from Disk**.
+Alternatively, download the plugin from the [JetBrains Marketplace page](https://plugins.jetbrains.com/plugin/32438-apicue) and install via **Settings → Plugins → ⚙ → Install Plugin from Disk**.
 
 ## Step 2: Open an OpenAPI YAML File
 

@@ -1,27 +1,243 @@
-MIT License
+APICue Plugin End User License Agreement (EULA)
+================================================
 
-Copyright (c) 2025-2026 APICue Development Team
+Copyright (c) 2025-2026 APICue Development Team. All rights reserved.
 
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this documentation and associated files (the "Documentation"), to deal
-in the Documentation without restriction, including without limitation the
-rights to use, copy, modify, merge, publish, distribute, sublicense, and/or
-sell copies of the Documentation, and to permit persons to whom the
-Documentation is furnished to do so, subject to the following conditions:
+This End User License Agreement (the "Agreement") is a legal agreement between
+you (either an individual or a single entity, "You" or "Licensee") and APICue
+Development Team ("Licensor") for the APICue Plugin (the "Software").
 
-The above copyright notice and this permission notice shall be included in all
-copies or substantial portions of the Documentation.
-
-THE DOCUMENTATION IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-OUT OF OR IN CONNECTION WITH THE DOCUMENTATION OR THE USE OR OTHER DEALINGS IN
-THE DOCUMENTATION.
+By installing, copying, downloading, accessing, or otherwise using the Software,
+You agree to be bound by the terms of this Agreement. If You do not agree to
+the terms of this Agreement, do not install, copy, download, access, or use
+the Software.
 
 ---
 
-Note: This license applies only to the documentation and materials in this
-repository. The APICue plugin itself is a commercial product distributed
-under a separate license agreement via JetBrains Marketplace.
+1. DEFINITIONS
+
+   1.1 "JetBrains" means JetBrains s.r.o., with its registered office at
+        Na Hrebenech II 1718/10, Prague, 14000, Czech Republic.
+
+   1.2 "JetBrains Marketplace" means the plugin marketplace operated by
+        JetBrains at https://plugins.jetbrains.com or any successor website.
+
+   1.3 "JetBrains Product" means any software program or service made
+        available by JetBrains, including IntelliJ IDEA and other JetBrains IDEs.
+
+   1.4 "Plugin" means the APICue Plugin for JetBrains Products made available
+        by the Licensor under this Agreement.
+
+   1.5 "Plugin Users" means users that are authorized to access and use the
+        Plugin concurrently.
+
+   1.6 "Software" means the Plugin, including all associated files, updates,
+        and documentation provided by the Licensor.
+
+2. LICENSE GRANT
+
+   2.1 Subject to the terms and conditions of this Agreement, the Licensor
+       grants You a non-exclusive, non-transferable, non-sublicensable,
+       limited license to install and use the Software on the number of
+       instances covered by the license purchased through JetBrains
+       Marketplace or authorized resellers.
+
+   2.2 If the Plugin is a paid Plugin, You must ensure that the maximum
+       number of Plugin Users does not exceed the number of Plugin Users
+       for which You have purchased the license.
+
+   2.3 You are authorized to use the Software in accordance with its
+       documentation provided by the Licensor and for the period of time
+       specified at the time of purchase.
+
+3. PERMITTED USE
+
+   (a) Install and use the Software on Licensed Instances of JetBrains
+       Products for which the Software is designed.
+   (b) Make one backup copy of the Software for archival purposes only.
+   (c) Transfer the Software permanently to another party, provided that
+       (i) You retain no copies, (ii) the recipient agrees to this
+       Agreement, and (iii) the transfer is in accordance with JetBrains
+       Marketplace policies.
+
+4. PROHIBITED USE
+
+   You are not permitted to:
+
+   (a) Edit, alter, modify, adapt, translate, or otherwise change the whole
+       or any part of the Software, nor permit the whole or any part of the
+       Software to be combined with or become incorporated in any other
+       software, nor decompile, disassemble, or reverse engineer the
+       Software or attempt to do any such things, except to the extent
+       explicitly permitted by applicable law.
+   (b) Reproduce, copy, distribute, resell, rent, lease, sublicense, or
+       otherwise use the Software for any commercial purpose beyond the
+       scope of Section 2.
+   (c) Allow any third party to use the Software on behalf of or for the
+       benefit of any third party, except as expressly authorized herein.
+   (d) Use the Software in any way which breaches any applicable local,
+       national, or international law.
+   (e) Remove, alter, or obscure any copyright, trademark, or proprietary
+       notices in the Software.
+   (f) Use the Software for any purpose that the Licensor considers is a
+       breach of this Agreement.
+
+5. INTELLECTUAL PROPERTY RIGHTS
+
+   5.1 The Software is protected by copyright and other intellectual
+       property laws and treaties. The Licensor or its licensors own all
+       title, ownership rights, and intellectual property rights in and to
+       the Software and all copies thereof.
+
+   5.2 This Agreement does not grant You any rights to the intellectual
+       property of the Licensor beyond the limited license granted in
+       Section 2.
+
+6. THIRD-PARTY COMPONENTS AND OPEN SOURCE ATTRIBUTIONS
+
+   The Software incorporates certain third-party components that are
+   licensed under separate open source licenses. All third-party components
+   are used in compliance with their respective licenses. Attribution and
+   license information for these components is provided below.
+
+   6.1 OkHttp 4.12.0  (com.squareup.okhttp3:okhttp)
+       Copyright (c) Square, Inc.
+       License: Apache License, Version 2.0
+       https://github.com/square/okhttp
+
+   6.2 Kotlinx Coroutines Core 1.7.3
+       (org.jetbrains.kotlinx:kotlinx-coroutines-core)
+       Copyright (c) JetBrains s.r.o.
+       License: Apache License, Version 2.0
+       https://github.com/Kotlin/kotlinx.coroutines
+
+   6.3 Kotlinx Coroutines Swing 1.7.3
+       (org.jetbrains.kotlinx:kotlinx-coroutines-swing)
+       Copyright (c) JetBrains s.r.o.
+       License: Apache License, Version 2.0
+       https://github.com/Kotlin/kotlinx.coroutines
+
+   6.4 SnakeYAML 2.2  (org.yaml:snakeyaml)
+       Copyright (c) SnakeYAML contributors
+       License: Apache License, Version 2.0
+       https://bitbucket.org/snakeyaml/snakeyaml
+
+   6.5 Gson 2.11.0  (com.google.code.gson:gson)
+       Copyright (c) Google LLC
+       License: Apache License, Version 2.0
+       https://github.com/google/gson
+
+   6.6 IntelliJ Platform SDK
+       Copyright (c) JetBrains s.r.o.
+       License: Apache License, Version 2.0
+       https://github.com/JetBrains/intellij-community
+
+   THE SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
+   "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
+   LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR
+   A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT
+   HOLDER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,
+   SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT
+   LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE,
+   DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY
+   THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
+   (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
+   OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+
+7. PRICING AND PAYMENTS
+
+   7.1 Pricing is determined by the Licensor and JetBrains Marketplace
+       and may be changed at any time.
+   7.2 All payments are processed through JetBrains Marketplace; the
+       Licensor does not handle payments directly.
+
+8. REFUND POLICY
+
+   Refunds are governed by the JetBrains Marketplace Refund Policy. The
+   Licensor does not process refund requests directly.
+
+9. DISCLAIMER OF WARRANTY
+
+   THE SOFTWARE IS PROVIDED TO YOU ON AN "AS IS" AND "AS AVAILABLE" BASIS
+   WITHOUT WARRANTIES. USE OF THE SOFTWARE IS AT YOUR OWN RISK. THE
+   LICENSOR MAKES NO WARRANTY AS TO THE SOFTWARE'S USE OR PERFORMANCE.
+   TO THE MAXIMUM EXTENT PERMITTED BY APPLICABLE LAW, THE LICENSOR
+   DISCLAIMS ALL OTHER WARRANTIES AND CONDITIONS, EITHER EXPRESS OR
+   IMPLIED, INCLUDING, BUT NOT LIMITED TO, IMPLIED WARRANTIES OF
+   MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE, TITLE, AND
+   NON-INFRINGEMENT, WITH REGARD TO THE SOFTWARE, AND THE PROVISION OF
+   OR FAILURE TO PROVIDE SUPPORT SERVICES. THE LICENSOR DOES NOT WARRANT
+   THAT THE SOFTWARE IS ACCURATE, RELIABLE, OR CORRECT; THAT IT MEETS
+   YOUR REQUIREMENTS; THAT IT WILL BE AVAILABLE AT ANY PARTICULAR TIME
+   OR LOCATION, UNINTERRUPTED, OR SECURE; THAT ANY DEFECTS OR ERRORS
+   WILL BE CORRECTED; OR THAT IT IS FREE OF VIRUSES OR OTHER HARMFUL
+   COMPONENTS.
+
+10. LIMITATION OF LIABILITY
+
+    10.1 IN NO EVENT WILL THE LICENSOR BE LIABLE FOR ANY DIRECT OR
+         INDIRECT COSTS, LOSSES, OR DAMAGES ASSOCIATED WITH THE USE OF
+         THE SOFTWARE.
+
+    10.2 THE LICENSOR SHALL NOT BE LIABLE TO YOU FOR ANY LOST PROFITS
+         OR CONSEQUENTIAL DAMAGES, HOWEVER CAUSED, AND IN NO EVENT WILL
+         THE LICENSOR'S AGGREGATE LIABILITY ARISING OUT OF OR RELATED TO
+         THIS AGREEMENT OR THE USE OF THE SOFTWARE EXCEED THE FEES WHICH
+         YOU PAID VIA JETBRAINS MARKETPLACE FOR THE SOFTWARE IN THE
+         THREE-MONTH PERIOD PRECEDING THE CLAIM. THIS LIMITATION WILL
+         APPLY EVEN IF THE LICENSOR HAS BEEN ADVISED OF THE POSSIBILITY
+         OF THE LIABILITY EXCEEDING THE AMOUNT AND NOTWITHSTANDING ANY
+         FAILURE OF ESSENTIAL PURPOSE OF ANY LIMITED REMEDY.
+
+    10.3 JETBRAINS' LIABILITY IS EXCLUDED IN ITS ENTIRETY AS JETBRAINS
+         IS NOT A PARTY TO THE CONTRACTUAL RELATIONSHIP BETWEEN THE
+         LICENSOR AND YOU.
+
+11. TERMINATION
+
+    11.1 This Agreement is effective until terminated. The Licensor may
+         terminate this Agreement immediately if You breach any term of
+         this Agreement.
+
+    11.2 Upon termination, You must cease all use of the Software and
+         destroy all copies of the Software in Your possession or control.
+
+    11.3 Sections 5, 6, 9, 10, and 12 shall survive any termination of
+         this Agreement.
+
+12. GOVERNING LAW
+
+    12.1 This Agreement shall be governed by and construed in accordance
+         with the laws of the People's Republic of China, without regard
+         to its conflict of law provisions.
+
+    12.2 Any dispute arising out of or in connection with this Agreement
+         shall be submitted to the competent courts of the place where
+         the Licensor has its registered office.
+
+13. GENERAL PROVISIONS
+
+    13.1 This Agreement constitutes the entire agreement between You and
+         the Licensor regarding the Software and supersedes all prior
+         agreements and understandings.
+
+    13.2 If any provision of this Agreement is held to be invalid or
+         unenforceable, the remaining provisions shall remain in full
+         force and effect.
+
+    13.3 The Licensor reserves the right to modify this Agreement at any
+         time. Modified terms will be posted on the Licensor's website
+         and/or JetBrains Marketplace listing.
+
+    13.4 The Licensor reserves the right to grant licenses to use the
+         Software to third parties.
+
+---
+
+For inquiries regarding this license, contact:
+Email: api-cue@gmail.com
+Website: https://www.apicue.com/
+
+---
+
+Update: 2025-03-12
