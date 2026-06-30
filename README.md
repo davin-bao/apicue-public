@@ -79,6 +79,7 @@ Supports both English and Chinese UI. Automatically matches your IDE's language 
 - [Quick Start Guide](docs/quickstart.md)
 - [Feature Details](docs/features.md)
 - [FAQ](docs/faq.md)
+- [Privacy Policy](docs/privacy.md)
 - [Changelog](CHANGELOG.md)
 
 ---
