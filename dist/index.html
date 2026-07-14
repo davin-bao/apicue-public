@@ -12,14 +12,11 @@
     <script src="https://plugins.jetbrains.com/assets/scripts/mp-widget.js"></script>
 
     <style>
-        /* ===== Reset & Base ===== */
         *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
         html { scroll-behavior: smooth; scroll-padding-top: 6rem; }
         body {
             font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-            color: #1a1a2e;
-            background: #f8f9fc;
-            line-height: 1.6;
+            color: #1a1a2e; background: #f8f9fc; line-height: 1.6;
             -webkit-font-smoothing: antialiased;
         }
         a { color: #6366f1; text-decoration: none; transition: color 0.2s; }
@@ -27,42 +24,42 @@
         img { max-width: 100%; height: auto; display: block; }
         .container { max-width: 1200px; margin: 0 auto; padding: 0 2rem; }
 
-        /* ===== Navigation ===== */
         nav {
             position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
             background: rgba(255,255,255,0.85); backdrop-filter: blur(12px);
-            border-bottom: 1px solid rgba(0,0,0,0.06);
-            transition: box-shadow 0.3s;
+            border-bottom: 1px solid rgba(0,0,0,0.06); transition: box-shadow 0.3s;
         }
         nav.scrolled { box-shadow: 0 1px 8px rgba(0,0,0,0.08); }
         nav .container { display: flex; align-items: center; justify-content: space-between; height: 4rem; }
         .nav-logo { font-size: 1.35rem; font-weight: 800; color: #1a1a2e; letter-spacing: -0.02em; }
         .nav-logo span { color: #6366f1; }
-        .nav-links { display: flex; gap: 2rem; align-items: center; }
+        .nav-links { display: flex; gap: 1.5rem; align-items: center; }
         .nav-links a { font-size: 0.9rem; font-weight: 500; color: #4a4a6a; }
         .nav-links a:hover { color: #6366f1; }
         .nav-toggle { display: none; background: none; border: none; font-size: 1.5rem; cursor: pointer; color: #1a1a2e; }
 
-        /* ===== Buttons ===== */
+        .lang-selector { position: relative; }
+        .lang-selector select {
+            appearance: none; background: rgba(99,102,241,0.08); color: #6366f1;
+            border: 1px solid rgba(99,102,241,0.2); border-radius: 8px; padding: 0.4rem 1.8rem 0.4rem 0.8rem;
+            font-size: 0.8rem; font-weight: 600; cursor: pointer; outline: none;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%236366f1' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
+            background-repeat: no-repeat; background-position: right 0.5rem center;
+        }
+        .lang-selector select:hover { border-color: #6366f1; }
+
         .btn {
             display: inline-flex; align-items: center; gap: 0.5rem;
             padding: 0.8rem 1.75rem; border-radius: 10px; font-weight: 600;
             font-size: 1rem; cursor: pointer; border: none; transition: all 0.2s;
         }
-        .btn-primary {
-            background: #6366f1; color: #fff; box-shadow: 0 4px 14px rgba(99,102,241,0.3);
-        }
+        .btn-primary { background: #6366f1; color: #fff; box-shadow: 0 4px 14px rgba(99,102,241,0.3); }
         .btn-primary:hover { background: #4f46e5; transform: translateY(-2px); box-shadow: 0 6px 20px rgba(99,102,241,0.4); }
-        .btn-secondary {
-            background: #fff; color: #1a1a2e; border: 1.5px solid #e2e8f0;
-        }
+        .btn-secondary { background: #fff; color: #1a1a2e; border: 1.5px solid #e2e8f0; }
         .btn-secondary:hover { border-color: #6366f1; color: #6366f1; transform: translateY(-2px); }
-        .btn-dark {
-            background: #1a1a2e; color: #fff;
-        }
+        .btn-dark { background: #1a1a2e; color: #fff; }
         .btn-dark:hover { background: #2d2d4e; transform: translateY(-2px); }
 
-        /* ===== Hero ===== */
         .hero {
             padding: 10rem 0 6rem;
             background: linear-gradient(135deg, #f8f9fc 0%, #eef0ff 50%, #e8e5ff 100%);
@@ -86,14 +83,9 @@
         }
         .hero h1 { font-size: 3.5rem; font-weight: 800; line-height: 1.15; letter-spacing: -0.03em; color: #0f0f23; }
         .hero h1 span { color: #6366f1; }
-        .hero p {
-            font-size: 1.15rem; color: #5a5a7a; margin: 1.5rem 0 2.5rem; max-width: 520px;
-        }
+        .hero p { font-size: 1.15rem; color: #5a5a7a; margin: 1.5rem 0 2.5rem; max-width: 520px; }
         .hero-buttons { display: flex; gap: 1rem; flex-wrap: wrap; }
-        .hero-stats {
-            display: flex; gap: 2.5rem; margin-top: 3rem; padding-top: 2rem;
-            border-top: 1px solid rgba(0,0,0,0.06);
-        }
+        .hero-stats { display: flex; gap: 2.5rem; margin-top: 3rem; padding-top: 2rem; border-top: 1px solid rgba(0,0,0,0.06); }
         .hero-stat strong { font-size: 1.8rem; font-weight: 800; color: #1a1a2e; display: block; }
         .hero-stat span { font-size: 0.85rem; color: #7a7a9a; }
         .hero-visual {
@@ -103,7 +95,6 @@
         }
         .hero-visual img { border-radius: 10px; box-shadow: 0 4px 12px rgba(0,0,0,0.05); }
 
-        /* ===== Carousel ===== */
         .carousel { position: relative; overflow: hidden; border-radius: 10px; }
         .carousel-track { position: relative; width: 100%; aspect-ratio: 16 / 10; }
         .carousel-slide {
@@ -111,26 +102,17 @@
             object-fit: contain; opacity: 0; transition: opacity 0.5s ease; cursor: pointer;
         }
         .carousel-slide.active { opacity: 1; position: relative; }
-        .carousel-dots {
-            text-align: center; padding: 0.5rem 0 0; display: flex; justify-content: center; gap: 8px;
-        }
-        .carousel-dots span {
-            display: inline-block; width: 10px; height: 10px; border-radius: 50%;
-            background: #d0d0e0; cursor: pointer; transition: background 0.2s;
-        }
+        .carousel-dots { text-align: center; padding: 0.5rem 0 0; display: flex; justify-content: center; gap: 8px; }
+        .carousel-dots span { display: inline-block; width: 10px; height: 10px; border-radius: 50%; background: #d0d0e0; cursor: pointer; transition: background 0.2s; }
         .carousel-dots span.active { background: #6366f1; }
 
-        /* ===== Lightbox ===== */
         .lightbox {
             display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%;
             z-index: 9999; background: rgba(0,0,0,0.75); backdrop-filter: blur(8px);
             justify-content: center; align-items: center; cursor: pointer;
         }
         .lightbox.open { display: flex; }
-        .lightbox img {
-            max-width: 90vw; max-height: 90vh; border-radius: 12px;
-            box-shadow: 0 20px 80px rgba(0,0,0,0.5); cursor: default;
-        }
+        .lightbox img { max-width: 90vw; max-height: 90vh; border-radius: 12px; box-shadow: 0 20px 80px rgba(0,0,0,0.5); cursor: default; }
         .lightbox .lightbox-close {
             position: absolute; top: 20px; right: 30px; font-size: 2.5rem;
             color: #fff; cursor: pointer; opacity: 0.7; transition: opacity 0.2s;
@@ -138,43 +120,26 @@
         }
         .lightbox .lightbox-close:hover { opacity: 1; }
 
-        /* ===== Section common ===== */
         section { padding: 5rem 0; }
         .section-label {
             display: inline-block; font-size: 0.75rem; font-weight: 700; text-transform: uppercase;
             letter-spacing: 0.1em; color: #6366f1; margin-bottom: 0.75rem;
         }
-        .section-title {
-            font-size: 2.5rem; font-weight: 800; letter-spacing: -0.02em;
-            color: #0f0f23; margin-bottom: 1rem; line-height: 1.2;
-        }
-        .section-subtitle {
-            font-size: 1.1rem; color: #6a6a8a; max-width: 600px; margin-bottom: 3rem;
-        }
+        .section-title { font-size: 2.5rem; font-weight: 800; letter-spacing: -0.02em; color: #0f0f23; margin-bottom: 1rem; line-height: 1.2; }
+        .section-subtitle { font-size: 1.1rem; color: #6a6a8a; max-width: 600px; margin-bottom: 3rem; }
         .text-center { text-align: center; }
         .text-center .section-subtitle { margin-left: auto; margin-right: auto; }
 
-        /* ===== Features ===== */
-        .features-grid {
-            display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem;
-        }
+        .features-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; }
         .feature-card {
             background: #fff; border-radius: 14px; padding: 2rem;
             border: 1px solid #eef0f5; transition: all 0.25s;
             position: relative; overflow: hidden;
         }
-        .feature-card:hover {
-            border-color: #d0d3f5; box-shadow: 0 8px 30px rgba(99,102,241,0.08);
-            transform: translateY(-3px);
-        }
-        .feature-icon {
-            width: 48px; height: 48px; border-radius: 12px;
-            display: flex; align-items: center; justify-content: center;
-            font-size: 1.3rem; margin-bottom: 1.2rem;
-        }
+        .feature-card:hover { border-color: #d0d3f5; box-shadow: 0 8px 30px rgba(99,102,241,0.08); transform: translateY(-3px); }
+        .feature-icon { width: 48px; height: 48px; border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 1.3rem; margin-bottom: 1.2rem; }
         .feature-card h3 { font-size: 1.1rem; font-weight: 700; margin-bottom: 0.6rem; }
         .feature-card p { font-size: 0.9rem; color: #6a6a8a; line-height: 1.7; }
-
         .icon-purple  { background: rgba(99,102,241,0.1);  color: #6366f1; }
         .icon-green   { background: rgba(16,185,129,0.1);  color: #10b981; }
         .icon-orange  { background: rgba(245,158,11,0.1);  color: #f59e0b; }
@@ -183,27 +148,22 @@
         .icon-cyan    { background: rgba(6,182,212,0.1);   color: #06b6d4; }
         .icon-amber   { background: rgba(217,119,6,0.1);   color: #d97706; }
         .icon-violet  { background: rgba(139,92,246,0.1);  color: #8b5cf6; }
+        .icon-teal    { background: rgba(20,184,166,0.1);  color: #14b8a6; }
 
-        /* ===== How It Works ===== */
         .steps { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.5rem; counter-reset: step; }
         .step-card { counter-increment: step; background: #fff; border-radius: 14px; padding: 2rem; border: 1px solid #eef0f5; position: relative; }
         .step-card::before {
             content: counter(step); position: absolute; top: 1rem; right: 1.5rem;
-            font-size: 3rem; font-weight: 800; color: rgba(99,102,241,0.08);
-            line-height: 1;
+            font-size: 3rem; font-weight: 800; color: rgba(99,102,241,0.08); line-height: 1;
         }
         .step-card h3 { font-size: 1.05rem; font-weight: 700; margin-bottom: 0.5rem; }
         .step-card p { font-size: 0.88rem; color: #6a6a8a; }
         .step-icon { font-size: 1.8rem; margin-bottom: 1rem; display: block; }
 
-        /* ===== Tech Specs ===== */
         .specs { background: #fff; }
         .specs-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; }
         .specs-list { list-style: none; }
-        .specs-list li {
-            display: flex; align-items: center; gap: 0.75rem;
-            padding: 0.75rem 0; border-bottom: 1px solid #f0f0f5;
-        }
+        .specs-list li { display: flex; align-items: center; gap: 0.75rem; padding: 0.75rem 0; border-bottom: 1px solid #f0f0f5; }
         .specs-list li:last-child { border-bottom: none; }
         .specs-list i { color: #6366f1; width: 1.2rem; text-align: center; }
         .specs-list strong { font-weight: 600; min-width: 140px; }
@@ -214,23 +174,11 @@
         .dep-item .name { font-weight: 500; }
         .dep-item .version { color: #6a6a8a; }
 
-        /* ===== Pricing ===== */
         .pricing { background: linear-gradient(135deg, #f8f9fc 0%, #eef0ff 100%); }
         .pricing-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; max-width: 800px; margin: 0 auto; }
-        .pricing-card {
-            background: #fff; border-radius: 16px; padding: 2.5rem;
-            border: 1px solid #eef0f5; text-align: center;
-            transition: all 0.25s;
-        }
-        .pricing-card.featured {
-            border-color: #6366f1; box-shadow: 0 8px 30px rgba(99,102,241,0.12);
-            position: relative; transform: scale(1.02);
-        }
-        .pricing-card.featured .pricing-badge {
-            display: inline-block; background: #6366f1; color: #fff;
-            padding: 0.25rem 0.9rem; border-radius: 20px; font-size: 0.75rem;
-            font-weight: 600; margin-bottom: 1rem;
-        }
+        .pricing-card { background: #fff; border-radius: 16px; padding: 2.5rem; border: 1px solid #eef0f5; text-align: center; transition: all 0.25s; }
+        .pricing-card.featured { border-color: #6366f1; box-shadow: 0 8px 30px rgba(99,102,241,0.12); position: relative; transform: scale(1.02); }
+        .pricing-card.featured .pricing-badge { display: inline-block; background: #6366f1; color: #fff; padding: 0.25rem 0.9rem; border-radius: 20px; font-size: 0.75rem; font-weight: 600; margin-bottom: 1rem; }
         .pricing-card h3 { font-size: 1.2rem; font-weight: 700; margin-bottom: 0.5rem; }
         .pricing-card .price { font-size: 3rem; font-weight: 800; color: #0f0f23; margin: 0.5rem 0; }
         .pricing-card .price span { font-size: 1rem; font-weight: 500; color: #8a8aaa; }
@@ -240,32 +188,21 @@
         .pricing-card ul li i { color: #10b981; width: 1rem; }
         .pricing-card .btn { width: 100%; justify-content: center; }
 
-        /* ===== FAQ ===== */
         .faq-list { max-width: 720px; margin: 0 auto; }
         .faq-item { background: #fff; border-radius: 12px; margin-bottom: 0.75rem; border: 1px solid #eef0f5; overflow: hidden; }
-        .faq-question {
-            width: 100%; padding: 1.25rem 1.5rem; background: none; border: none;
-            text-align: left; font-size: 1rem; font-weight: 600; color: #1a1a2e;
-            cursor: pointer; display: flex; justify-content: space-between; align-items: center;
-            transition: background 0.2s;
-        }
+        .faq-question { width: 100%; padding: 1.25rem 1.5rem; background: none; border: none; text-align: left; font-size: 1rem; font-weight: 600; color: #1a1a2e; cursor: pointer; display: flex; justify-content: space-between; align-items: center; transition: background 0.2s; }
         .faq-question:hover { background: #f8f9fc; }
         .faq-question i { transition: transform 0.3s; color: #aaa; font-size: 0.85rem; }
         .faq-item.open .faq-question i { transform: rotate(180deg); }
         .faq-answer { padding: 0 1.5rem 1.25rem; font-size: 0.9rem; color: #6a6a8a; display: none; line-height: 1.8; }
         .faq-item.open .faq-answer { display: block; }
 
-        /* ===== CTA ===== */
-        .cta {
-            background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%);
-            color: #fff; text-align: center; padding: 6rem 0;
-        }
+        .cta { background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%); color: #fff; text-align: center; padding: 6rem 0; }
         .cta h2 { font-size: 2.5rem; font-weight: 800; margin-bottom: 1rem; }
         .cta p { font-size: 1.1rem; opacity: 0.9; margin-bottom: 2rem; max-width: 500px; margin-left: auto; margin-right: auto; }
         .cta .btn { background: #fff; color: #6366f1; }
         .cta .btn:hover { transform: translateY(-2px); box-shadow: 0 8px 25px rgba(0,0,0,0.2); }
 
-        /* ===== Footer ===== */
         footer { background: #0f0f23; color: #a0a0c0; padding: 4rem 0 2rem; }
         footer .container { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 2rem; }
         footer h4 { color: #fff; font-size: 0.9rem; font-weight: 700; margin-bottom: 1rem; }
@@ -276,7 +213,6 @@
         .footer-logo span { color: #8b5cf6; }
         .footer-bottom { grid-column: 1 / -1; padding-top: 2rem; margin-top: 2rem; border-top: 1px solid rgba(255,255,255,0.06); font-size: 0.8rem; text-align: center; }
 
-        /* ===== Responsive ===== */
         @media (max-width: 1024px) {
             .hero .container { grid-template-columns: 1fr; gap: 2.5rem; }
             .hero h1 { font-size: 2.8rem; }
@@ -310,10 +246,25 @@
     <div class="container">
         <a href="#" class="nav-logo">APICue <span><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 40 40" style="vertical-align:-2px"><polygon fill="#72C078" fill-opacity="0.85" stroke="#2E7D32" stroke-width="2.5" stroke-linejoin="round" points="8,6.5 32,20 8,33.5"/></svg></span></a>
         <div class="nav-links" id="navLinks">
-            <a href="#features">Features</a>
-            <a href="#how-it-works">How It Works</a>
-            <a href="#pricing">Pricing</a>
-            <a href="#faq">FAQ</a>
+            <a href="#features" data-i18n="nav.features">Features</a>
+            <a href="#how-it-works" data-i18n="nav.how">How It Works</a>
+            <a href="#pricing" data-i18n="nav.pricing">Pricing</a>
+            <a href="#faq" data-i18n="nav.faq">FAQ</a>
+            <div class="lang-selector">
+                <select id="langSwitcher" onchange="switchLang(this.value)">
+                    <option value="en">EN</option>
+                    <option value="zh">中文</option>
+                    <option value="ja">日本語</option>
+                    <option value="ko">한국어</option>
+                    <option value="es">Español</option>
+                    <option value="pt">Português</option>
+                    <option value="de">Deutsch</option>
+                    <option value="fr">Français</option>
+                    <option value="ru">Русский</option>
+                    <option value="vi">Tiếng Việt</option>
+                    <option value="tr">Türkçe</option>
+                </select>
+            </div>
         </div>
         <button class="nav-toggle" id="navToggle" aria-label="Toggle menu">☰</button>
     </div>
@@ -323,18 +274,18 @@
 <section class="hero">
     <div class="container">
         <div>
-            <div class="hero-badge"><i class="fa-solid fa-bolt"></i> IntelliJ IDEA Plugin</div>
-            <h1>Test APIs Directly<br/>from <span>OpenAPI YAML</span></h1>
-            <p>No more switching to Postman or maintaining .http files. Green run buttons appear next to every API operation in your YAML editor — click, review, send.</p>
+            <div class="hero-badge"><i class="fa-solid fa-bolt"></i> <span data-i18n="hero.badge">IntelliJ IDEA Plugin</span></div>
+            <h1 data-i18n="hero.headline">Test APIs Directly<br/>from <span>OpenAPI YAML</span></h1>
+            <p data-i18n="hero.subtitle">No more switching to Postman or maintaining .http files. Green run buttons appear next to every API operation in your YAML editor — click, review, send.</p>
             <div class="hero-buttons">
                 <div id="mp-install-hero"></div>
-                <a href="#features" class="btn btn-secondary">Explore Features <i class="fa-solid fa-arrow-down"></i></a>
+                <a href="#features" class="btn btn-secondary" data-i18n="hero.explore">Explore Features <i class="fa-solid fa-arrow-down"></i></a>
             </div>
             <div class="hero-stats">
-                <div class="hero-stat"><strong>1-Click</strong><span>Send Request</span></div>
-                <div class="hero-stat"><strong>3</strong><span>Request Tabs</span></div>
-                <div class="hero-stat"><strong>2</strong><span>Export Formats</span></div>
-                <div class="hero-stat"><strong>11</strong><span>Languages</span></div>
+                <div class="hero-stat"><strong>1-Click</strong><span data-i18n="hero.stat1">Send Request</span></div>
+                <div class="hero-stat"><strong>3</strong><span data-i18n="hero.stat2">Request Tabs</span></div>
+                <div class="hero-stat"><strong>2</strong><span data-i18n="hero.stat3">Export Formats</span></div>
+                <div class="hero-stat"><strong>11</strong><span data-i18n="hero.stat4">Languages</span></div>
             </div>
         </div>
         <div class="hero-visual">
@@ -355,127 +306,125 @@
 <section id="features">
     <div class="container">
         <div class="text-center">
-            <span class="section-label">Features</span>
-            <h2 class="section-title">Everything You Need for API Testing</h2>
-            <p class="section-subtitle">APICue brings Postman-class API testing into your IntelliJ IDEA — tightly coupled with your OpenAPI specifications.</p>
+            <span class="section-label" data-i18n="features.label">Features</span>
+            <h2 class="section-title" data-i18n="features.title">Everything You Need for API Testing</h2>
+            <p class="section-subtitle" data-i18n="features.subtitle">APICue brings Postman-class API testing into your IntelliJ IDEA — tightly coupled with your OpenAPI specifications.</p>
         </div>
         <div class="features-grid">
             <div class="feature-card">
                 <div class="feature-icon icon-purple"><i class="fa-solid fa-play"></i></div>
-                <h3>Gutter Icon Triggers</h3>
-                <p>Green ▶ buttons appear next to every <code>get:</code>, <code>post:</code>, <code>put:</code>, <code>delete:</code>, and <code>patch:</code> operation. Click to open the test panel instantly.</p>
+                <h3 data-i18n="feature1.title">Gutter Icon Triggers</h3>
+                <p data-i18n="feature1.desc">Green ▶ buttons appear next to every <code>get:</code>, <code>post:</code>, <code>put:</code>, <code>delete:</code>, and <code>patch:</code> operation. Click to open the test panel instantly.</p>
             </div>
             <div class="feature-card">
                 <div class="feature-icon icon-green"><i class="fa-solid fa-window-restore"></i></div>
-                <h3>Dedicated ToolWindow</h3>
-                <p>Right-side panel shows the full testing interface: environment selector, auth config, request editor (Params / Headers / Body), and split-pane response viewer.</p>
+                <h3 data-i18n="feature2.title">Dedicated ToolWindow</h3>
+                <p data-i18n="feature2.desc">Right-side panel shows the full testing interface: environment selector, auth config, request editor (Params / Headers / Body), and split-pane response viewer.</p>
             </div>
             <div class="feature-card">
                 <div class="feature-icon icon-orange"><i class="fa-solid fa-shield-halved"></i></div>
-                <h3>Auth Auto-Discovery</h3>
-                <p>Reads <code>securitySchemes</code> and <code>security</code> from your spec, auto-generates Bearer JWT, Basic Auth, and API Key headers. No manual setup.</p>
+                <h3 data-i18n="feature3.title">Auth Auto-Discovery</h3>
+                <p data-i18n="feature3.desc">Reads <code>securitySchemes</code> and <code>security</code> from your spec, auto-generates Bearer JWT, Basic Auth, and API Key headers. No manual setup.</p>
             </div>
             <div class="feature-card">
                 <div class="feature-icon icon-blue"><i class="fa-solid fa-globe"></i></div>
-                <h3>Multi-Environment Servers</h3>
-                <p>Switch between multiple <code>servers</code> per YAML file. Last-selected URL is remembered per-file across IDE restarts.</p>
+                <h3 data-i18n="feature4.title">Multi-Environment Servers</h3>
+                <p data-i18n="feature4.desc">Switch between multiple <code>servers</code> per YAML file. Last-selected URL is remembered per-file across IDE restarts.</p>
             </div>
             <div class="feature-card">
                 <div class="feature-icon icon-pink"><i class="fa-solid fa-wand-magic-sparkles"></i></div>
-                <h3>Smart Parameter Pre-Fill</h3>
-                <p>Query params, headers, and body auto-filled from <code>example</code>, <code>default</code>, and schema property values following a well-defined priority hierarchy.</p>
+                <h3 data-i18n="feature5.title">Smart Parameter Pre-Fill</h3>
+                <p data-i18n="feature5.desc">Query params, headers, and body auto-filled from <code>example</code>, <code>default</code>, and schema property values following a well-defined priority hierarchy.</p>
             </div>
             <div class="feature-card">
                 <div class="feature-icon icon-cyan"><i class="fa-solid fa-floppy-disk"></i></div>
-                <h3>Save &amp; Load Examples</h3>
-                <p>Save working request/response payloads back to the YAML as OpenAPI examples. Load them later for reproducible testing and regression checks.</p>
+                <h3 data-i18n="feature6.title">Save &amp; Load Examples</h3>
+                <p data-i18n="feature6.desc">Save working request/response payloads back to the YAML as OpenAPI examples. Load them later for reproducible testing and regression checks.</p>
             </div>
             <div class="feature-card">
                 <div class="feature-icon icon-amber"><i class="fa-solid fa-key"></i></div>
-                <h3>Token Manager</h3>
-                <p>Manage JWT, API Keys per environment with a built-in Token Manager. Tokens stored securely using your IDE's password-safe mechanism.</p>
+                <h3 data-i18n="feature7.title">Token Manager</h3>
+                <p data-i18n="feature7.desc">Manage JWT, API Keys per environment with a built-in Token Manager. Tokens stored securely using your IDE's password-safe mechanism.</p>
             </div>
             <div class="feature-card">
                 <div class="feature-icon icon-teal"><i class="fa-solid fa-file-export"></i></div>
-                <h3>API Document Export</h3>
-                <p>Export your OpenAPI spec as <strong>Markdown</strong> or <strong>HTML</strong> documentation — directly from the tool window toolbar or right-click YAML file. Includes search/filter dialog, configurable content sections, and table-of-contents.</p>
+                <h3 data-i18n="feature8.title">API Document Export</h3>
+                <p data-i18n="feature8.desc">Export your OpenAPI spec as <strong>Markdown</strong> or <strong>HTML</strong> documentation — directly from the tool window toolbar or right-click YAML file. Includes search/filter dialog, configurable content sections, and table-of-contents.</p>
             </div>
             <div class="feature-card">
                 <div class="feature-icon icon-purple"><i class="fa-solid fa-link"></i></div>
-                <h3>$Ref Cross-File Resolution</h3>
-                <p>Fully resolves <code>$ref</code> across YAML files (e.g. <code>$ref: 'model.yml#/…'</code>) with caching and circular-reference detection.</p>
+                <h3 data-i18n="feature9.title">$Ref Cross-File Resolution</h3>
+                <p data-i18n="feature9.desc">Fully resolves <code>$ref</code> across YAML files (e.g. <code>$ref: 'model.yml#/…'</code>) with caching and circular-reference detection.</p>
             </div>
             <div class="feature-card">
                 <div class="feature-icon icon-violet"><i class="fa-solid fa-language"></i></div>
-                <h3>i18n (11 Languages)</h3>
-                <p>Supports <strong>EN, 中文, 日本語, 한국어, Español, Português, Deutsch, Français, Русский, Tiếng Việt, Türkçe</strong>. Automatically matches your IDE's language setting. Perfect for global teams.</p>
+                <h3 data-i18n="feature10.title">i18n (11 Languages)</h3>
+                <p data-i18n="feature10.desc">Supports <strong>EN, 中文, 日本語, 한국어, Español, Português, Deutsch, Français, Русский, Tiếng Việt, Türkçe</strong>. Automatically matches your IDE's language setting. Perfect for global teams.</p>
             </div>
         </div>
     </div>
 </section>
-
-<!-- ===== How It Works ===== -->
 
 <!-- ===== How It Works ===== -->
 <section id="how-it-works">
     <div class="container">
         <div class="text-center">
-            <span class="section-label">How It Works</span>
-            <h2 class="section-title">From Spec to Response in 4 Steps</h2>
-            <p class="section-subtitle">No configuration files, no external tools — just your OpenAPI YAML and APICue.</p>
+            <span class="section-label" data-i18n="how.label">How It Works</span>
+            <h2 class="section-title" data-i18n="how.title">From Spec to Response in 4 Steps</h2>
+            <p class="section-subtitle" data-i18n="how.subtitle">No configuration files, no external tools — just your OpenAPI YAML and APICue.</p>
         </div>
         <div class="steps">
             <div class="step-card">
                 <span class="step-icon">📂</span>
-                <h3>Open an OpenAPI YAML File</h3>
-                <p>Any <code>.yaml</code> or <code>.yml</code> file with valid OpenAPI 3.0 syntax. APICue parses it on the fly.</p>
+                <h3 data-i18n="step1.title">Open an OpenAPI YAML File</h3>
+                <p data-i18n="step1.desc">Any <code>.yaml</code> or <code>.yml</code> file with valid OpenAPI 3.0 syntax. APICue parses it on the fly.</p>
             </div>
             <div class="step-card">
                 <span class="step-icon">▶</span>
-                <h3>Click the Gutter Icon</h3>
-                <p>Green ▶ buttons appear next to every API operation. Click one — the APICue Tester tool window opens instantly.</p>
+                <h3 data-i18n="step2.title">Click the Gutter Icon</h3>
+                <p data-i18n="step2.desc">Green ▶ buttons appear next to every API operation. Click one — the APICue Tester tool window opens instantly.</p>
             </div>
             <div class="step-card">
                 <span class="step-icon">⚙️</span>
-                <h3>Review &amp; Configure</h3>
-                <p>Select your target server, review auto-filled params/headers/body, configure auth tokens. Everything is pre-filled from your spec.</p>
+                <h3 data-i18n="step3.title">Review &amp; Configure</h3>
+                <p data-i18n="step3.desc">Select your target server, review auto-filled params/headers/body, configure auth tokens. Everything is pre-filled from your spec.</p>
             </div>
             <div class="step-card">
                 <span class="step-icon">🚀</span>
-                <h3>Send &amp; Inspect</h3>
-                <p>Click <strong>Send Request</strong>. Inspect the response with syntax highlighting, timing, and status code — all inside the IDE.</p>
+                <h3 data-i18n="step4.title">Send &amp; Inspect</h3>
+                <p data-i18n="step4.desc">Click <strong>Send Request</strong>. Inspect the response with syntax highlighting, timing, and status code — all inside the IDE.</p>
             </div>
         </div>
     </div>
 </section>
 
-<!-- ===== Tech Specs ===== -->
+<!-- ===== Compatibility ===== -->
 <section id="specs" class="specs">
     <div class="container">
         <div class="text-center">
-            <span class="section-label">Compatibility</span>
-            <h2 class="section-title">Works Where You Work</h2>
-            <p class="section-subtitle">Built for IntelliJ IDEA with zero external runtime dependencies.</p>
+            <span class="section-label" data-i18n="specs.label">Compatibility</span>
+            <h2 class="section-title" data-i18n="specs.title">Works Where You Work</h2>
+            <p class="section-subtitle" data-i18n="specs.subtitle">Built for IntelliJ IDEA with zero external runtime dependencies.</p>
         </div>
         <div class="specs-grid">
             <div>
                 <ul class="specs-list">
-                    <li><i class="fa-solid fa-check"></i><strong>Platform</strong> IntelliJ IDEA Ultimate / Community</li>
-                    <li><i class="fa-solid fa-check"></i><strong>Since Build</strong> 241 (2024.1)</li>
-                    <li><i class="fa-solid fa-check"></i><strong>Until Build</strong> 251.* (2025.1)</li>
+                    <li><i class="fa-solid fa-check"></i><strong data-i18n="specs.platform">Platform</strong> IntelliJ IDEA Ultimate / Community</li>
+                    <li><i class="fa-solid fa-check"></i><strong data-i18n="specs.since">Since Build</strong> 241 (2024.1)</li>
+                    <li><i class="fa-solid fa-check"></i><strong data-i18n="specs.until">Until Build</strong> 262.* (2026.2)</li>
                     <li><i class="fa-solid fa-check"></i><strong>JDK</strong> 17+</li>
-                    <li><i class="fa-solid fa-check"></i><strong>Language</strong> Kotlin + Java</li>
+                    <li><i class="fa-solid fa-check"></i><strong data-i18n="specs.lang">Language</strong> Kotlin + Java</li>
                     <li><i class="fa-solid fa-check"></i><strong>Plugin ID</strong> <code>com.anreen.apicue</code></li>
-                    <li><i class="fa-solid fa-check"></i><strong>License</strong> Commercial (paid)</li>
+                    <li><i class="fa-solid fa-check"></i><strong data-i18n="specs.license">License</strong> <span data-i18n="specs.licenseVal">Commercial (paid)</span></li>
                 </ul>
             </div>
             <div class="specs-deps">
-                <h4>📦 Built-in Dependencies</h4>
+                <h4 data-i18n="specs.deps">📦 Built-in Dependencies</h4>
                 <div class="dep-item"><span class="name">OkHttp</span><span class="version">4.12.0</span></div>
                 <div class="dep-item"><span class="name">SnakeYAML</span><span class="version">2.2</span></div>
                 <div class="dep-item"><span class="name">Kotlinx Coroutines</span><span class="version">1.7.3</span></div>
                 <div class="dep-item"><span class="name">Gson</span><span class="version">2.11.0</span></div>
-                <p style="margin-top:1rem;font-size:0.85rem;color:#6a6a8a;">All dependencies are bundled — no separate installation needed.</p>
+                <p style="margin-top:1rem;font-size:0.85rem;color:#6a6a8a;" data-i18n="specs.bundled">All dependencies are bundled — no separate installation needed.</p>
             </div>
         </div>
     </div>
@@ -485,35 +434,35 @@
 <section id="pricing" class="pricing">
     <div class="container">
         <div class="text-center">
-            <span class="section-label">Pricing</span>
-            <h2 class="section-title">Simple, Transparent Pricing</h2>
-            <p class="section-subtitle">Try it free for 30 days. No credit card required.</p>
+            <span class="section-label" data-i18n="pricing.label">Pricing</span>
+            <h2 class="section-title" data-i18n="pricing.title">Simple, Transparent Pricing</h2>
+            <p class="section-subtitle" data-i18n="pricing.subtitle">Try it free for 30 days. No credit card required.</p>
         </div>
         <div class="pricing-grid">
             <div class="pricing-card">
-                <h3>Monthly</h3>
-                <div class="price">$1 <span>/mo</span></div>
-                <div class="per">per developer</div>
+                <h3 data-i18n="pricing.monthly">Monthly</h3>
+                <div class="price">$1 <span data-i18n="pricing.perMonth">/mo</span></div>
+                <div class="per" data-i18n="pricing.perDev">per developer</div>
                 <ul>
-                    <li><i class="fa-solid fa-check"></i> Full feature access</li>
-                    <li><i class="fa-solid fa-check"></i> Priority updates</li>
-                    <li><i class="fa-solid fa-check"></i> Email support</li>
-                    <li><i class="fa-solid fa-check"></i> Cancel anytime</li>
+                    <li><i class="fa-solid fa-check"></i> <span data-i18n="pricing.fullAccess">Full feature access</span></li>
+                    <li><i class="fa-solid fa-check"></i> <span data-i18n="pricing.updates">Priority updates</span></li>
+                    <li><i class="fa-solid fa-check"></i> <span data-i18n="pricing.support">Email support</span></li>
+                    <li><i class="fa-solid fa-check"></i> <span data-i18n="pricing.cancel">Cancel anytime</span></li>
                 </ul>
-                <a href="https://github.com/davin-bao/apicue-public" class="btn btn-secondary" target="_blank">View EULA</a>
+                <a href="https://github.com/davin-bao/apicue-public" class="btn btn-secondary" target="_blank" data-i18n="pricing.viewEula">View EULA</a>
             </div>
             <div class="pricing-card featured">
-                <span class="pricing-badge">Best Value</span>
-                <h3>Annual</h3>
-                <div class="price">$10 <span>/yr</span></div>
-                <div class="per">per developer — 16% off</div>
+                <span class="pricing-badge" data-i18n="pricing.bestValue">Best Value</span>
+                <h3 data-i18n="pricing.annual">Annual</h3>
+                <div class="price">$10 <span data-i18n="pricing.perYear">/yr</span></div>
+                <div class="per" data-i18n="pricing.off">per developer — 16% off</div>
                 <ul>
-                    <li><i class="fa-solid fa-check"></i> Full feature access</li>
-                    <li><i class="fa-solid fa-check"></i> Priority updates</li>
-                    <li><i class="fa-solid fa-check"></i> Priority support</li>
-                    <li><i class="fa-solid fa-check"></i> Perpetual fallback license (see EULA)</li>
+                    <li><i class="fa-solid fa-check"></i> <span data-i18n="pricing.fullAccess">Full feature access</span></li>
+                    <li><i class="fa-solid fa-check"></i> <span data-i18n="pricing.updates">Priority updates</span></li>
+                    <li><i class="fa-solid fa-check"></i> <span data-i18n="pricing.prioritySupport">Priority support</span></li>
+                    <li><i class="fa-solid fa-check"></i> <span data-i18n="pricing.fallback">Perpetual fallback license (see EULA)</span></li>
                 </ul>
-                <a href="https://github.com/davin-bao/apicue-public" class="btn btn-primary" target="_blank">View EULA</a>
+                <a href="https://github.com/davin-bao/apicue-public" class="btn btn-primary" target="_blank" data-i18n="pricing.viewEula">View EULA</a>
             </div>
         </div>
     </div>
@@ -523,59 +472,38 @@
 <section id="faq">
     <div class="container">
         <div class="text-center">
-            <span class="section-label">FAQ</span>
-            <h2 class="section-title">Frequently Asked Questions</h2>
-            <p class="section-subtitle">Everything you need to know about APICue.</p>
+            <span class="section-label" data-i18n="faq.label">FAQ</span>
+            <h2 class="section-title" data-i18n="faq.title">Frequently Asked Questions</h2>
+            <p class="section-subtitle" data-i18n="faq.subtitle">Everything you need to know about APICue.</p>
         </div>
         <div class="faq-list">
             <div class="faq-item">
-                <button class="faq-question">
-                    Why do I need APICue? Isn't the built-in HTTP Client enough?
-                    <i class="fa-solid fa-chevron-down"></i>
-                </button>
-                <div class="faq-answer">The built-in HTTP Client requires you to maintain separate <code>.http</code> files that duplicate your API spec. APICue reads your OpenAPI YAML directly — no duplication, no drift. It auto-discovers auth schemes, pre-fills parameters from examples, and lets you save responses back to the spec.</div>
+                <button class="faq-question"><span data-i18n="faq.q1">How is APICue different from the built-in HTTP Client?</span> <i class="fa-solid fa-chevron-down"></i></button>
+                <div class="faq-answer" data-i18n="faq.a1">The built-in HTTP Client requires you to maintain separate <code>.http</code> files that duplicate your API spec. APICue reads your OpenAPI YAML directly — no duplication, no drift. It auto-discovers auth schemes, pre-fills parameters from examples, and lets you save responses back to the spec.</div>
             </div>
             <div class="faq-item">
-                <button class="faq-question">
-                    What IDEs does APICue support?
-                    <i class="fa-solid fa-chevron-down"></i>
-                </button>
-                <div class="faq-answer">APICue runs on IntelliJ IDEA Ultimate and Community Edition (build 241–251.*). Support for other JetBrains IDEs with YAML plugin support may be added in future releases.</div>
+                <button class="faq-question"><span data-i18n="faq.q2">Which IDEs are supported?</span> <i class="fa-solid fa-chevron-down"></i></button>
+                <div class="faq-answer" data-i18n="faq.a2">APICue runs on IntelliJ IDEA Ultimate and Community Edition (build 241–262.*). Support for other JetBrains IDEs with YAML plugin support may be added in future releases.</div>
             </div>
             <div class="faq-item">
-                <button class="faq-question">
-                    Does APICue support Swagger 2.0?
-                    <i class="fa-solid fa-chevron-down"></i>
-                </button>
-                <div class="faq-answer">No, APICue supports OpenAPI 3.0.x only. You can convert your Swagger 2.0 spec using the official Swagger Converter (https://swagger.io/tools/swagger-converter/).</div>
+                <button class="faq-question"><span data-i18n="faq.q3">Does it support Swagger 2.0?</span> <i class="fa-solid fa-chevron-down"></i></button>
+                <div class="faq-answer" data-i18n="faq.a3">No, APICue supports OpenAPI 3.0.x only. You can convert your Swagger 2.0 spec using the official Swagger Converter (https://swagger.io/tools/swagger-converter/).</div>
             </div>
             <div class="faq-item">
-                <button class="faq-question">
-                    Where are my saved examples stored?
-                    <i class="fa-solid fa-chevron-down"></i>
-                </button>
-                <div class="faq-answer">By default, examples are saved in the plugin's global config directory. You can change this in Settings → Tools → APICue to store them inside your project directory — ideal for sharing via version control.</div>
+                <button class="faq-question"><span data-i18n="faq.q4">Where are my saved examples stored?</span> <i class="fa-solid fa-chevron-down"></i></button>
+                <div class="faq-answer" data-i18n="faq.a4">By default, examples are saved in the plugin's global config directory. You can change this in Settings → Tools → APICue to store them inside your project directory — ideal for sharing via version control.</div>
             </div>
             <div class="faq-item">
-                <button class="faq-question">
-                    Is there a free trial?
-                    <i class="fa-solid fa-chevron-down"></i>
-                </button>
-                <div class="faq-answer">Yes! APICue offers a 30-day free trial with full feature access. No credit card required. After the trial, a paid license is required for continued use.</div>
+                <button class="faq-question"><span data-i18n="faq.q5">Is there a free trial?</span> <i class="fa-solid fa-chevron-down"></i></button>
+                <div class="faq-answer" data-i18n="faq.a5">Yes! APICue offers a 30-day free trial with full feature access. No credit card required. After the trial, a paid license is required for continued use.</div>
             </div>
             <div class="faq-item">
-                <button class="faq-question">
-                    Does APICue support HTTPS / self-signed certificates?
-                    <i class="fa-solid fa-chevron-down"></i>
-                </button>
-                <div class="faq-answer">Yes — any protocol supported by OkHttp works for HTTPS. For development with self-signed certificates, we recommend testing over HTTP first, or configuring your IDE's trust store.</div>
+                <button class="faq-question"><span data-i18n="faq.q6">Does it support HTTPS?</span> <i class="fa-solid fa-chevron-down"></i></button>
+                <div class="faq-answer" data-i18n="faq.a6">Yes — any protocol supported by OkHttp works for HTTPS. For development with self-signed certificates, we recommend testing over HTTP first, or configuring your IDE's trust store.</div>
             </div>
             <div class="faq-item">
-                <button class="faq-question">
-                    Can I contribute or report bugs?
-                    <i class="fa-solid fa-chevron-down"></i>
-                </button>
-                <div class="faq-answer">Absolutely! APICue is open-source on GitHub. Visit <a href="https://github.com/davin-bao/apicue-public" target="_blank">github.com/davin-bao/apicue-public</a> to open issues, submit pull requests, or start discussions.</div>
+                <button class="faq-question"><span data-i18n="faq.q7">Is APICue open-source?</span> <i class="fa-solid fa-chevron-down"></i></button>
+                <div class="faq-answer" data-i18n="faq.a7">Absolutely! APICue is open-source on GitHub. Visit <a href="https://github.com/davin-bao/apicue-public" target="_blank">github.com/davin-bao/apicue-public</a> to open issues, submit pull requests, or start discussions.</div>
             </div>
         </div>
     </div>
@@ -584,11 +512,11 @@
 <!-- ===== CTA ===== -->
 <section class="cta">
     <div class="container">
-        <h2>Ready to Streamline Your API Workflow?</h2>
-        <p>Stop switching between your IDE and Postman. Test, iterate, and document — all from your OpenAPI YAML files.</p>
-                <a href="https://plugins.jetbrains.com/plugin/32441-apicue" class="btn" target="_blank">
-                    <i class="fa-brands fa-jetbrains"></i> Install APICue Free
-                </a>
+        <h2 data-i18n="cta.title">Ready to Streamline Your API Workflow?</h2>
+        <p data-i18n="cta.subtitle">Stop switching between your IDE and Postman. Test, iterate, and document — all from your OpenAPI YAML files.</p>
+        <a href="https://plugins.jetbrains.com/plugin/32441-apicue" class="btn" target="_blank">
+            <i class="fa-brands fa-jetbrains"></i> <span data-i18n="cta.button">Install APICue Free</span>
+        </a>
     </div>
 </section>
 
@@ -597,36 +525,34 @@
     <div class="container">
         <div>
             <a href="#" class="footer-logo">APICue <span><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 40 40" style="vertical-align:-2px"><polygon fill="#72C078" fill-opacity="0.85" stroke="#2E7D32" stroke-width="2.5" stroke-linejoin="round" points="8,6.5 32,20 8,33.5"/></svg></span></a>
-            <p>API testing from OpenAPI YAML files,<br/>built right into IntelliJ IDEA.</p>
+            <p data-i18n="footer.tagline">API testing from OpenAPI YAML files,<br/>built right into IntelliJ IDEA.</p>
             <p style="margin-top:1rem;">
                 <a href="mailto:davin.bao@gmail.com" style="display:inline;margin-right:1rem;"><i class="fa-regular fa-envelope"></i> davin.bao@gmail.com</a>
                 <a href="https://apicue.anreen.com" target="_blank" style="display:inline;"><i class="fa-solid fa-globe"></i> apicue.anreen.com</a>
             </p>
         </div>
         <div>
-            <h4>Product</h4>
-            <a href="#features">Features</a>
-            <a href="#pricing">Pricing</a>
-            <a href="#faq">FAQ</a>
+            <h4 data-i18n="footer.product">Product</h4>
+            <a href="#features" data-i18n="nav.features">Features</a>
+            <a href="#pricing" data-i18n="nav.pricing">Pricing</a>
+            <a href="#faq" data-i18n="nav.faq">FAQ</a>
         </div>
         <div>
-            <h4>Resources</h4>
+            <h4 data-i18n="footer.resources">Resources</h4>
             <a href="https://github.com/davin-bao/apicue-public" target="_blank">GitHub</a>
-            <a href="https://github.com/davin-bao/apicue-public/blob/master/docs/quickstart.md" target="_blank">Quickstart</a>
-            <a href="https://github.com/davin-bao/apicue-public/issues" target="_blank">Issue Tracker</a>
+            <a href="https://github.com/davin-bao/apicue-public/blob/master/docs/quickstart.md" target="_blank" data-i18n="footer.quickstart">Quickstart</a>
+            <a href="https://github.com/davin-bao/apicue-public/issues" target="_blank" data-i18n="footer.issues">Issue Tracker</a>
             <a href="https://plugins.jetbrains.com/plugin/32441-apicue" target="_blank">Marketplace</a>
-            <a href="#faq">FAQ</a>
+            <a href="#faq" data-i18n="nav.faq">FAQ</a>
         </div>
         <div>
-            <h4>Company</h4>
-            <a href="https://apicue.anreen.com" target="_blank">Website</a>
-            <a href="mailto:davin.bao@gmail.com">Contact</a>
-            <a href="privacy.html">Privacy</a>
-            <a href="https://github.com/davin-bao/apicue-public/blob/master/LICENSE" target="_blank">License</a>
+            <h4 data-i18n="footer.company">Company</h4>
+            <a href="https://apicue.anreen.com" target="_blank" data-i18n="footer.website">Website</a>
+            <a href="mailto:davin.bao@gmail.com" data-i18n="footer.contact">Contact</a>
+            <a href="privacy.html" data-i18n="footer.privacy">Privacy</a>
+            <a href="https://github.com/davin-bao/apicue-public/blob/master/LICENSE" target="_blank" data-i18n="footer.license">License</a>
         </div>
-        <div class="footer-bottom">
-            &copy; 2025 APICue Development Team. All rights reserved.
-        </div>
+        <div class="footer-bottom" data-i18n="footer.copyright">© 2026 APICue Development Team. All rights reserved.</div>
     </div>
 </footer>
 
@@ -636,102 +562,530 @@
     <img src="" alt="Enlarged screenshot" />
 </div>
 
-<!-- ===== JavaScript ===== -->
 <script>
-    // Navbar scroll shadow
-    window.addEventListener('scroll', () => {
-        document.getElementById('navbar').classList.toggle('scrolled', window.scrollY > 20);
+// ── Carousel ──
+(function() {
+    const track = document.querySelector('.carousel-track');
+    if (!track) return;
+    const slides = track.querySelectorAll('.carousel-slide');
+    const dotsContainer = document.querySelector('.carousel-dots');
+    let current = 0;
+    slides.forEach((_, i) => {
+        const dot = document.createElement('span');
+        if (i === 0) dot.classList.add('active');
+        dot.addEventListener('click', () => goTo(i));
+        dotsContainer.appendChild(dot);
     });
+    const dots = dotsContainer.querySelectorAll('span');
+    function goTo(idx) {
+        slides.forEach(s => s.classList.remove('active'));
+        dots.forEach(d => d.classList.remove('active'));
+        slides[idx].classList.add('active');
+        dots[idx].classList.add('active');
+        current = idx;
+    }
+    setInterval(() => goTo((current + 1) % slides.length), 4000);
+})();
 
-    // Mobile nav toggle
-    document.getElementById('navToggle').addEventListener('click', () => {
-        document.getElementById('navLinks').classList.toggle('open');
+// ── Lightbox ──
+document.querySelectorAll('.carousel-slide').forEach(img => {
+    img.addEventListener('click', () => {
+        const lb = document.getElementById('heroLightbox');
+        lb.querySelector('img').src = img.src;
+        lb.classList.add('open');
     });
+});
+document.getElementById('heroLightbox').addEventListener('click', function(e) {
+    if (e.target === this || e.target.classList.contains('lightbox-close')) {
+        this.classList.remove('open');
+    }
+});
 
-    // Close mobile nav on link click
-    document.querySelectorAll('#navLinks a').forEach(a => {
-        a.addEventListener('click', () => document.getElementById('navLinks').classList.remove('open'));
+// ── Mobile nav toggle ──
+document.getElementById('navToggle').addEventListener('click', () => {
+    document.getElementById('navLinks').classList.toggle('open');
+});
+
+// ── Navbar scroll shadow ──
+window.addEventListener('scroll', () => {
+    document.getElementById('navbar').classList.toggle('scrolled', window.scrollY > 20);
+});
+
+// ── FAQ accordion ──
+document.querySelectorAll('.faq-question').forEach(btn => {
+    btn.addEventListener('click', () => {
+        btn.parentElement.classList.toggle('open');
     });
+});
 
-    // Marketplace widget button (replaces hero install link)
-    MarketplaceWidget.setupMarketplaceWidget('install', 32441, "#mp-install-hero");
+// ── Language switcher ──
+const translations = {
+    "en": {},
+    "zh": {
+        "nav.features": "功能特性", "nav.how": "使用流程", "nav.pricing": "定价", "nav.faq": "常见问题",
+        "hero.badge": "IntelliJ IDEA 插件", "hero.headline": "直接从 <span>OpenAPI YAML</span><br/>测试 API",
+        "hero.subtitle": "无需切换到 Postman 或维护 .http 文件。YAML 编辑器中每个 API 操作旁都会出现绿色运行按钮 —— 点击、查看、发送。",
+        "hero.explore": "探索功能 <i class=\"fa-solid fa-arrow-down\"></i>",
+        "hero.stat1": "一键发送", "hero.stat2": "请求标签", "hero.stat3": "导出格式", "hero.stat4": "语言支持",
+        "features.label": "功能介绍", "features.title": "API 测试所需的一切", "features.subtitle": "APICue 将 Postman 级别的 API 测试能力带入 IntelliJ IDEA —— 与你的 OpenAPI 规范紧密集成。",
+        "feature1.title": "编辑器图标触发", "feature1.desc": "每个 <code>get:</code>、<code>post:</code>、<code>put:</code>、<code>delete:</code> 和 <code>patch:</code> 操作旁都会出现绿色 ▶ 按钮。点击即可立即打开测试面板。",
+        "feature2.title": "专属工具窗口", "feature2.desc": "右侧面板展示完整的测试界面：环境选择器、认证配置、请求编辑器（参数/请求头/请求体）以及分栏响应查看器。",
+        "feature3.title": "认证自动发现", "feature3.desc": "从你的规范中读取 <code>securitySchemes</code> 和 <code>security</code>，自动生成 Bearer JWT、Basic Auth 和 API Key 请求头，无需手动配置。",
+        "feature4.title": "多环境服务器", "feature4.desc": "每个 YAML 文件支持多个 <code>servers</code>。最后选择的 URL 按文件记忆，跨 IDE 重启保持不变。",
+        "feature5.title": "智能参数预填", "feature5.desc": "查询参数、请求头和请求体从 <code>example</code>、<code>default</code> 和 schema 属性值中按优先级自动填充。",
+        "feature6.title": "保存与加载示例", "feature6.desc": "将有效的请求/响应数据回写到 YAML 作为 OpenAPI 示例。后续可重新加载，用于可复现的测试和回归检查。",
+        "feature7.title": "令牌管理", "feature7.desc": "通过内置的令牌管理器按环境管理 JWT、API Key 等。令牌使用 IDE 的密码安全机制存储。",
+        "feature8.title": "API 文档导出", "feature8.desc": "将 OpenAPI 规范导出为 <strong>Markdown</strong> 或 <strong>HTML</strong> 文档 —— 可直接从工具窗口工具栏或右键 YAML 文件触发。包含搜索/过滤对话框、可配置内容分区和目录。",
+        "feature9.title": "$Ref 跨文件解析", "feature9.desc": "完整解析跨 YAML 文件的 <code>$ref</code> 引用（如 <code>$ref: 'model.yml#/…'</code>），支持缓存和循环引用检测。",
+        "feature10.title": "i18n（11 种语言）", "feature10.desc": "支持 <strong>EN、中文、日本語、한국어、Español、Português、Deutsch、Français、Русский、Tiếng Việt、Türkçe</strong>。自动匹配 IDE 语言设置，适合全球团队。",
+        "how.label": "使用流程", "how.title": "4 步从规范到响应", "how.subtitle": "无需配置文件，无需外部工具 —— 只需你的 OpenAPI YAML 和 APICue。",
+        "step1.title": "打开 OpenAPI YAML 文件", "step1.desc": "任何有效的 OpenAPI 3.0 语法的 <code>.yaml</code> 或 <code>.yml</code> 文件。APICue 即时解析。",
+        "step2.title": "点击编辑器图标", "step2.desc": "每个 API 操作旁出现绿色 ▶ 按钮。点击后 APICue Tester 工具窗口立即打开。",
+        "step3.title": "查看与配置", "step3.desc": "选择目标服务器，查看自动填充的参数/请求头/请求体，配置认证令牌。所有内容均从你的规范预填。",
+        "step4.title": "发送与检查", "step4.desc": "点击 <strong>发送请求</strong>。查看带语法高亮、耗时和状态码的响应 —— 全部在 IDE 内完成。",
+        "specs.label": "兼容性", "specs.title": "在你工作的地方工作", "specs.subtitle": "专为 IntelliJ IDEA 构建，零外部运行时依赖。",
+        "specs.platform": "平台", "specs.since": "起始版本", "specs.until": "最高版本", "specs.lang": "开发语言", "specs.license": "许可证", "specs.licenseVal": "商业（付费）",
+        "specs.deps": "📦 内置依赖", "specs.bundled": "所有依赖均已捆绑 —— 无需单独安装。",
+        "pricing.label": "定价", "pricing.title": "简单透明的定价", "pricing.subtitle": "免费试用 30 天，无需信用卡。",
+        "pricing.monthly": "月度", "pricing.perMonth": "/月", "pricing.perDev": "每位开发者", "pricing.annual": "年度", "pricing.perYear": "/年", "pricing.off": "每位开发者 — 省 16%", "pricing.bestValue": "最佳选择",
+        "pricing.fullAccess": "全部功能", "pricing.updates": "优先更新", "pricing.support": "邮件支持", "pricing.cancel": "随时取消", "pricing.prioritySupport": "优先支持", "pricing.fallback": "永久回退许可证（见 EULA）", "pricing.viewEula": "查看 EULA",
+        "faq.label": "常见问题", "faq.title": "常见问题解答", "faq.subtitle": "关于 APICue 你需要知道的一切。",
+        "faq.q1": "APICue 与内置 HTTP Client 有何不同？", "faq.a1": "内置 HTTP Client 需要你维护单独的 <code>.http</code> 文件，与 API 规范重复。APICue 直接读取你的 OpenAPI YAML —— 无需重复，不会漂移。它能自动发现认证方案、从示例中预填参数，并让你将响应保存回规范。",
+        "faq.q2": "支持哪些 IDE？", "faq.a2": "APICue 运行在 IntelliJ IDEA Ultimate 和 Community Edition 上（build 241–262.*）。未来版本可能会增加对其他支持 YAML 插件的 JetBrains IDE 的支持。",
+        "faq.q3": "支持 Swagger 2.0 吗？", "faq.a3": "不支持，APICue 仅支持 OpenAPI 3.0.x。你可以使用官方 Swagger 转换工具（https://swagger.io/tools/swagger-converter/）转换你的 Swagger 2.0 规范。",
+        "faq.q4": "保存的示例存储在哪里？", "faq.a4": "默认情况下，示例保存在插件的全局配置目录中。你可以在设置 → 工具 → APICue 中更改，将其存储到项目目录中 —— 适合通过版本控制共享。",
+        "faq.q5": "有免费试用吗？", "faq.a5": "有的！APICue 提供 30 天免费试用，包含全部功能，无需信用卡。试用期后需要购买付费许可证才能继续使用。",
+        "faq.q6": "支持 HTTPS 吗？", "faq.a6": "支持 —— OkHttp 支持的任何协议都可用于 HTTPS。对于使用自签名证书的开发环境，我们建议先通过 HTTP 测试，或配置 IDE 的信任库。",
+        "faq.q7": "APICue 是开源的吗？", "faq.a7": "当然！APICue 在 GitHub 上开源。访问 <a href=\"https://github.com/davin-bao/apicue-public\" target=\"_blank\">github.com/davin-bao/apicue-public</a> 提交 issue、pull request 或发起讨论。",
+        "cta.title": "准备好优化你的 API 工作流了吗？", "cta.subtitle": "停止在 IDE 和 Postman 之间切换。测试、迭代、文档 —— 全部从你的 OpenAPI YAML 文件开始。",
+        "cta.button": "免费安装 APICue",
+        "footer.tagline": "从 OpenAPI YAML 文件测试 API，<br/>直接构建在 IntelliJ IDEA 中。",
+        "footer.product": "产品", "footer.resources": "资源", "footer.company": "公司",
+        "footer.quickstart": "快速开始", "footer.issues": "问题追踪", "footer.website": "网站", "footer.contact": "联系", "footer.privacy": "隐私", "footer.license": "许可证",
+        "footer.copyright": "© 2026 APICue 开发团队。保留所有权利。"
+    },
+    "ja": {
+        "nav.features": "機能", "nav.how": "使い方", "nav.pricing": "料金", "nav.faq": "FAQ",
+        "hero.badge": "IntelliJ IDEA プラグイン", "hero.headline": "<span>OpenAPI YAML</span>から<br/>APIを直接テスト",
+        "hero.subtitle": "Postmanに切り替えたり .http ファイルを管理する必要はもうありません。YAMLエディタのすべてのAPI操作の横に緑色の実行ボタンが表示されます — クリック、確認、送信。",
+        "hero.explore": "機能を見る <i class=\"fa-solid fa-arrow-down\"></i>",
+        "hero.stat1": "ワンクリック送信", "hero.stat2": "リクエストタブ", "hero.stat3": "出力形式", "hero.stat4": "言語対応",
+        "features.label": "機能", "features.title": "APIテストに必要なすべて", "features.subtitle": "APICueはPostmanクラスのAPIテストをIntelliJ IDEAに統合 — OpenAPI仕様と密結合。",
+        "feature1.title": "ガターアイコン起動", "feature1.desc": "すべての<code>get:</code>、<code>post:</code>、<code>put:</code>、<code>delete:</code>、<code>patch:</code>操作の横に緑色の▶ボタンが表示。クリックですぐにテストパネルを開きます。",
+        "feature2.title": "専用ツールウィンドウ", "feature2.desc": "右側パネルに完全なテストインターフェース：環境セレクタ、認証設定、リクエストエディタ（パラメータ/ヘッダー/ボディ）、分割ペイン応答ビューア。",
+        "feature3.title": "認証自動検出", "feature3.desc": "仕様から<code>securitySchemes</code>と<code>security</code>を読み取り、Bearer JWT、Basic Auth、API Keyヘッダーを自動生成。手動設定不要。",
+        "feature4.title": "マルチ環境サーバー", "feature4.desc": "YAMLファイルごとに複数の<code>servers</code>を切り替え可能。最後に選択したURLはファイルごとに記憶され、IDE再起動後も保持。",
+        "feature5.title": "スマートパラメータ事前入力", "feature5.desc": "クエリパラメータ、ヘッダー、ボディを<code>example</code>、<code>default</code>、スキーマプロパティ値から優先順位に従って自動入力。",
+        "feature6.title": "実例の保存と読込", "feature6.desc": "リクエスト/レスポンスデータをYAMLにOpenAPI実例として保存。後で再読込して再現可能なテストと回帰確認に活用。",
+        "feature7.title": "トークン管理", "feature7.desc": "JWTやAPI Keyを環境ごとに管理。トークンはIDEのパスワードセーフ機構で安全に保存。",
+        "feature8.title": "APIドキュメント出力", "feature8.desc": "OpenAPI仕様を<strong>Markdown</strong>または<strong>HTML</strong>ドキュメントとして出力 — ツールウィンドウのツールバーまたはYAMLファイルの右クリックから直接。検索/フィルタダイアログ、設定可能なセクション、目次付き。",
+        "feature9.title": "$Ref ファイル間解決", "feature9.desc": "YAMLファイル間の<code>$ref</code>参照を完全解決（例：<code>$ref: 'model.yml#/…'</code>）。キャッシュと循環参照検出に対応。",
+        "feature10.title": "i18n（11言語）", "feature10.desc": "<strong>EN、中文、日本語、한국어、Español、Português、Deutsch、Français、Русский、Tiếng Việt、Türkçe</strong>に対応。IDEの言語設定に自動一致。グローバルチームに最適。",
+        "how.label": "使い方", "how.title": "4ステップで仕様から応答へ", "how.subtitle": "設定ファイル不要、外部ツール不要 — OpenAPI YAMLとAPICueだけ。",
+        "step1.title": "OpenAPI YAMLファイルを開く", "step1.desc": "有効なOpenAPI 3.0構文の<code>.yaml</code>または<code>.yml</code>ファイル。APICueが即座に解析。",
+        "step2.title": "ガターアイコンをクリック", "step2.desc": "緑色の▶ボタンが各API操作の横に表示。クリックするとAPICue Testerツールウィンドウが即座に開く。",
+        "step3.title": "確認と設定", "step3.desc": "対象サーバーを選択、自動入力されたパラメータ/ヘッダー/ボディを確認、認証トークンを設定。すべて仕様から事前入力済み。",
+        "step4.title": "送信と確認", "step4.desc": "<strong>送信</strong>をクリック。構文ハイライト、応答時間、ステータスコード付きの応答をIDE内で確認。",
+        "specs.label": "互換性", "specs.title": "あなたの環境で動作", "specs.subtitle": "IntelliJ IDEA専用に構築、外部ランタイム依存関係ゼロ。",
+        "specs.platform": "プラットフォーム", "specs.since": "対応開始ビルド", "specs.until": "対応終了ビルド", "specs.lang": "開発言語", "specs.license": "ライセンス", "specs.licenseVal": "商用（有料）",
+        "specs.deps": "📦 内蔵依存関係", "specs.bundled": "すべての依存関係はバンドル済み — 別途インストール不要。",
+        "pricing.label": "料金", "pricing.title": "シンプルで透明な料金", "pricing.subtitle": "30日間無料トライアル。クレジットカード不要。",
+        "pricing.monthly": "月額", "pricing.perMonth": "/月", "pricing.perDev": "開発者あたり", "pricing.annual": "年額", "pricing.perYear": "/年", "pricing.off": "開発者あたり — 16%割引", "pricing.bestValue": "おすすめ",
+        "pricing.fullAccess": "全機能アクセス", "pricing.updates": "優先アップデート", "pricing.support": "メールサポート", "pricing.cancel": "いつでも解約可能", "pricing.prioritySupport": "優先サポート", "pricing.fallback": "永久フォールバックライセンス（EULA参照）", "pricing.viewEula": "EULAを表示",
+        "faq.label": "FAQ", "faq.title": "よくある質問", "faq.subtitle": "APICueについて知っておくべきこと。",
+        "faq.q1": "APICueはビルトインHTTP Clientとどう違う？", "faq.a1": "ビルトインHTTP ClientはAPI仕様と重複する別の<code>.http</code>ファイルの管理が必要です。APICueはOpenAPI YAMLを直接読み取るため、重複もズレもありません。認証スキームを自動検出し、実例からパラメータを事前入力し、応答を仕様に保存できます。",
+        "faq.q2": "どのIDEがサポートされていますか？", "faq.a2": "APICueはIntelliJ IDEA UltimateおよびCommunity Edition（build 241–262.*）で動作します。YAMLプラグイン対応の他のJetBrains IDEは将来のリリースで追加予定です。",
+        "faq.q3": "Swagger 2.0はサポートされていますか？", "faq.a3": "いいえ、APICueはOpenAPI 3.0.xのみをサポートしています。公式のSwagger Converter（https://swagger.io/tools/swagger-converter/）を使用して変換できます。",
+        "faq.q4": "保存した実例はどこに保存されますか？", "faq.a4": "デフォルトではプラグインのグローバル設定ディレクトリに保存されます。設定 → ツール → APICueでプロジェクトディレクトリ内に変更可能 — バージョン管理での共有に最適です。",
+        "faq.q5": "無料トライアルはありますか？", "faq.a5": "はい！APICueは30日間の全機能無料トライアルを提供しています。クレジットカード不要。トライアル後は有料ライセンスが必要です。",
+        "faq.q6": "HTTPSはサポートされていますか？", "faq.a6": "はい — OkHttpがサポートするすべてのプロトコルがHTTPSで動作します。自己署名証明書を使用した開発では、まずHTTPでテストするか、IDEの信頼ストアを設定することをお勧めします。",
+        "faq.q7": "APICueはオープンソースですか？", "faq.a7": "もちろん！APICueはGitHub上でオープンソースです。<a href=\"https://github.com/davin-bao/apicue-public\" target=\"_blank\">github.com/davin-bao/apicue-public</a>にアクセスして、Issueの報告やPull Requestの提出、ディスカッションの開始ができます。",
+        "cta.title": "APIワークフローを効率化しませんか？", "cta.subtitle": "IDEとPostmanの間を行き来するのはやめましょう。テスト、反復、ドキュメント — すべてOpenAPI YAMLファイルから。",
+        "cta.button": "APICueを無料でインストール",
+        "footer.tagline": "OpenAPI YAMLファイルからAPIテスト、<br/>IntelliJ IDEAに直接統合。",
+        "footer.product": "製品", "footer.resources": "リソース", "footer.company": "会社情報",
+        "footer.quickstart": "クイックスタート", "footer.issues": "課題追跡", "footer.website": "ウェブサイト", "footer.contact": "お問い合わせ", "footer.privacy": "プライバシー", "footer.license": "ライセンス",
+        "footer.copyright": "© 2026 APICue 開発チーム。無断複写・転載を禁じます。"
+    },
+    "ko": {
+        "nav.features": "기능", "nav.how": "사용 방법", "nav.pricing": "가격", "nav.faq": "FAQ",
+        "hero.badge": "IntelliJ IDEA 플러그인", "hero.headline": "<span>OpenAPI YAML</span>에서<br/>API를 직접 테스트",
+        "hero.subtitle": "더 이상 Postman으로 전환하거나 .http 파일을 유지할 필요가 없습니다. YAML 편집기의 모든 API 작업 옆에 녹색 실행 버튼이 나타납니다 — 클릭, 확인, 전송.",
+        "hero.explore": "기능 살펴보기 <i class=\"fa-solid fa-arrow-down\"></i>",
+        "hero.stat1": "원클릭 전송", "hero.stat2": "요청 탭", "hero.stat3": "내보내기 형식", "hero.stat4": "언어 지원",
+        "features.label": "기능", "features.title": "API 테스트에 필요한 모든 것", "features.subtitle": "APICue가 Postman급 API 테스트를 IntelliJ IDEA에 통합 — OpenAPI 사양과 긴밀하게 결합됩니다.",
+        "feature1.title": "거터 아이콘 트리거", "feature1.desc": "모든 <code>get:</code>, <code>post:</code>, <code>put:</code>, <code>delete:</code>, <code>patch:</code> 작업 옆에 녹색 ▶ 버튼이 나타납니다. 클릭하면 즉시 테스트 패널이 열립니다.",
+        "feature2.title": "전용 도구 창", "feature2.desc": "오른쪽 패널에 전체 테스트 인터페이스: 환경 선택기, 인증 설정, 요청 편집기(파라미터/헤더/본문), 분할 창 응답 뷰어가 표시됩니다.",
+        "feature3.title": "인증 자동 발견", "feature3.desc": "사양에서 <code>securitySchemes</code>와 <code>security</code>를 읽어 Bearer JWT, Basic Auth, API Key 헤더를 자동 생성합니다. 수동 설정이 필요 없습니다.",
+        "feature4.title": "멀티 환경 서버", "feature4.desc": "YAML 파일당 여러 <code>servers</code>를 전환할 수 있습니다. 마지막으로 선택한 URL은 파일별로 기억되어 IDE 재시작 후에도 유지됩니다.",
+        "feature5.title": "스마트 파라미터 자동 입력", "feature5.desc": "쿼리 파라미터, 헤더, 본문이 <code>example</code>, <code>default</code>, 스키마 속성 값에서 우선순위에 따라 자동으로 채워집니다.",
+        "feature6.title": "예제 저장 및 불러오기", "feature6.desc": "요청/응답 데이터를 YAML에 OpenAPI 예제로 저장합니다. 나중에 다시 불러와 재현 가능한 테스트와 회귀 확인에 활용할 수 있습니다.",
+        "feature7.title": "토큰 관리", "feature7.desc": "JWT, API Key를 환경별로 관리합니다. 토큰은 IDE의 비밀번호 보안 메커니즘을 사용하여 안전하게 저장됩니다.",
+        "feature8.title": "API 문서 내보내기", "feature8.desc": "OpenAPI 사양을 <strong>Markdown</strong> 또는 <strong>HTML</strong> 문서로 내보내기 — 도구 창 도구 모음이나 YAML 파일 우클릭에서 직접 가능합니다. 검색/필터 대화상자, 설정 가능한 섹션, 목차가 포함됩니다.",
+        "feature9.title": "$Ref 파일 간 해석", "feature9.desc": "YAML 파일 간의 <code>$ref</code> 참조를 완전히 해석합니다(예: <code>$ref: 'model.yml#/…'</code>). 캐싱과 순환 참조 감지를 지원합니다.",
+        "feature10.title": "i18n (11개 언어)", "feature10.desc": "<strong>EN, 中文, 日本語, 한국어, Español, Português, Deutsch, Français, Русский, Tiếng Việt, Türkçe</strong>를 지원합니다. IDE 언어 설정을 자동으로 따라갑니다. 글로벌 팀에 최적입니다.",
+        "how.label": "사용 방법", "how.title": "4단계로 사양에서 응답까지", "how.subtitle": "설정 파일도 외부 도구도 필요 없습니다 — OpenAPI YAML과 APICue만 있으면 됩니다.",
+        "step1.title": "OpenAPI YAML 파일 열기", "step1.desc": "유효한 OpenAPI 3.0 구문의 <code>.yaml</code> 또는 <code>.yml</code> 파일. APICue가 즉시 해석합니다.",
+        "step2.title": "거터 아이콘 클릭", "step2.desc": "녹색 ▶ 버튼이 각 API 작업 옆에 나타납니다. 클릭하면 APICue Tester 도구 창이 즉시 열립니다.",
+        "step3.title": "확인 및 구성", "step3.desc": "대상 서버를 선택하고, 자동 입력된 파라미터/헤더/본문을 확인하고, 인증 토큰을 구성합니다. 모든 것이 사양에서 미리 채워집니다.",
+        "step4.title": "전송 및 확인", "step4.desc": "<strong>요청 보내기</strong>를 클릭합니다. 구문 강조, 응답 시간, 상태 코드와 함께 응답을 IDE 내에서 확인합니다.",
+        "specs.label": "호환성", "specs.title": "여러분의 환경에서 작동", "specs.subtitle": "IntelliJ IDEA 전용으로 구축, 외부 런타임 종속성 제로.",
+        "specs.platform": "플랫폼", "specs.since": "시작 빌드", "specs.until": "종료 빌드", "specs.lang": "개발 언어", "specs.license": "라이선스", "specs.licenseVal": "상업용(유료)",
+        "specs.deps": "📦 내장 종속성", "specs.bundled": "모든 종속성이 번들로 제공됩니다 — 별도 설치가 필요 없습니다.",
+        "pricing.label": "가격", "pricing.title": "간단하고 투명한 가격", "pricing.subtitle": "30일 무료 체험. 신용카드 불필요.",
+        "pricing.monthly": "월간", "pricing.perMonth": "/월", "pricing.perDev": "개발자당", "pricing.annual": "연간", "pricing.perYear": "/년", "pricing.off": "개발자당 — 16% 할인", "pricing.bestValue": "최고의 가치",
+        "pricing.fullAccess": "모든 기능", "pricing.updates": "우선 업데이트", "pricing.support": "이메일 지원", "pricing.cancel": "언제든지 취소", "pricing.prioritySupport": "우선 지원", "pricing.fallback": "영구 폴백 라이선스 (EULA 참조)", "pricing.viewEula": "EULA 보기",
+        "faq.label": "FAQ", "faq.title": "자주 묻는 질문", "faq.subtitle": "APICue에 대해 알아야 할 모든 것.",
+        "faq.q1": "APICue는 내장 HTTP Client와 어떻게 다른가요?", "faq.a1": "내장 HTTP Client는 API 사양과 중복되는 별도의 <code>.http</code> 파일을 유지해야 합니다. APICue는 OpenAPI YAML을 직접 읽어 중복이나 불일치가 없습니다. 인증 스키마를 자동 발견하고, 예제에서 파라미터를 미리 채우며, 응답을 사양에 저장할 수 있습니다.",
+        "faq.q2": "어떤 IDE를 지원하나요?", "faq.a2": "APICue는 IntelliJ IDEA Ultimate 및 Community Edition(build 241–262.*)에서 실행됩니다. YAML 플러그인을 지원하는 다른 JetBrains IDE는 향후 릴리스에서 추가될 수 있습니다.",
+        "faq.q3": "Swagger 2.0을 지원하나요?", "faq.a3": "아니요, APICue는 OpenAPI 3.0.x만 지원합니다. 공식 Swagger Converter(https://swagger.io/tools/swagger-converter/)를 사용하여 변환할 수 있습니다.",
+        "faq.q4": "저장된 예제는 어디에 저장되나요?", "faq.a4": "기본적으로 플러그인의 전역 설정 디렉토리에 저장됩니다. 설정 → 도구 → APICue에서 프로젝트 디렉토리 내로 변경할 수 있으며, 버전 관리를 통한 공유에 이상적입니다.",
+        "faq.q5": "무료 체험판이 있나요?", "faq.a5": "네! APICue는 30일 전체 기능 무료 체험을 제공합니다. 신용카드가 필요하지 않습니다. 체험 후에는 유료 라이선스가 필요합니다.",
+        "faq.q6": "HTTPS를 지원하나요?", "faq.a6": "네 — OkHttp가 지원하는 모든 프로토콜이 HTTPS에서 작동합니다. 자체 서명 인증서를 사용한 개발에서는 먼저 HTTP로 테스트하거나 IDE의 신뢰 저장소를 구성하는 것을 권장합니다.",
+        "faq.q7": "APICue는 오픈소스인가요?", "faq.a7": "물론입니다! APICue는 GitHub에서 오픈소스로 제공됩니다. <a href=\"https://github.com/davin-bao/apicue-public\" target=\"_blank\">github.com/davin-bao/apicue-public</a>을 방문하여 이슈를 제기하거나 Pull Request를 제출하거나 토론을 시작할 수 있습니다.",
+        "cta.title": "API 워크플로를 최적화할 준비가 되셨나요?", "cta.subtitle": "IDE와 Postman 사이를 오가는 것을 중단하세요. 테스트, 반복, 문서화 — 모두 OpenAPI YAML 파일에서 가능합니다.",
+        "cta.button": "APICue 무료 설치",
+        "footer.tagline": "OpenAPI YAML 파일에서 API 테스트,<br/>IntelliJ IDEA에 직접 구축.",
+        "footer.product": "제품", "footer.resources": "리소스", "footer.company": "회사",
+        "footer.quickstart": "빠른 시작", "footer.issues": "이슈 트래커", "footer.website": "웹사이트", "footer.contact": "문의", "footer.privacy": "개인정보", "footer.license": "라이선스",
+        "footer.copyright": "© 2026 APICue 개발팀. 모든 권리 보유."
+    },
+    "es": {
+        "nav.features": "Funciones", "nav.how": "Cómo funciona", "nav.pricing": "Precios", "nav.faq": "FAQ",
+        "hero.badge": "Plugin de IntelliJ IDEA", "hero.headline": "Prueba APIs directamente<br/>desde <span>OpenAPI YAML</span>",
+        "hero.subtitle": "No más cambios a Postman ni archivos .http. Aparecen botones verdes junto a cada operación en tu editor YAML — haz clic, revisa, envía.",
+        "hero.explore": "Explorar funciones <i class=\"fa-solid fa-arrow-down\"></i>",
+        "hero.stat1": "1 clic enviar", "hero.stat2": "Pestañas", "hero.stat3": "Formatos", "hero.stat4": "Idiomas",
+        "features.label": "Funciones", "features.title": "Todo lo que necesitas para probar APIs", "features.subtitle": "APICue lleva las pruebas de API de nivel Postman a tu IntelliJ IDEA — integrado con tus especificaciones OpenAPI.",
+        "feature1.title": "Iconos en el margen", "feature1.desc": "Botones verdes ▶ junto a cada operación <code>get:</code>, <code>post:</code>, <code>put:</code>, <code>delete:</code> y <code>patch:</code>. Haz clic para abrir el panel de pruebas al instante.",
+        "feature2.title": "Panel de herramientas dedicado", "feature2.desc": "Panel derecho con interfaz completa: selector de entorno, configuración de autenticación, editor de solicitudes (Parámetros/Cabeceras/Cuerpo) y visor de respuestas dividido.",
+        "feature3.title": "Autodescubrimiento de autenticación", "feature3.desc": "Lee <code>securitySchemes</code> y <code>security</code> de tu especificación, genera automáticamente cabeceras Bearer JWT, Basic Auth y API Key. Sin configuración manual.",
+        "feature4.title": "Servidores multi-entorno", "feature4.desc": "Cambia entre múltiples <code>servers</code> por archivo YAML. La URL seleccionada se recuerda por archivo incluso tras reiniciar el IDE.",
+        "feature5.title": "Relleno inteligente de parámetros", "feature5.desc": "Parámetros de consulta, cabeceras y cuerpo se auto-rellenan desde <code>example</code>, <code>default</code> y valores de propiedades del esquema siguiendo una jerarquía de prioridad.",
+        "feature6.title": "Guardar y cargar ejemplos", "feature6.desc": "Guarda los datos de solicitud/respuesta en el YAML como ejemplos OpenAPI. Cárgalos después para pruebas reproducibles y verificaciones de regresión.",
+        "feature7.title": "Gestor de tokens", "feature7.desc": "Administra JWT y API Keys por entorno con un gestor integrado. Los tokens se almacenan de forma segura usando el mecanismo de protección de contraseñas del IDE.",
+        "feature8.title": "Exportar documento API", "feature8.desc": "Exporta tu especificación OpenAPI como documento <strong>Markdown</strong> o <strong>HTML</strong> — desde la barra de herramientas o haciendo clic derecho en el archivo YAML. Incluye diálogo de búsqueda/filtro, secciones configurables y tabla de contenidos.",
+        "feature9.title": "Resolución $Ref entre archivos", "feature9.desc": "Resuelve referencias <code>$ref</code> entre archivos YAML (ej. <code>$ref: 'model.yml#/…'</code>) con caché y detección de referencias circulares.",
+        "feature10.title": "i18n (11 idiomas)", "feature10.desc": "Soporta <strong>EN, 中文, 日本語, 한국어, Español, Português, Deutsch, Français, Русский, Tiếng Việt, Türkçe</strong>. Coincide automáticamente con el idioma del IDE.",
+        "how.label": "Cómo funciona", "how.title": "De la especificación a la respuesta en 4 pasos", "how.subtitle": "Sin archivos de configuración, sin herramientas externas — solo tu YAML OpenAPI y APICue.",
+        "step1.title": "Abrir un archivo YAML OpenAPI", "step1.desc": "Cualquier archivo <code>.yaml</code> o <code>.yml</code> con sintaxis OpenAPI 3.0 válida. APICue lo analiza al instante.",
+        "step2.title": "Hacer clic en el icono", "step2.desc": "Aparecen botones verdes ▶ junto a cada operación. Haz clic y el panel APICue Tester se abre al instante.",
+        "step3.title": "Revisar y configurar", "step3.desc": "Selecciona tu servidor, revisa parámetros/cabeceras/cuerpo auto-rellenados, configura tokens de autenticación. Todo se pre-rellena desde tu especificación.",
+        "step4.title": "Enviar e inspeccionar", "step4.desc": "Haz clic en <strong>Enviar</strong>. Inspecciona la respuesta con resaltado de sintaxis, tiempo de respuesta y código de estado — todo dentro del IDE.",
+        "specs.label": "Compatibilidad", "specs.title": "Funciona donde trabajas", "specs.subtitle": "Construido para IntelliJ IDEA con cero dependencias externas de ejecución.",
+        "specs.platform": "Plataforma", "specs.since": "Build inicial", "specs.until": "Build final", "specs.lang": "Lenguaje", "specs.license": "Licencia", "specs.licenseVal": "Comercial (pago)",
+        "specs.deps": "📦 Dependencias incluidas", "specs.bundled": "Todas las dependencias están incluidas — no se necesita instalación adicional.",
+        "pricing.label": "Precios", "pricing.title": "Precios simples y transparentes", "pricing.subtitle": "Prueba gratis 30 días. Sin tarjeta de crédito.",
+        "pricing.monthly": "Mensual", "pricing.perMonth": "/mes", "pricing.perDev": "por desarrollador", "pricing.annual": "Anual", "pricing.perYear": "/año", "pricing.off": "por desarrollador — 16% descuento", "pricing.bestValue": "Mejor valor",
+        "pricing.fullAccess": "Acceso completo", "pricing.updates": "Actualizaciones prioritarias", "pricing.support": "Soporte por email", "pricing.cancel": "Cancela cuando quieras", "pricing.prioritySupport": "Soporte prioritario", "pricing.fallback": "Licencia de retroceso perpetuo (ver EULA)", "pricing.viewEula": "Ver EULA",
+        "faq.label": "FAQ", "faq.title": "Preguntas frecuentes", "faq.subtitle": "Todo lo que necesitas saber sobre APICue.",
+        "faq.q1": "¿En qué se diferencia APICue del HTTP Client integrado?", "faq.a1": "El HTTP Client integrado requiere mantener archivos <code>.http</code> separados que duplican tu especificación. APICue lee tu OpenAPI YAML directamente — sin duplicación, sin desviación. Descubre esquemas de autenticación, pre-rellena parámetros desde ejemplos y guarda respuestas en la especificación.",
+        "faq.q2": "¿Qué IDE son compatibles?", "faq.a2": "APICue funciona en IntelliJ IDEA Ultimate y Community Edition (build 241–262.*). El soporte para otros IDEs JetBrains con plugin YAML podría añadirse en futuras versiones.",
+        "faq.q3": "¿Soporta Swagger 2.0?", "faq.a3": "No, APICue solo soporta OpenAPI 3.0.x. Puedes convertir tu especificación Swagger 2.0 usando el conversor oficial (https://swagger.io/tools/swagger-converter/).",
+        "faq.q4": "¿Dónde se guardan mis ejemplos?", "faq.a4": "Por defecto, los ejemplos se guardan en el directorio global de configuración del plugin. Puedes cambiarlo en Configuración → Herramientas → APICue para almacenarlos en el directorio de tu proyecto — ideal para compartir mediante control de versiones.",
+        "faq.q5": "¿Hay una prueba gratuita?", "faq.a5": "¡Sí! APICue ofrece una prueba gratuita de 30 días con acceso completo a todas las funciones. Sin tarjeta de crédito. Después de la prueba, se requiere una licencia de pago para continuar usando el plugin.",
+        "faq.q6": "¿Soporta HTTPS?", "faq.a6": "Sí — cualquier protocolo compatible con OkHttp funciona para HTTPS. Para desarrollo con certificados autofirmados, recomendamos probar primero con HTTP o configurar el almacén de confianza del IDE.",
+        "faq.q7": "¿APICue es de código abierto?", "faq.a7": "¡Por supuesto! APICue es de código abierto en GitHub. Visita <a href=\"https://github.com/davin-bao/apicue-public\" target=\"_blank\">github.com/davin-bao/apicue-public</a> para abrir issues, enviar pull requests o iniciar discusiones.",
+        "cta.title": "¿Listo para optimizar tu flujo de trabajo con APIs?", "cta.subtitle": "Deja de cambiar entre tu IDE y Postman. Prueba, itera y documenta — todo desde tus archivos OpenAPI YAML.",
+        "cta.button": "Instalar APICue gratis",
+        "footer.tagline": "Pruebas de API desde archivos OpenAPI YAML,<br/>integradas en IntelliJ IDEA.",
+        "footer.product": "Producto", "footer.resources": "Recursos", "footer.company": "Empresa",
+        "footer.quickstart": "Inicio rápido", "footer.issues": "Seguimiento de issues", "footer.website": "Sitio web", "footer.contact": "Contacto", "footer.privacy": "Privacidad", "footer.license": "Licencia",
+        "footer.copyright": "© 2026 APICue Development Team. Todos los derechos reservados."
+    },
+    "pt": {
+        "nav.features": "Recursos", "nav.how": "Como funciona", "nav.pricing": "Preços", "nav.faq": "FAQ",
+        "hero.badge": "Plugin IntelliJ IDEA", "hero.headline": "Teste APIs diretamente<br/>do <span>OpenAPI YAML</span>",
+        "hero.subtitle": "Chega de alternar para o Postman ou manter arquivos .http. Botões verdes aparecem ao lado de cada operação no seu editor YAML — clique, revise, envie.",
+        "hero.explore": "Explorar recursos <i class=\"fa-solid fa-arrow-down\"></i>",
+        "hero.stat1": "1 clique", "hero.stat2": "Abas", "hero.stat3": "Formatos", "hero.stat4": "Idiomas",
+        "features.label": "Recursos", "features.title": "Tudo que você precisa para testar APIs", "features.subtitle": "APICue traz testes de API de nível Postman para seu IntelliJ IDEA — integrado com suas especificações OpenAPI.",
+        "feature1.title": "Ícones na margem", "feature1.desc": "Botões verdes ▶ ao lado de cada operação <code>get:</code>, <code>post:</code>, <code>put:</code>, <code>delete:</code> e <code>patch:</code>. Clique para abrir o painel de teste instantaneamente.",
+        "feature2.title": "Painel de ferramentas dedicado", "feature2.desc": "Painel direito com interface completa: seletor de ambiente, configuração de autenticação, editor de requisições (Parâmetros/Cabeçalhos/Corpo) e visualizador de respostas dividido.",
+        "feature3.title": "Autodescoberta de autenticação", "feature3.desc": "Lê <code>securitySchemes</code> e <code>security</code> da sua especificação, gera automaticamente cabeçalhos Bearer JWT, Basic Auth e API Key. Sem configuração manual.",
+        "feature4.title": "Servidores multi-ambiente", "feature4.desc": "Alterna entre múltiplos <code>servers</code> por arquivo YAML. A última URL selecionada é lembrada por arquivo mesmo após reiniciar o IDE.",
+        "feature5.title": "Preenchimento inteligente", "feature5.desc": "Parâmetros de consulta, cabeçalhos e corpo são preenchidos automaticamente de <code>example</code>, <code>default</code> e valores de propriedades do esquema seguindo uma hierarquia de prioridade.",
+        "feature6.title": "Salvar e carregar exemplos", "feature6.desc": "Salva dados de requisição/resposta no YAML como exemplos OpenAPI. Carregue depois para testes reproduzíveis e verificações de regressão.",
+        "feature7.title": "Gerenciador de tokens", "feature7.desc": "Gerencia JWT e API Keys por ambiente. Tokens armazenados com segurança usando o mecanismo de proteção de senhas do IDE.",
+        "feature8.title": "Exportar documento da API", "feature8.desc": "Exporte sua especificação OpenAPI como documento <strong>Markdown</strong> ou <strong>HTML</strong> — da barra de ferramentas ou clicando com botão direito no arquivo YAML. Inclui diálogo de busca/filtro, seções configuráveis e sumário.",
+        "feature9.title": "Resolução $Ref entre arquivos", "feature9.desc": "Resolve referências <code>$ref</code> entre arquivos YAML (ex. <code>$ref: 'model.yml#/…'</code>) com cache e detecção de referências circulares.",
+        "feature10.title": "i18n (11 idiomas)", "feature10.desc": "Suporta <strong>EN, 中文, 日本語, 한국어, Español, Português, Deutsch, Français, Русский, Tiếng Việt, Türkçe</strong>. Corresponde automaticamente ao idioma do IDE.",
+        "how.label": "Como funciona", "how.title": "Da especificação à resposta em 4 passos", "how.subtitle": "Sem arquivos de configuração, sem ferramentas externas — apenas seu YAML OpenAPI e APICue.",
+        "step1.title": "Abrir arquivo YAML OpenAPI", "step1.desc": "Qualquer arquivo <code>.yaml</code> ou <code>.yml</code> com sintaxe OpenAPI 3.0 válida. APICue analisa instantaneamente.",
+        "step2.title": "Clicar no ícone", "step2.desc": "Botões verdes ▶ aparecem ao lado de cada operação. Clique e o painel APICue Tester abre instantaneamente.",
+        "step3.title": "Revisar e configurar", "step3.desc": "Selecione o servidor alvo, revise parâmetros/cabeçalhos/corpo preenchidos, configure tokens de autenticação. Tudo pré-preenchido da sua especificação.",
+        "step4.title": "Enviar e inspecionar", "step4.desc": "Clique em <strong>Enviar</strong>. Inspecione a resposta com realce de sintaxe, tempo de resposta e código de status — tudo dentro do IDE.",
+        "specs.label": "Compatibilidade", "specs.title": "Funciona onde você trabalha", "specs.subtitle": "Construído para IntelliJ IDEA com zero dependências externas de execução.",
+        "specs.platform": "Plataforma", "specs.since": "Build inicial", "specs.until": "Build final", "specs.lang": "Linguagem", "specs.license": "Licença", "specs.licenseVal": "Comercial (pago)",
+        "specs.deps": "📦 Dependências inclusas", "specs.bundled": "Todas as dependências estão inclusas — não é necessária instalação adicional.",
+        "pricing.label": "Preços", "pricing.title": "Preços simples e transparentes", "pricing.subtitle": "Teste grátis por 30 dias. Sem cartão de crédito.",
+        "pricing.monthly": "Mensal", "pricing.perMonth": "/mês", "pricing.perDev": "por desenvolvedor", "pricing.annual": "Anual", "pricing.perYear": "/ano", "pricing.off": "por desenvolvedor — 16% off", "pricing.bestValue": "Melhor valor",
+        "pricing.fullAccess": "Acesso completo", "pricing.updates": "Atualizações prioritárias", "pricing.support": "Suporte por email", "pricing.cancel": "Cancele quando quiser", "pricing.prioritySupport": "Suporte prioritário", "pricing.fallback": "Licença de fallback perpétua (ver EULA)", "pricing.viewEula": "Ver EULA",
+        "faq.label": "FAQ", "faq.title": "Perguntas frequentes", "faq.subtitle": "Tudo que você precisa saber sobre APICue.",
+        "faq.q1": "Como APICue é diferente do HTTP Client integrado?", "faq.a1": "O HTTP Client integrado exige arquivos <code>.http</code> separados que duplicam sua especificação. APICue lê seu OpenAPI YAML diretamente — sem duplicação, sem divergência. Descobre esquemas de autenticação, pré-preenche parâmetros de exemplos e permite salvar respostas na especificação.",
+        "faq.q2": "Quais IDEs são suportados?", "faq.a2": "APICue funciona no IntelliJ IDEA Ultimate e Community Edition (build 241–262.*). Suporte para outros IDEs JetBrains com plugin YAML pode ser adicionado em versões futuras.",
+        "faq.q3": "Suporta Swagger 2.0?", "faq.a3": "Não, APICue suporta apenas OpenAPI 3.0.x. Você pode converter sua especificação Swagger 2.0 usando o conversor oficial (https://swagger.io/tools/swagger-converter/).",
+        "faq.q4": "Onde meus exemplos são salvos?", "faq.a4": "Por padrão, os exemplos são salvos no diretório global de configuração do plugin. Você pode alterar em Configurações → Ferramentas → APICue para armazená-los no diretório do projeto — ideal para compartilhar via controle de versão.",
+        "faq.q5": "Existe um teste gratuito?", "faq.a5": "Sim! APICue oferece um teste gratuito de 30 dias com acesso completo a todos os recursos. Sem cartão de crédito. Após o teste, uma licença paga é necessária para uso contínuo.",
+        "faq.q6": "Suporta HTTPS?", "faq.a6": "Sim — qualquer protocolo suportado pelo OkHttp funciona para HTTPS. Para desenvolvimento com certificados autoassinados, recomendamos testar primeiro com HTTP ou configurar o armazenamento de confiança do IDE.",
+        "faq.q7": "APICue é open-source?", "faq.a7": "Com certeza! APICue é open-source no GitHub. Visite <a href=\"https://github.com/davin-bao/apicue-public\" target=\"_blank\">github.com/davin-bao/apicue-public</a> para abrir issues, enviar pull requests ou iniciar discussões.",
+        "cta.title": "Pronto para otimizar seu fluxo de trabalho com APIs?", "cta.subtitle": "Pare de alternar entre seu IDE e Postman. Teste, itere e documente — tudo dos seus arquivos OpenAPI YAML.",
+        "cta.button": "Instalar APICue grátis",
+        "footer.tagline": "Testes de API de arquivos OpenAPI YAML,<br/>integrados no IntelliJ IDEA.",
+        "footer.product": "Produto", "footer.resources": "Recursos", "footer.company": "Empresa",
+        "footer.quickstart": "Guia rápido", "footer.issues": "Rastreador de issues", "footer.website": "Site", "footer.contact": "Contato", "footer.privacy": "Privacidade", "footer.license": "Licença",
+        "footer.copyright": "© 2026 APICue Development Team. Todos os direitos reservados."
+    },
+    "de": {
+        "nav.features": "Funktionen", "nav.how": "So funktioniert's", "nav.pricing": "Preise", "nav.faq": "FAQ",
+        "hero.badge": "IntelliJ IDEA Plugin", "hero.headline": "APIs direkt testen<br/>von <span>OpenAPI YAML</span>",
+        "hero.subtitle": "Kein Wechsel mehr zu Postman oder .http-Dateien. Grüne Schaltflächen erscheinen neben jeder API-Operation in Ihrem YAML-Editor — klicken, prüfen, senden.",
+        "hero.explore": "Funktionen erkunden <i class=\"fa-solid fa-arrow-down\"></i>",
+        "hero.stat1": "1 Klick", "hero.stat2": "Register", "hero.stat3": "Formate", "hero.stat4": "Sprachen",
+        "features.label": "Funktionen", "features.title": "Alles, was Sie zum Testen von APIs brauchen", "features.subtitle": "APICue bringt Postman-Klasse-API-Tests in Ihr IntelliJ IDEA — eng gekoppelt mit Ihren OpenAPI-Spezifikationen.",
+        "feature1.title": "Gutter-Symbol Auslöser", "feature1.desc": "Grüne ▶-Buttons erscheinen neben jeder <code>get:</code>, <code>post:</code>, <code>put:</code>, <code>delete:</code> und <code>patch:</code>-Operation. Klicken, um das Testpanel sofort zu öffnen.",
+        "feature2.title": "Dediziertes Tool-Fenster", "feature2.desc": "Rechtes Panel mit vollständiger Testoberfläche: Umgebungsauswahl, Auth-Konfiguration, Anfrage-Editor (Parameter/Header/Body) und geteilter Antwort-Viewer.",
+        "feature3.title": "Auth-Auto-Erkennung", "feature3.desc": "Liest <code>securitySchemes</code> und <code>security</code> aus Ihrer Spezifikation und generiert automatisch Bearer JWT-, Basic Auth- und API Key-Header. Keine manuelle Einrichtung.",
+        "feature4.title": "Multi-Umgebungs-Server", "feature4.desc": "Wechseln zwischen mehreren <code>servers</code> pro YAML-Datei. Die zuletzt ausgewählte URL wird pro Datei gespeichert, auch nach IDE-Neustarts.",
+        "feature5.title": "Intelligente Parameter-Vorbefüllung", "feature5.desc": "Abfrageparameter, Header und Body werden automatisch von <code>example</code>-, <code>default</code>- und Schema-Eigenschaftswerten gemäß einer Prioritätshierarchie befüllt.",
+        "feature6.title": "Beispiele speichern & laden", "feature6.desc": "Speichert Anfrage-/Antwortdaten als OpenAPI-Beispiele in YAML. Später laden für reproduzierbare Tests und Regression-Checks.",
+        "feature7.title": "Token-Manager", "feature7.desc": "Verwaltet JWT, API Keys pro Umgebung. Tokens werden sicher über den Passwortschutzmechanismus der IDE gespeichert.",
+        "feature8.title": "API-Dokument exportieren", "feature8.desc": "Exportieren Sie Ihre OpenAPI-Spezifikation als <strong>Markdown</strong>- oder <strong>HTML</strong>-Dokument — direkt von der Toolbar oder per Rechtsklick auf die YAML-Datei. Inklusive Such-/Filterdialog, konfigurierbaren Abschnitten und Inhaltsverzeichnis.",
+        "feature9.title": "$Ref Dateiübergreifende Auflösung", "feature9.desc": "Löst <code>$ref</code>-Referenzen zwischen YAML-Dateien vollständig auf (z.B. <code>$ref: 'model.yml#/…'</code>) mit Caching und Zirkelreferenz-Erkennung.",
+        "feature10.title": "i18n (11 Sprachen)", "feature10.desc": "Unterstützt <strong>EN, 中文, 日本語, 한국어, Español, Português, Deutsch, Français, Русский, Tiếng Việt, Türkçe</strong>. Passt sich automatisch der IDE-Sprache an.",
+        "how.label": "So funktioniert's", "how.title": "Vom Spec zur Antwort in 4 Schritten", "how.subtitle": "Keine Konfigurationsdateien, keine externen Tools — nur Ihr OpenAPI YAML und APICue.",
+        "step1.title": "OpenAPI YAML-Datei öffnen", "step1.desc": "Jede <code>.yaml</code>- oder <code>.yml</code>-Datei mit gültiger OpenAPI 3.0-Syntax. APICue parst sie sofort.",
+        "step2.title": "Gutter-Symbol klicken", "step2.desc": "Grüne ▶-Buttons erscheinen neben jeder API-Operation. Ein Klick öffnet sofort das APICue-Tester-Tool-Fenster.",
+        "step3.title": "Prüfen & konfigurieren", "step3.desc": "Wählen Sie Ihren Zielserver, prüfen Sie vorausgefüllte Parameter/Header/Body, konfigurieren Sie Auth-Tokens. Alles wird aus Ihrer Spezifikation vorausgefüllt.",
+        "step4.title": "Senden & prüfen", "step4.desc": "Klicken Sie auf <strong>Senden</strong>. Prüfen Sie die Antwort mit Syntax-Highlighting, Antwortzeit und Statuscode — alles innerhalb der IDE.",
+        "specs.label": "Kompatibilität", "specs.title": "Funktioniert, wo Sie arbeiten", "specs.subtitle": "Entwickelt für IntelliJ IDEA mit null externen Laufzeitabhängigkeiten.",
+        "specs.platform": "Plattform", "specs.since": "Build ab", "specs.until": "Build bis", "specs.lang": "Sprache", "specs.license": "Lizenz", "specs.licenseVal": "Kommerziell (kostenpflichtig)",
+        "specs.deps": "📦 Integrierte Abhängigkeiten", "specs.bundled": "Alle Abhängigkeiten sind gebündelt — keine separate Installation erforderlich.",
+        "pricing.label": "Preise", "pricing.title": "Einfache, transparente Preise", "pricing.subtitle": "30 Tage kostenlos testen. Keine Kreditkarte erforderlich.",
+        "pricing.monthly": "Monatlich", "pricing.perMonth": "/Monat", "pricing.perDev": "pro Entwickler", "pricing.annual": "Jährlich", "pricing.perYear": "/Jahr", "pricing.off": "pro Entwickler — 16% sparen", "pricing.bestValue": "Bester Wert",
+        "pricing.fullAccess": "Voller Zugriff", "pricing.updates": "Prioritäts-Updates", "pricing.support": "E-Mail-Support", "pricing.cancel": "Jederzeit kündbar", "pricing.prioritySupport": "Prioritäts-Support", "pricing.fallback": "Perpetuelle Fallback-Lizenz (siehe EULA)", "pricing.viewEula": "EULA anzeigen",
+        "faq.label": "FAQ", "faq.title": "Häufig gestellte Fragen", "faq.subtitle": "Alles, was Sie über APICue wissen müssen.",
+        "faq.q1": "Was unterscheidet APICue vom integrierten HTTP-Client?", "faq.a1": "Der integrierte HTTP-Client erfordert separate <code>.http</code>-Dateien, die Ihre API-Spezifikation duplizieren. APICue liest Ihr OpenAPI YAML direkt — ohne Duplizierung, ohne Abweichung. Es erkennt Authentifizierungsschemata automatisch, füllt Parameter aus Beispielen vor und speichert Antworten in der Spezifikation.",
+        "faq.q2": "Welche IDEs werden unterstützt?", "faq.a2": "APICue läuft auf IntelliJ IDEA Ultimate und Community Edition (Build 241–262.*). Unterstützung für andere JetBrains-IDEs mit YAML-Plugin kann in zukünftigen Versionen hinzugefügt werden.",
+        "faq.q3": "Unterstützt es Swagger 2.0?", "faq.a3": "Nein, APICue unterstützt nur OpenAPI 3.0.x. Sie können Ihre Swagger 2.0-Spezifikation mit dem offiziellen Swagger-Konverter konvertieren (https://swagger.io/tools/swagger-converter/).",
+        "faq.q4": "Wo werden meine gespeicherten Beispiele aufbewahrt?", "faq.a4": "Standardmäßig werden Beispiele im globalen Konfigurationsverzeichnis des Plugins gespeichert. Sie können dies in Einstellungen → Tools → APICue ändern, um sie in Ihrem Projektverzeichnis zu speichern — ideal für die Freigabe über Versionskontrolle.",
+        "faq.q5": "Gibt es eine kostenlose Testversion?", "faq.a5": "Ja! APICue bietet eine 30-tägige kostenlose Testversion mit vollem Funktionsumfang. Keine Kreditkarte erforderlich. Nach dem Test ist eine kostenpflichtige Lizenz für die weitere Nutzung erforderlich.",
+        "faq.q6": "Unterstützt es HTTPS?", "faq.a6": "Ja — jedes von OkHttp unterstützte Protokoll funktioniert für HTTPS. Für die Entwicklung mit selbstsignierten Zertifikaten empfehlen wir, zuerst über HTTP zu testen oder den Vertrauensspeicher der IDE zu konfigurieren.",
+        "faq.q7": "Ist APICue Open Source?", "faq.a7": "Absolut! APICue ist Open Source auf GitHub. Besuchen Sie <a href=\"https://github.com/davin-bao/apicue-public\" target=\"_blank\">github.com/davin-bao/apicue-public</a>, um Issues zu eröffnen, Pull Requests einzureichen oder Diskussionen zu starten.",
+        "cta.title": "Bereit, Ihren API-Workflow zu optimieren?", "cta.subtitle": "Hören Sie auf, zwischen IDE und Postman zu wechseln. Testen, iterieren, dokumentieren — alles aus Ihren OpenAPI YAML-Dateien.",
+        "cta.button": "APICue kostenlos installieren",
+        "footer.tagline": "API-Tests aus OpenAPI YAML-Dateien,<br/>direkt in IntelliJ IDEA integriert.",
+        "footer.product": "Produkt", "footer.resources": "Ressourcen", "footer.company": "Unternehmen",
+        "footer.quickstart": "Schnellstart", "footer.issues": "Issue-Tracker", "footer.website": "Webseite", "footer.contact": "Kontakt", "footer.privacy": "Datenschutz", "footer.license": "Lizenz",
+        "footer.copyright": "© 2026 APICue Development Team. Alle Rechte vorbehalten."
+    },
+    "fr": {
+        "nav.features": "Fonctionnalités", "nav.how": "Fonctionnement", "nav.pricing": "Tarifs", "nav.faq": "FAQ",
+        "hero.badge": "Plugin IntelliJ IDEA", "hero.headline": "Testez vos API directement<br/>depuis <span>OpenAPI YAML</span>",
+        "hero.subtitle": "Fini les allers-retours vers Postman ou la maintenance de fichiers .http. Des boutons verts apparaissent à côté de chaque opération dans votre éditeur YAML — cliquez, révisez, envoyez.",
+        "hero.explore": "Explorer <i class=\"fa-solid fa-arrow-down\"></i>",
+        "hero.stat1": "1 clic", "hero.stat2": "Onglets", "hero.stat3": "Formats", "hero.stat4": "Langues",
+        "features.label": "Fonctionnalités", "features.title": "Tout ce dont vous avez besoin pour tester vos API", "features.subtitle": "APICue apporte les tests d'API de classe Postman dans votre IntelliJ IDEA — étroitement couplé avec vos spécifications OpenAPI.",
+        "feature1.title": "Icônes dans la marge", "feature1.desc": "Des boutons verts ▶ apparaissent à côté de chaque opération <code>get:</code>, <code>post:</code>, <code>put:</code>, <code>delete:</code> et <code>patch:</code>. Cliquez pour ouvrir le panneau de test instantanément.",
+        "feature2.title": "Fenêtre d'outils dédiée", "feature2.desc": "Panneau droit avec interface complète : sélecteur d'environnement, configuration d'authentification, éditeur de requêtes (Paramètres/En-têtes/Corps) et visualiseur de réponses fractionné.",
+        "feature3.title": "Auto-découverte d'authentification", "feature3.desc": "Lit <code>securitySchemes</code> et <code>security</code> de votre spécification, génère automatiquement les en-têtes Bearer JWT, Basic Auth et API Key. Aucune configuration manuelle.",
+        "feature4.title": "Serveurs multi-environnements", "feature4.desc": "Basculez entre plusieurs <code>servers</code> par fichier YAML. La dernière URL sélectionnée est mémorisée par fichier, même après redémarrage de l'IDE.",
+        "feature5.title": "Pré-remplissage intelligent", "feature5.desc": "Paramètres de requête, en-têtes et corps sont automatiquement remplis à partir des valeurs <code>example</code>, <code>default</code> et des propriétés du schéma selon une hiérarchie de priorité.",
+        "feature6.title": "Sauvegarder et charger des exemples", "feature6.desc": "Sauvegardez les données de requête/réponse dans le YAML comme exemples OpenAPI. Rechargez-les plus tard pour des tests reproductibles et des vérifications de régression.",
+        "feature7.title": "Gestionnaire de jetons", "feature7.desc": "Gérez les JWT et clés API par environnement. Les jetons sont stockés en toute sécurité via le mécanisme de protection par mot de passe de l'IDE.",
+        "feature8.title": "Exporter le document API", "feature8.desc": "Exportez votre spécification OpenAPI en document <strong>Markdown</strong> ou <strong>HTML</strong> — depuis la barre d'outils ou en cliquant droit sur le fichier YAML. Inclut une boîte de dialogue de recherche/filtre, des sections configurables et une table des matières.",
+        "feature9.title": "Résolution $Ref inter-fichiers", "feature9.desc": "Résout complètement les références <code>$ref</code> entre fichiers YAML (ex. <code>$ref: 'model.yml#/…'</code>) avec mise en cache et détection de références circulaires.",
+        "feature10.title": "i18n (11 langues)", "feature10.desc": "Prend en charge <strong>EN, 中文, 日本語, 한국어, Español, Português, Deutsch, Français, Русский, Tiếng Việt, Türkçe</strong>. Correspond automatiquement à la langue de l'IDE.",
+        "how.label": "Fonctionnement", "how.title": "Du spec à la réponse en 4 étapes", "how.subtitle": "Pas de fichiers de configuration, pas d'outils externes — seulement votre YAML OpenAPI et APICue.",
+        "step1.title": "Ouvrir un fichier YAML OpenAPI", "step1.desc": "Tout fichier <code>.yaml</code> ou <code>.yml</code> avec une syntaxe OpenAPI 3.0 valide. APICue l'analyse instantanément.",
+        "step2.title": "Cliquer sur l'icône", "step2.desc": "Des boutons verts ▶ apparaissent à côté de chaque opération. Cliquez et le panneau APICue Tester s'ouvre instantanément.",
+        "step3.title": "Vérifier et configurer", "step3.desc": "Sélectionnez votre serveur cible, vérifiez les paramètres/en-têtes/corps pré-remplis, configurez les jetons d'authentification. Tout est pré-rempli depuis votre spécification.",
+        "step4.title": "Envoyer et inspecter", "step4.desc": "Cliquez sur <strong>Envoyer</strong>. Inspectez la réponse avec coloration syntaxique, temps de réponse et code d'état — le tout dans l'IDE.",
+        "specs.label": "Compatibilité", "specs.title": "Fonctionne là où vous travaillez", "specs.subtitle": "Conçu pour IntelliJ IDEA avec zéro dépendance d'exécution externe.",
+        "specs.platform": "Plateforme", "specs.since": "Build minimum", "specs.until": "Build maximum", "specs.lang": "Langage", "specs.license": "Licence", "specs.licenseVal": "Commerciale (payante)",
+        "specs.deps": "📦 Dépendances intégrées", "specs.bundled": "Toutes les dépendances sont incluses — aucune installation séparée nécessaire.",
+        "pricing.label": "Tarifs", "pricing.title": "Tarifs simples et transparents", "pricing.subtitle": "Essayez gratuitement pendant 30 jours. Sans carte de crédit.",
+        "pricing.monthly": "Mensuel", "pricing.perMonth": "/mois", "pricing.perDev": "par développeur", "pricing.annual": "Annuel", "pricing.perYear": "/an", "pricing.off": "par développeur — 16% de réduction", "pricing.bestValue": "Meilleur rapport qualité-prix",
+        "pricing.fullAccess": "Accès complet", "pricing.updates": "Mises à jour prioritaires", "pricing.support": "Support par email", "pricing.cancel": "Annulation à tout moment", "pricing.prioritySupport": "Support prioritaire", "pricing.fallback": "Licence de repli perpétuelle (voir CLUF)", "pricing.viewEula": "Voir le CLUF",
+        "faq.label": "FAQ", "faq.title": "Questions fréquentes", "faq.subtitle": "Tout ce que vous devez savoir sur APICue.",
+        "faq.q1": "En quoi APICue diffère-t-il du client HTTP intégré ?", "faq.a1": "Le client HTTP intégré nécessite de maintenir des fichiers <code>.http</code> séparés qui dupliquent votre spécification. APICue lit votre OpenAPI YAML directement — sans duplication, sans dérive. Il détecte automatiquement les schémas d'authentification, pré-remplit les paramètres à partir des exemples et permet d'enregistrer les réponses dans la spécification.",
+        "faq.q2": "Quels IDE sont pris en charge ?", "faq.a2": "APICue fonctionne sur IntelliJ IDEA Ultimate et Community Edition (build 241–262.*). La prise en charge d'autres IDE JetBrains avec plugin YAML pourrait être ajoutée dans les versions futures.",
+        "faq.q3": "Est-ce que Swagger 2.0 est supporté ?", "faq.a3": "Non, APICue ne supporte que OpenAPI 3.0.x. Vous pouvez convertir votre spécification Swagger 2.0 en utilisant le convertisseur officiel (https://swagger.io/tools/swagger-converter/).",
+        "faq.q4": "Où sont stockés mes exemples sauvegardés ?", "faq.a4": "Par défaut, les exemples sont sauvegardés dans le répertoire de configuration global du plugin. Vous pouvez modifier cela dans Paramètres → Outils → APICue pour les stocker dans le répertoire de votre projet — idéal pour le partage via le contrôle de version.",
+        "faq.q5": "Y a-t-il un essai gratuit ?", "faq.a5": "Oui ! APICue offre un essai gratuit de 30 jours avec accès complet à toutes les fonctionnalités. Sans carte de crédit. Après l'essai, une licence payante est requise pour continuer à utiliser le plugin.",
+        "faq.q6": "Est-ce que HTTPS est supporté ?", "faq.a6": "Oui — tout protocole supporté par OkHttp fonctionne pour HTTPS. Pour le développement avec des certificats auto-signés, nous recommandons de tester d'abord via HTTP, ou de configurer le magasin de confiance de l'IDE.",
+        "faq.q7": "APICue est-il open-source ?", "faq.a7": "Absolument ! APICue est open-source sur GitHub. Visitez <a href=\"https://github.com/davin-bao/apicue-public\" target=\"_blank\">github.com/davin-bao/apicue-public</a> pour ouvrir des issues, soumettre des pull requests ou lancer des discussions.",
+        "cta.title": "Prêt à optimiser votre flux de travail API ?", "cta.subtitle": "Arrêtez de basculer entre votre IDE et Postman. Testez, itérez et documentez — tout depuis vos fichiers OpenAPI YAML.",
+        "cta.button": "Installer APICue gratuitement",
+        "footer.tagline": "Tests d'API depuis des fichiers OpenAPI YAML,<br/>directement intégrés dans IntelliJ IDEA.",
+        "footer.product": "Produit", "footer.resources": "Ressources", "footer.company": "Société",
+        "footer.quickstart": "Démarrage rapide", "footer.issues": "Suivi des problèmes", "footer.website": "Site web", "footer.contact": "Contact", "footer.privacy": "Confidentialité", "footer.license": "Licence",
+        "footer.copyright": "© 2026 APICue Development Team. Tous droits réservés."
+    },
+    "ru": {
+        "nav.features": "Функции", "nav.how": "Как это работает", "nav.pricing": "Цены", "nav.faq": "FAQ",
+        "hero.badge": "Плагин IntelliJ IDEA", "hero.headline": "Тестируйте API прямо<br/>из <span>OpenAPI YAML</span>",
+        "hero.subtitle": "Больше никаких переключений на Postman или файлов .http. Зелёные кнопки появляются рядом с каждой операцией в вашем YAML-редакторе — нажмите, проверьте, отправьте.",
+        "hero.explore": "Изучить функции <i class=\"fa-solid fa-arrow-down\"></i>",
+        "hero.stat1": "1 клик", "hero.stat2": "Вкладки", "hero.stat3": "Формата", "hero.stat4": "Языка",
+        "features.label": "Функции", "features.title": "Всё необходимое для тестирования API", "features.subtitle": "APICue привносит тестирование API уровня Postman в ваш IntelliJ IDEA — в тесной связке со спецификациями OpenAPI.",
+        "feature1.title": "Запуск по иконке на полях", "feature1.desc": "Зелёные кнопки ▶ появляются рядом с каждой операцией <code>get:</code>, <code>post:</code>, <code>put:</code>, <code>delete:</code> и <code>patch:</code>. Нажмите, чтобы мгновенно открыть панель тестирования.",
+        "feature2.title": "Выделенное окно инструментов", "feature2.desc": "Правая панель с полным интерфейсом тестирования: выбор окружения, настройка аутентификации, редактор запросов (Параметры/Заголовки/Тело) и разделённый просмотр ответов.",
+        "feature3.title": "Автоопределение аутентификации", "feature3.desc": "Читает <code>securitySchemes</code> и <code>security</code> из вашей спецификации, автоматически генерирует заголовки Bearer JWT, Basic Auth и API Key. Без ручной настройки.",
+        "feature4.title": "Мультисредовые серверы", "feature4.desc": "Переключайтесь между несколькими <code>servers</code> в YAML-файле. Последний выбранный URL запоминается для каждого файла, даже после перезапуска IDE.",
+        "feature5.title": "Умное предзаполнение", "feature5.desc": "Параметры запроса, заголовки и тело автоматически заполняются из значений <code>example</code>, <code>default</code> и свойств схемы согласно иерархии приоритетов.",
+        "feature6.title": "Сохранение и загрузка примеров", "feature6.desc": "Сохраняйте данные запросов/ответов в YAML как примеры OpenAPI. Загружайте их позже для воспроизводимого тестирования и регрессионных проверок.",
+        "feature7.title": "Менеджер токенов", "feature7.desc": "Управляйте JWT и API-ключами для каждого окружения. Токены безопасно хранятся с использованием механизма защиты паролей IDE.",
+        "feature8.title": "Экспорт документации API", "feature8.desc": "Экспортируйте спецификацию OpenAPI в <strong>Markdown</strong> или <strong>HTML</strong> — прямо из панели инструментов или по правому клику на YAML-файл. Включает диалог поиска/фильтрации, настраиваемые разделы и оглавление.",
+        "feature9.title": "Разрешение $Ref между файлами", "feature9.desc": "Полностью разрешает ссылки <code>$ref</code> между YAML-файлами (например, <code>$ref: 'model.yml#/…'</code>) с кешированием и обнаружением циклических ссылок.",
+        "feature10.title": "i18n (11 языков)", "feature10.desc": "Поддерживает <strong>EN, 中文, 日本語, 한국어, Español, Português, Deutsch, Français, Русский, Tiếng Việt, Türkçe</strong>. Автоматически соответствует языку IDE.",
+        "how.label": "Как это работает", "how.title": "От спецификации к ответу за 4 шага", "how.subtitle": "Никаких конфигурационных файлов, никаких внешних инструментов — только ваш OpenAPI YAML и APICue.",
+        "step1.title": "Откройте YAML-файл OpenAPI", "step1.desc": "Любой файл <code>.yaml</code> или <code>.yml</code> с синтаксисом OpenAPI 3.0. APICue анализирует его на лету.",
+        "step2.title": "Нажмите на иконку", "step2.desc": "Зелёные кнопки ▶ появляются рядом с каждой операцией. Нажмите — окно инструментов APICue Tester откроется мгновенно.",
+        "step3.title": "Проверьте и настройте", "step3.desc": "Выберите целевой сервер, проверьте предзаполненные параметры/заголовки/тело, настройте токены аутентификации. Всё предзаполнено из вашей спецификации.",
+        "step4.title": "Отправьте и проверьте", "step4.desc": "Нажмите <strong>Отправить</strong>. Просмотрите ответ с подсветкой синтаксиса, временем ответа и кодом состояния — всё внутри IDE.",
+        "specs.label": "Совместимость", "specs.title": "Работает там, где вы работаете", "specs.subtitle": "Создан для IntelliJ IDEA с нулевыми внешними зависимостями времени выполнения.",
+        "specs.platform": "Платформа", "specs.since": "Сборка с", "specs.until": "Сборка до", "specs.lang": "Язык разработки", "specs.license": "Лицензия", "specs.licenseVal": "Коммерческая (платная)",
+        "specs.deps": "📦 Встроенные зависимости", "specs.bundled": "Все зависимости встроены — отдельная установка не требуется.",
+        "pricing.label": "Цены", "pricing.title": "Простые и прозрачные цены", "pricing.subtitle": "Попробуйте бесплатно 30 дней. Без кредитной карты.",
+        "pricing.monthly": "Ежемесячно", "pricing.perMonth": "/мес", "pricing.perDev": "за разработчика", "pricing.annual": "Ежегодно", "pricing.perYear": "/год", "pricing.off": "за разработчика — скидка 16%", "pricing.bestValue": "Лучшая цена",
+        "pricing.fullAccess": "Полный доступ", "pricing.updates": "Приоритетные обновления", "pricing.support": "Поддержка по email", "pricing.cancel": "Отмена в любое время", "pricing.prioritySupport": "Приоритетная поддержка", "pricing.fallback": "Бессрочная резервная лицензия (см. EULA)", "pricing.viewEula": "Посмотреть EULA",
+        "faq.label": "FAQ", "faq.title": "Часто задаваемые вопросы", "faq.subtitle": "Всё, что нужно знать об APICue.",
+        "faq.q1": "Чем APICue отличается от встроенного HTTP-клиента?", "faq.a1": "Встроенный HTTP-клиент требует отдельных файлов <code>.http</code>, дублирующих вашу спецификацию. APICue читает ваш OpenAPI YAML напрямую — без дублирования, без расхождений. Он автоматически обнаруживает схемы аутентификации, предзаполняет параметры из примеров и позволяет сохранять ответы обратно в спецификацию.",
+        "faq.q2": "Какие IDE поддерживаются?", "faq.a2": "APICue работает на IntelliJ IDEA Ultimate и Community Edition (сборка 241–262.*). Поддержка других IDE JetBrains с YAML-плагином может быть добавлена в будущих версиях.",
+        "faq.q3": "Поддерживается ли Swagger 2.0?", "faq.a3": "Нет, APICue поддерживает только OpenAPI 3.0.x. Вы можете конвертировать вашу спецификацию Swagger 2.0 с помощью официального конвертера (https://swagger.io/tools/swagger-converter/).",
+        "faq.q4": "Где хранятся сохранённые примеры?", "faq.a4": "По умолчанию примеры сохраняются в глобальном каталоге конфигурации плагина. Вы можете изменить это в Настройки → Инструменты → APICue, чтобы хранить их в каталоге проекта — идеально для совместного использования через систему контроля версий.",
+        "faq.q5": "Есть ли бесплатная пробная версия?", "faq.a5": "Да! APICue предлагает 30-дневную бесплатную пробную версию с полным доступом ко всем функциям. Без кредитной карты. После пробного периода для продолжения использования требуется платная лицензия.",
+        "faq.q6": "Поддерживается ли HTTPS?", "faq.a6": "Да — любой протокол, поддерживаемый OkHttp, работает для HTTPS. Для разработки с самоподписанными сертификатами мы рекомендуем сначала тестировать через HTTP или настроить хранилище доверенных сертификатов IDE.",
+        "faq.q7": "Является ли APICue открытым исходным кодом?", "faq.a7": "Безусловно! APICue имеет открытый исходный код на GitHub. Посетите <a href=\"https://github.com/davin-bao/apicue-public\" target=\"_blank\">github.com/davin-bao/apicue-public</a>, чтобы открыть issue, отправить pull request или начать обсуждение.",
+        "cta.title": "Готовы оптимизировать свой рабочий процесс с API?", "cta.subtitle": "Перестаньте переключаться между IDE и Postman. Тестируйте, итерируйте, документируйте — всё из ваших файлов OpenAPI YAML.",
+        "cta.button": "Установить APICue бесплатно",
+        "footer.tagline": "Тестирование API из файлов OpenAPI YAML,<br/>встроено прямо в IntelliJ IDEA.",
+        "footer.product": "Продукт", "footer.resources": "Ресурсы", "footer.company": "Компания",
+        "footer.quickstart": "Быстрый старт", "footer.issues": "Отслеживание проблем", "footer.website": "Веб-сайт", "footer.contact": "Контакты", "footer.privacy": "Конфиденциальность", "footer.license": "Лицензия",
+        "footer.copyright": "© 2026 Команда разработчиков APICue. Все права защищены."
+    },
+    "vi": {
+        "nav.features": "Tính năng", "nav.how": "Cách hoạt động", "nav.pricing": "Bảng giá", "nav.faq": "FAQ",
+        "hero.badge": "Plugin IntelliJ IDEA", "hero.headline": "Kiểm thử API trực tiếp<br/>từ <span>OpenAPI YAML</span>",
+        "hero.subtitle": "Không cần chuyển sang Postman hay duy trì tệp .http. Các nút màu xanh xuất hiện bên cạnh mỗi thao tác API trong trình soạn thảo YAML — nhấp, xem xét, gửi.",
+        "hero.explore": "Khám phá tính năng <i class=\"fa-solid fa-arrow-down\"></i>",
+        "hero.stat1": "1 nhấp gửi", "hero.stat2": "Tab yêu cầu", "hero.stat3": "Định dạng", "hero.stat4": "Ngôn ngữ",
+        "features.label": "Tính năng", "features.title": "Mọi thứ bạn cần để kiểm thử API", "features.subtitle": "APICue mang khả năng kiểm thử API đẳng cấp Postman vào IntelliJ IDEA — tích hợp chặt chẽ với đặc tả OpenAPI của bạn.",
+        "feature1.title": "Kích hoạt biểu tượng lề", "feature1.desc": "Nút ▶ màu xanh xuất hiện bên cạnh mỗi thao tác <code>get:</code>, <code>post:</code>, <code>put:</code>, <code>delete:</code> và <code>patch:</code>. Nhấp để mở bảng kiểm thử ngay lập tức.",
+        "feature2.title": "Cửa sổ công cụ chuyên dụng", "feature2.desc": "Bảng bên phải hiển thị giao diện kiểm thử đầy đủ: bộ chọn môi trường, cấu hình xác thực, trình soạn thảo yêu cầu (Tham số/Tiêu đề/Nội dung) và trình xem phản hồi phân chia.",
+        "feature3.title": "Tự động phát hiện xác thực", "feature3.desc": "Đọc <code>securitySchemes</code> và <code>security</code> từ đặc tả của bạn, tự động tạo tiêu đề Bearer JWT, Basic Auth và API Key. Không cần thiết lập thủ công.",
+        "feature4.title": "Máy chủ đa môi trường", "feature4.desc": "Chuyển đổi giữa nhiều <code>servers</code> cho mỗi tệp YAML. URL được chọn cuối cùng được ghi nhớ cho từng tệp, ngay cả sau khi khởi động lại IDE.",
+        "feature5.title": "Điền tham số thông minh", "feature5.desc": "Tham số truy vấn, tiêu đề và nội dung được tự động điền từ <code>example</code>, <code>default</code> và giá trị thuộc tính lược đồ theo thứ tự ưu tiên.",
+        "feature6.title": "Lưu và tải ví dụ", "feature6.desc": "Lưu dữ liệu yêu cầu/phản hồi vào YAML dưới dạng ví dụ OpenAPI. Tải lại sau để kiểm thử tái tạo và kiểm tra hồi quy.",
+        "feature7.title": "Quản lý token", "feature7.desc": "Quản lý JWT, API Key theo từng môi trường. Token được lưu trữ an toàn bằng cơ chế bảo vệ mật khẩu của IDE.",
+        "feature8.title": "Xuất tài liệu API", "feature8.desc": "Xuất đặc tả OpenAPI thành tài liệu <strong>Markdown</strong> hoặc <strong>HTML</strong> — trực tiếp từ thanh công cụ hoặc nhấp chuột phải vào tệp YAML. Bao gồm hộp thoại tìm kiếm/lọc, các phần có thể cấu hình và mục lục.",
+        "feature9.title": "Giải quyết $Ref liên tệp", "feature9.desc": "Giải quyết hoàn toàn các tham chiếu <code>$ref</code> giữa các tệp YAML (ví dụ: <code>$ref: 'model.yml#/…'</code>) với bộ nhớ đệm và phát hiện tham chiếu vòng.",
+        "feature10.title": "i18n (11 ngôn ngữ)", "feature10.desc": "Hỗ trợ <strong>EN, 中文, 日本語, 한국어, Español, Português, Deutsch, Français, Русский, Tiếng Việt, Türkçe</strong>. Tự động khớp với cài đặt ngôn ngữ của IDE.",
+        "how.label": "Cách hoạt động", "how.title": "Từ đặc tả đến phản hồi trong 4 bước", "how.subtitle": "Không cần tệp cấu hình, không cần công cụ bên ngoài — chỉ cần OpenAPI YAML và APICue.",
+        "step1.title": "Mở tệp YAML OpenAPI", "step1.desc": "Bất kỳ tệp <code>.yaml</code> hoặc <code>.yml</code> nào có cú pháp OpenAPI 3.0 hợp lệ. APICue phân tích ngay lập tức.",
+        "step2.title": "Nhấp vào biểu tượng lề", "step2.desc": "Nút ▶ màu xanh xuất hiện bên cạnh mỗi thao tác API. Nhấp vào — cửa sổ công cụ APICue Tester mở ra ngay lập tức.",
+        "step3.title": "Xem xét và cấu hình", "step3.desc": "Chọn máy chủ mục tiêu, xem xét tham số/tiêu đề/nội dung đã được điền tự động, cấu hình token xác thực. Mọi thứ đều được điền sẵn từ đặc tả của bạn.",
+        "step4.title": "Gửi và kiểm tra", "step4.desc": "Nhấp <strong>Gửi yêu cầu</strong>. Kiểm tra phản hồi với tô sáng cú pháp, thời gian phản hồi và mã trạng thái — tất cả trong IDE.",
+        "specs.label": "Tương thích", "specs.title": "Hoạt động tại nơi bạn làm việc", "specs.subtitle": "Được xây dựng cho IntelliJ IDEA với không phụ thuộc thời gian chạy bên ngoài.",
+        "specs.platform": "Nền tảng", "specs.since": "Bản dựng từ", "specs.until": "Bản dựng đến", "specs.lang": "Ngôn ngữ phát triển", "specs.license": "Giấy phép", "specs.licenseVal": "Thương mại (trả phí)",
+        "specs.deps": "📦 Phụ thuộc tích hợp", "specs.bundled": "Tất cả phụ thuộc được đóng gói sẵn — không cần cài đặt riêng.",
+        "pricing.label": "Bảng giá", "pricing.title": "Bảng giá đơn giản, minh bạch", "pricing.subtitle": "Dùng thử miễn phí 30 ngày. Không yêu cầu thẻ tín dụng.",
+        "pricing.monthly": "Hàng tháng", "pricing.perMonth": "/tháng", "pricing.perDev": "mỗi nhà phát triển", "pricing.annual": "Hàng năm", "pricing.perYear": "/năm", "pricing.off": "mỗi nhà phát triển — giảm 16%", "pricing.bestValue": "Giá trị nhất",
+        "pricing.fullAccess": "Truy cập đầy đủ", "pricing.updates": "Cập nhật ưu tiên", "pricing.support": "Hỗ trợ email", "pricing.cancel": "Hủy bất kỳ lúc nào", "pricing.prioritySupport": "Hỗ trợ ưu tiên", "pricing.fallback": "Giấy phép dự phòng vĩnh viễn (xem EULA)", "pricing.viewEula": "Xem EULA",
+        "faq.label": "FAQ", "faq.title": "Các câu hỏi thường gặp", "faq.subtitle": "Mọi điều bạn cần biết về APICue.",
+        "faq.q1": "APICue khác gì so với HTTP Client tích hợp?", "faq.a1": "HTTP Client tích hợp yêu cầu duy trì các tệp <code>.http</code> riêng biệt trùng lặp với đặc tả API của bạn. APICue đọc trực tiếp OpenAPI YAML — không trùng lặp, không sai lệch. Nó tự động phát hiện lược đồ xác thực, điền sẵn tham số từ ví dụ và cho phép lưu phản hồi trở lại đặc tả.",
+        "faq.q2": "IDE nào được hỗ trợ?", "faq.a2": "APICue chạy trên IntelliJ IDEA Ultimate và Community Edition (bản dựng 241–262.*). Hỗ trợ cho các IDE JetBrains khác có plugin YAML có thể được thêm vào trong các bản phát hành tương lai.",
+        "faq.q3": "Có hỗ trợ Swagger 2.0 không?", "faq.a3": "Không, APICue chỉ hỗ trợ OpenAPI 3.0.x. Bạn có thể chuyển đổi đặc tả Swagger 2.0 bằng công cụ chuyển đổi chính thức (https://swagger.io/tools/swagger-converter/).",
+        "faq.q4": "Các ví dụ đã lưu được lưu trữ ở đâu?", "faq.a4": "Theo mặc định, các ví dụ được lưu trong thư mục cấu hình toàn cục của plugin. Bạn có thể thay đổi trong Cài đặt → Công cụ → APICue để lưu trữ trong thư mục dự án — lý tưởng để chia sẻ qua kiểm soát phiên bản.",
+        "faq.q5": "Có dùng thử miễn phí không?", "faq.a5": "Có! APICue cung cấp bản dùng thử miễn phí 30 ngày với toàn bộ tính năng. Không yêu cầu thẻ tín dụng. Sau khi dùng thử, cần có giấy phép trả phí để tiếp tục sử dụng.",
+        "faq.q6": "Có hỗ trợ HTTPS không?", "faq.a6": "Có — bất kỳ giao thức nào OkHttp hỗ trợ đều hoạt động cho HTTPS. Đối với phát triển với chứng chỉ tự ký, chúng tôi khuyên bạn nên kiểm tra qua HTTP trước hoặc cấu hình kho tin cậy của IDE.",
+        "faq.q7": "APICue có mã nguồn mở không?", "faq.a7": "Chắc chắn! APICue là mã nguồn mở trên GitHub. Truy cập <a href=\"https://github.com/davin-bao/apicue-public\" target=\"_blank\">github.com/davin-bao/apicue-public</a> để mở issue, gửi pull request hoặc bắt đầu thảo luận.",
+        "cta.title": "Sẵn sàng tối ưu hóa quy trình làm việc API?", "cta.subtitle": "Ngừng chuyển đổi giữa IDE và Postman. Kiểm thử, lặp lại, tài liệu hóa — tất cả từ các tệp OpenAPI YAML của bạn.",
+        "cta.button": "Cài đặt APICue miễn phí",
+        "footer.tagline": "Kiểm thử API từ tệp OpenAPI YAML,<br/>được xây dựng trực tiếp trong IntelliJ IDEA.",
+        "footer.product": "Sản phẩm", "footer.resources": "Tài nguyên", "footer.company": "Công ty",
+        "footer.quickstart": "Bắt đầu nhanh", "footer.issues": "Theo dõi vấn đề", "footer.website": "Trang web", "footer.contact": "Liên hệ", "footer.privacy": "Quyền riêng tư", "footer.license": "Giấy phép",
+        "footer.copyright": "© 2026 Nhóm phát triển APICue. Mọi quyền được bảo lưu."
+    },
+    "tr": {
+        "nav.features": "Özellikler", "nav.how": "Nasıl Çalışır", "nav.pricing": "Fiyatlandırma", "nav.faq": "SSS",
+        "hero.badge": "IntelliJ IDEA Eklentisi", "hero.headline": "API'leri Doğrudan<br/><span>OpenAPI YAML</span>'dan Test Edin",
+        "hero.subtitle": "Artık Postman'e geçmek veya .http dosyaları tutmak yok. YAML düzenleyicinizdeki her API işleminin yanında yeşil çalıştırma düğmeleri belirir — tıklayın, inceleyin, gönderin.",
+        "hero.explore": "Özellikleri Keşfedin <i class=\"fa-solid fa-arrow-down\"></i>",
+        "hero.stat1": "Tek Tık", "hero.stat2": "Sekme", "hero.stat3": "Biçim", "hero.stat4": "Dil",
+        "features.label": "Özellikler", "features.title": "API Testi İçin İhtiyacınız Olan Her Şey", "features.subtitle": "APICue, Postman sınıfı API testini IntelliJ IDEA'nıza getirir — OpenAPI belirtimlerinizle sıkıca entegre.",
+        "feature1.title": "Kenar Çubuğu Simgeleri", "feature1.desc": "Her <code>get:</code>, <code>post:</code>, <code>put:</code>, <code>delete:</code> ve <code>patch:</code> işleminin yanında yeşil ▶ düğmeleri belirir. Tıklayarak test panelini anında açın.",
+        "feature2.title": "Özel Araç Penceresi", "feature2.desc": "Sağ panelde tam test arayüzü: ortam seçici, kimlik doğrulama yapılandırması, istek düzenleyicisi (Parametreler/Başlıklar/Gövde) ve bölünmüş yanıt görüntüleyici.",
+        "feature3.title": "Otomatik Kimlik Doğrulama Keşfi", "feature3.desc": "Belirtiminizden <code>securitySchemes</code> ve <code>security</code> bilgilerini okur, otomatik olarak Bearer JWT, Basic Auth ve API Key başlıkları oluşturur. Manuel kurulum gerektirmez.",
+        "feature4.title": "Çoklu Ortam Sunucuları", "feature4.desc": "YAML dosyası başına birden çok <code>servers</code> arasında geçiş yapın. Son seçilen URL, IDE yeniden başlatmalarında bile dosya başına hatırlanır.",
+        "feature5.title": "Akıllı Parametre Ön Doldurma", "feature5.desc": "Sorgu parametreleri, başlıklar ve gövde, <code>example</code>, <code>default</code> ve şema özellik değerlerinden öncelik sırasına göre otomatik doldurulur.",
+        "feature6.title": "Örnekleri Kaydet ve Yükle", "feature6.desc": "İstek/yanıt verilerini OpenAPI örnekleri olarak YAML'a kaydedin. Daha sonra tekrarlanabilir testler ve regresyon kontrolleri için yeniden yükleyin.",
+        "feature7.title": "Token Yöneticisi", "feature7.desc": "JWT ve API Anahtarlarını ortam başına yönetin. Token'lar, IDE'nin parola güvenlik mekanizması kullanılarak güvenle saklanır.",
+        "feature8.title": "API Dokümanı Dışa Aktar", "feature8.desc": "OpenAPI belirtiminizi <strong>Markdown</strong> veya <strong>HTML</strong> dokümanı olarak dışa aktarın — doğrudan araç çubuğundan veya YAML dosyasına sağ tıklayarak. Arama/filtre iletişim kutusu, yapılandırılabilir bölümler ve içindekiler tablosu içerir.",
+        "feature9.title": "$Ref Dosyalar Arası Çözümleme", "feature9.desc": "YAML dosyaları arasındaki <code>$ref</code> referanslarını tamamen çözümler (örn. <code>$ref: 'model.yml#/…'</code>), önbellekleme ve döngüsel referans algılama ile.",
+        "feature10.title": "i18n (11 Dil)", "feature10.desc": "<strong>EN, 中文, 日本語, 한국어, Español, Português, Deutsch, Français, Русский, Tiếng Việt, Türkçe</strong> dillerini destekler. IDE dil ayarıyla otomatik eşleşir.",
+        "how.label": "Nasıl Çalışır", "how.title": "Belirtimden Yanıta 4 Adımda", "how.subtitle": "Yapılandırma dosyası yok, harici araç yok — sadece OpenAPI YAML ve APICue.",
+        "step1.title": "OpenAPI YAML Dosyasını Açın", "step1.desc": "Geçerli OpenAPI 3.0 sözdizimine sahip herhangi bir <code>.yaml</code> veya <code>.yml</code> dosyası. APICue anında ayrıştırır.",
+        "step2.title": "Kenar Simgesine Tıklayın", "step2.desc": "Her API işleminin yanında yeşil ▶ düğmeleri belirir. Birine tıklayın — APICue Tester araç penceresi anında açılır.",
+        "step3.title": "İnceleyin ve Yapılandırın", "step3.desc": "Hedef sunucunuzu seçin, otomatik doldurulan parametreleri/başlıkları/gövdeleri inceleyin, kimlik doğrulama token'larını yapılandırın. Her şey belirtiminizden önceden doldurulur.",
+        "step4.title": "Gönderin ve İnceleyin", "step4.desc": "<strong>Gönder</strong> düğmesine tıklayın. Sözdizimi vurgulama, yanıt süresi ve durum kodu ile yanıtı IDE içinde inceleyin.",
+        "specs.label": "Uyumluluk", "specs.title": "Çalıştığınız Yerde Çalışır", "specs.subtitle": "IntelliJ IDEA için sıfır harici çalışma zamanı bağımlılığı ile oluşturulmuştur.",
+        "specs.platform": "Platform", "specs.since": "Başlangıç Derlemesi", "specs.until": "Bitiş Derlemesi", "specs.lang": "Geliştirme Dili", "specs.license": "Lisans", "specs.licenseVal": "Ticari (ücretli)",
+        "specs.deps": "📦 Dahili Bağımlılıklar", "specs.bundled": "Tüm bağımlılıklar paketlenmiştir — ayrı kurulum gerektirmez.",
+        "pricing.label": "Fiyatlandırma", "pricing.title": "Basit ve Şeffaf Fiyatlandırma", "pricing.subtitle": "30 gün ücretsiz dene. Kredi kartı gerekmez.",
+        "pricing.monthly": "Aylık", "pricing.perMonth": "/ay", "pricing.perDev": "geliştirici başına", "pricing.annual": "Yıllık", "pricing.perYear": "/yıl", "pricing.off": "geliştirici başına — %16 tasarruf", "pricing.bestValue": "En İyi Değer",
+        "pricing.fullAccess": "Tüm özelliklere erişim", "pricing.updates": "Öncelikli güncellemeler", "pricing.support": "E-posta desteği", "pricing.cancel": "İstediğiniz zaman iptal", "pricing.prioritySupport": "Öncelikli destek", "pricing.fallback": "Süresiz geri dönüş lisansı (EULA'ya bakın)", "pricing.viewEula": "EULA'yı Görüntüle",
+        "faq.label": "SSS", "faq.title": "Sıkça Sorulan Sorular", "faq.subtitle": "APICue hakkında bilmeniz gereken her şey.",
+        "faq.q1": "APICue, yerleşik HTTP İstemcisinden nasıl farklıdır?", "faq.a1": "Yerleşik HTTP İstemcisi, API belirtiminizi çoğaltan ayrı <code>.http</code> dosyaları tutmanızı gerektirir. APICue, OpenAPI YAML'nizi doğrudan okur — çoğaltma yok, sapma yok. Kimlik doğrulama şemalarını otomatik olarak keşfeder, parametreleri örneklerden önceden doldurur ve yanıtları belirtiminize kaydetmenize olanak tanır.",
+        "faq.q2": "Hangi IDE'ler destekleniyor?", "faq.a2": "APICue, IntelliJ IDEA Ultimate ve Community Edition'da (derleme 241–262.*) çalışır. YAML eklentisini destekleyen diğer JetBrains IDE'leri için destek gelecek sürümlerde eklenebilir.",
+        "faq.q3": "Swagger 2.0'ı destekliyor mu?", "faq.a3": "Hayır, APICue yalnızca OpenAPI 3.0.x'i destekler. Swagger 2.0 belirtiminizi resmi Swagger Dönüştürücü'yü kullanarak dönüştürebilirsiniz (https://swagger.io/tools/swagger-converter/).",
+        "faq.q4": "Kaydedilen örneklerim nerede saklanıyor?", "faq.a4": "Varsayılan olarak, örnekler eklentinin genel yapılandırma dizininde saklanır. Bunu Ayarlar → Araçlar → APICue içinde proje dizininizde saklayacak şekilde değiştirebilirsiniz — sürüm kontrolü aracılığıyla paylaşım için idealdir.",
+        "faq.q5": "Ücretsiz deneme sürümü var mı?", "faq.a5": "Evet! APICue, tüm özelliklere erişim sağlayan 30 günlük ücretsiz deneme sunar. Kredi kartı gerekmez. Deneme süresinden sonra, kullanıma devam etmek için ücretli bir lisans gereklidir.",
+        "faq.q6": "HTTPS'i destekliyor mu?", "faq.a6": "Evet — OkHttp tarafından desteklenen herhangi bir protokol HTTPS için çalışır. Kendinden imzalı sertifikalarla geliştirme yaparken, önce HTTP üzerinden test etmenizi veya IDE'nin güven deposunu yapılandırmanızı öneririz.",
+        "faq.q7": "APICue açık kaynak mı?", "faq.a7": "Kesinlikle! APICue, GitHub'da açık kaynaktır. Sorun açmak, pull request göndermek veya tartışma başlatmak için <a href=\"https://github.com/davin-bao/apicue-public\" target=\"_blank\">github.com/davin-bao/apicue-public</a> adresini ziyaret edin.",
+        "cta.title": "API İş Akışınızı Kolaylaştırmaya Hazır mısınız?", "cta.subtitle": "IDE'niz ile Postman arasında geçiş yapmayı bırakın. Test edin, yineleyin, belgeleyin — hepsi OpenAPI YAML dosyalarınızdan.",
+        "cta.button": "APICue'yi Ücretsiz Yükle",
+        "footer.tagline": "OpenAPI YAML dosyalarından API testi,<br/>doğrudan IntelliJ IDEA içinde.",
+        "footer.product": "Ürün", "footer.resources": "Kaynaklar", "footer.company": "Şirket",
+        "footer.quickstart": "Hızlı Başlangıç", "footer.issues": "Sorun Takibi", "footer.website": "Web Sitesi", "footer.contact": "İletişim", "footer.privacy": "Gizlilik", "footer.license": "Lisans",
+        "footer.copyright": "© 2026 APICue Geliştirme Ekibi. Tüm hakları saklıdır."
+    }
+};
 
-    // ===== Carousel =====
-    (function() {
-        var carousel = document.getElementById('heroCarousel');
-        if (!carousel) return;
-        var slides = carousel.querySelectorAll('.carousel-slide');
-        var dotsContainer = carousel.querySelector('.carousel-dots');
-        var current = 0;
-        var timer;
+// ── Language switching logic ──
+function switchLang(lang) {
+    localStorage.setItem('apicue-lang', lang);
+    applyTranslations(lang);
+    document.documentElement.lang = lang;
+}
 
-        function goTo(index) {
-            slides.forEach(function(s) { s.classList.remove('active'); });
-            dotsContainer.querySelectorAll('span').forEach(function(d) { d.classList.remove('active'); });
-            slides[index].classList.add('active');
-            dotsContainer.children[index].classList.add('active');
-            current = index;
+function applyTranslations(lang) {
+    const t = translations[lang] || translations['en'];
+    document.querySelectorAll('[data-i18n]').forEach(el => {
+        const key = el.getAttribute('data-i18n');
+        if (t[key]) {
+            el.innerHTML = t[key];
         }
-
-        function next() { goTo((current + 1) % slides.length); }
-        function prev() { goTo((current - 1 + slides.length) % slides.length); }
-
-        function resetTimer() {
-            clearInterval(timer);
-            timer = setInterval(next, 4000);
-        }
-
-        // Create dots
-        for (var i = 0; i < slides.length; i++) {
-            var dot = document.createElement('span');
-            dot.addEventListener('click', function(idx) { return function() { goTo(idx); resetTimer(); }; }(i));
-            dotsContainer.appendChild(dot);
-        }
-        goTo(0);
-
-        // Keyboard arrows
-        carousel.addEventListener('keydown', function(e) {
-            if (e.key === 'ArrowLeft') { prev(); resetTimer(); }
-            if (e.key === 'ArrowRight') { next(); resetTimer(); }
-        });
-        carousel.setAttribute('tabindex', '0');
-
-        timer = setInterval(next, 4000);
-
-        // ===== Lightbox =====
-        var lightbox = document.getElementById('heroLightbox');
-        var lightboxImg = lightbox.querySelector('img');
-        var lightboxClose = lightbox.querySelector('.lightbox-close');
-
-        slides.forEach(function(slide) {
-            slide.addEventListener('click', function() {
-                lightboxImg.src = slide.src;
-                lightbox.classList.add('open');
-            });
-        });
-
-        lightbox.addEventListener('click', function(e) {
-            if (e.target === lightbox || e.target === lightboxClose) {
-                lightbox.classList.remove('open');
-            }
-        });
-
-        document.addEventListener('keydown', function(e) {
-            if (e.key === 'Escape') lightbox.classList.remove('open');
-        });
-    })();
-
-    // FAQ accordion
-    document.querySelectorAll('.faq-question').forEach(btn => {
-        btn.addEventListener('click', () => {
-            const item = btn.parentElement;
-            const isOpen = item.classList.contains('open');
-            // Close all
-            document.querySelectorAll('.faq-item.open').forEach(el => el.classList.remove('open'));
-            if (!isOpen) item.classList.add('open');
-        });
     });
+    document.querySelectorAll('[data-i18n-placeholder]').forEach(el => {
+        const key = el.getAttribute('data-i18n-placeholder');
+        if (t[key]) el.placeholder = t[key];
+    });
+}
+
+// Auto-detect language on page load
+(function() {
+    const saved = localStorage.getItem('apicue-lang');
+    let lang = saved;
+    if (!lang) {
+        const navLang = navigator.language?.split('-')[0] || 'en';
+        lang = translations[navLang] ? navLang : 'en';
+    }
+    document.getElementById('langSwitcher').value = lang;
+    applyTranslations(lang);
+    document.documentElement.lang = lang;
+})();
 </script>
-
 </body>
 </html>
