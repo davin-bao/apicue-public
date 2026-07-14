@@ -19,6 +19,9 @@ APICue 是一款 IntelliJ IDEA 插件，弥合了 API 规范与 API 测试之间
 ### 🔐 安全方案自动发现
 自动读取 OpenAPI 规范中的 `components.securitySchemes` 和 `security` 要求，生成正确的认证请求头（Bearer JWT、Basic Auth、header/query/cookie 中的 API Key）并自动填入。
 
+### 📄 API 文档导出
+将你的 OpenAPI 规范导出为 **Markdown** 或 **HTML** 文档——可从工具窗口工具栏或右键 YAML 文件触发。支持搜索/过滤接口、配置内容分区、自动生成目录。
+
 ### 🌍 多环境服务器选择
 支持每个 YAML 文件配置多个 `servers`。最后选择的 URL 按文件记忆，切换 YAML 文件时自动恢复上次选择。
 
@@ -38,7 +41,7 @@ APICue 是一款 IntelliJ IDEA 插件，弥合了 API 规范与 API 测试之间
 将保存的示例导出为结构化的 HTML 或 Markdown 报告，支持自定义模板，适合分享、文档或复盘。
 
 ### 🌐 国际化（i18n）
-支持英文和中文界面，自动匹配 IDE 语言设置。
+支持 **11 种语言**：英文、中文、日文、韩文、西班牙文、葡萄牙文、德文、法文、俄文、越南文、土耳其文。自动匹配 IDE 语言设置。
 
 ---
 

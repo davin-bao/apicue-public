@@ -19,6 +19,9 @@ Right-side tool window shows the full testing interface: environment selector, a
 ### 🔐 Security Scheme Auto-Discovery
 Reads `components.securitySchemes` and `security` requirements from your OpenAPI spec, automatically generates the correct authentication headers (Bearer JWT, Basic Auth, API Key in header/query/cookie), and pre-fills them.
 
+### 📄 API Document Export
+Export your OpenAPI specification as **Markdown** or **HTML** documentation from the tool window toolbar or by right-clicking a YAML file. Choose endpoints with search/filter, configure content sections, and get a structured document with TOC.
+
 ### 🌍 Multi-Environment Server Selection
 Supports multiple `servers` per YAML file. The last selected URL is remembered per-file, so switching between YAML documents restores your previous choice automatically.
 
@@ -38,7 +41,7 @@ Fully resolves `$ref` references across YAML files (e.g., `$ref: 'model.yml#/com
 Export saved examples as structured HTML or Markdown reports with custom templates, suitable for sharing, documentation, or review.
 
 ### 🌐 Internationalization (i18n)
-Supports both English and Chinese UI. Automatically matches your IDE's language setting.
+Supports **11 languages**: EN, 中文, 日本語, 한국어, Español, Português, Deutsch, Français, Русский, Tiếng Việt, Türkçe. Automatically matches your IDE's language setting.
 
 ---
 

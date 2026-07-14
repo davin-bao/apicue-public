@@ -1,5 +1,53 @@
 # Changelog
 
+## [2026.7.14] - 2026-07-14
+
+### Added
+- **flexmark Markdown→HTML converter**: Replaced hand-rolled regex parser with flexmark 0.64.8 for correct CommonMark/GFM rendering.
+- **Right-click YAML context menu**: Export Markdown/HTML API Doc from `.yml`/`.yaml` file right-click.
+- **Shared export utility**: Tool window button and right-click menu share the same export logic.
+- **Enum anchor links**: Enum fields in data structure tables link to their detail rows.
+- **Type alias normalization**: `int`→`integer`, `float`/`double`→`number`, `bool`→`boolean`, `str`→`string`.
+- **Full i18n for API Document Export**: 24 new i18n keys covering all table headers, constraints, auth types, and labels.
+
+### Changed
+- **Response data structure**: "Required" column removed (request body structure keeps it).
+- **Test Report TOC**: Shows `[METHOD] /path` format.
+- **Select All/Deselect All label**: Shows visible count when search filter is active.
+
+### Fixed
+- **Plugin load error**: Removed invalid `<tags>` element from `plugin.xml`.
+- **EDT threading**: Actions now declare `ActionUpdateThread.BGT`.
+- **Right-click menu enabled**: Fixed grayed-out menu for YAML files.
+
+---
+
+## [2026.7.3] - 2026-07-06
+
+### Added
+- **API Document Export**: Export OpenAPI/YAML documentation as Markdown or HTML from the tool window or right-click menu.
+- **Export Dialog**: Select endpoints with search/filter, set document title.
+- **Markdown/HTML Export**: Structured output with TOC, tables, code blocks, schema details.
+- **Settings**: Configurable content sections in Settings → Tools → APICue.
+- **i18n**: Chinese and English support.
+
+---
+
+## [1.0.7] - 2026-07-03
+
+### Fixed
+- **Deprecated API removed**: Replaced `PluginManager.getPlugin(PluginId)` with a compile-time version constant.
+
+---
+
+## [1.0.6] - 2026-06-24
+
+### Fixed
+- **Internal API → Public API**: Replaced `PluginManagerCore.getPlugin(PluginId)` with `PluginManager.getPlugin(PluginId)`.
+- **Deprecated API migration**: Replaced old `addBrowseFolderListener` overload with `addBrowseFolderListener(TextBrowseFolderListener)`.
+
+---
+
 ## [1.0.5] - 2026-06-24
 
 ### Changed
