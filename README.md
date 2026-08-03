@@ -29,7 +29,13 @@ Supports multiple `servers` per YAML file. The last selected URL is remembered p
 Query parameters, headers, and request body are pre-filled from `example`, `default`, and schema property values — following a well-defined priority hierarchy.
 
 ### 📝 Save & Load Request/Response Examples
-Save working request parameters and response payloads back to the YAML file as OpenAPI examples. Load them back later for reproducible testing.
+Save working request parameters and response payloads back to the YAML file as OpenAPI examples. Load them back later for reproducible testing. The **Examples tab** in the request editor shows a table-based list of saved examples (Env / Name) with inline rename, delete, search, and one-click fill.
+
+### 🕘 History Panel
+Every request you send is auto-recorded in a table-based **History** list with search and delete. Double-click a record to restore the full request — endpoint, auth, params, headers, body — back into the test form (environment matched per YAML file).
+
+### 📋 All Endpoints Tab
+A JCheckBox endpoint list for the current YAML file with line-number navigation, export, and auto-load when the file opens.
 
 ### 🔑 Token Management
 Manage tokens (JWT, API keys, etc.) per environment with a built-in Token Manager. Tokens are stored securely using your IDE's password-safe mechanism.

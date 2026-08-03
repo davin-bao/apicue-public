@@ -1,5 +1,23 @@
 # Changelog
 
+## [2026.8.3] - 2026-08-03
+
+### Added
+- **History panel**: 请求自动记录，表格化列表展示，双击回填完整请求（auth、params、headers、body、响应）。
+- **Examples tab**: 表格化 Example 列表，内联改名/删除/搜索，一键填充。
+- **All Endpoints tab**: JCheckBox 列表、行号导航、导出、自动加载。
+- **i18n**: 19 个新文案翻译成 9 种语言（JA/KO/DE/ES/FR/PT/RU/TR/VI）。
+
+### Changed
+- **语言切换**: Properties-based I18n，切换语言后面板立即重载。
+
+### Fixed
+- **History 回填**: 同步更新 endpointState/currentContext、清空替换 params/headers、环境匹配。
+- **i18n**: 页签名称、列头、tooltip、环境显示的本地化问题。
+- **Headers 空行** 残留问题。
+
+---
+
 ## [2026.7.14] - 2026-07-14
 
 ### Added

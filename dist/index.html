@@ -283,7 +283,7 @@
             </div>
             <div class="hero-stats">
                 <div class="hero-stat"><strong>1-Click</strong><span data-i18n="hero.stat1">Send Request</span></div>
-                <div class="hero-stat"><strong>3</strong><span data-i18n="hero.stat2">Request Tabs</span></div>
+                <div class="hero-stat"><strong>5</strong><span data-i18n="hero.stat2">Request Tabs</span></div>
                 <div class="hero-stat"><strong>2</strong><span data-i18n="hero.stat3">Export Formats</span></div>
                 <div class="hero-stat"><strong>11</strong><span data-i18n="hero.stat4">Languages</span></div>
             </div>
@@ -360,6 +360,21 @@
                 <div class="feature-icon icon-violet"><i class="fa-solid fa-language"></i></div>
                 <h3 data-i18n="feature10.title">i18n (11 Languages)</h3>
                 <p data-i18n="feature10.desc">Supports <strong>EN, 中文, 日本語, 한국어, Español, Português, Deutsch, Français, Русский, Tiếng Việt, Türkçe</strong>. Automatically matches your IDE's language setting. Perfect for global teams.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon icon-cyan"><i class="fa-solid fa-clock-rotate-left"></i></div>
+                <h3 data-i18n="feature11.title">History Panel</h3>
+                <p data-i18n="feature11.desc">Every request you send is auto-recorded in a table-based list with search and delete. Double-click a record to restore the full request — auth, params, headers, body — into the test form.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon icon-pink"><i class="fa-solid fa-table-list"></i></div>
+                <h3 data-i18n="feature12.title">Examples Tab</h3>
+                <p data-i18n="feature12.desc">Table-based list of saved examples (Env / Name) with inline rename, delete, search, and one-click fill back into the request form.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon icon-orange"><i class="fa-solid fa-list-check"></i></div>
+                <h3 data-i18n="feature13.title">All Endpoints Tab</h3>
+                <p data-i18n="feature13.desc">JCheckBox endpoint list with line-number navigation, export, and auto-load when a YAML file opens.</p>
             </div>
         </div>
     </div>
@@ -638,6 +653,9 @@ const translations = {
         "feature8.title": "API 文档导出", "feature8.desc": "将 OpenAPI 规范导出为 <strong>Markdown</strong> 或 <strong>HTML</strong> 文档 —— 可直接从工具窗口工具栏或右键 YAML 文件触发。包含搜索/过滤对话框、可配置内容分区和目录。",
         "feature9.title": "$Ref 跨文件解析", "feature9.desc": "完整解析跨 YAML 文件的 <code>$ref</code> 引用（如 <code>$ref: 'model.yml#/…'</code>），支持缓存和循环引用检测。",
         "feature10.title": "i18n（11 种语言）", "feature10.desc": "支持 <strong>EN、中文、日本語、한국어、Español、Português、Deutsch、Français、Русский、Tiếng Việt、Türkçe</strong>。自动匹配 IDE 语言设置，适合全球团队。",
+        "feature11.title": "历史面板", "feature11.desc": "每次发送的请求自动记录到表格化列表中，支持搜索与删除。双击记录即可将完整请求（认证、参数、请求头、请求体）恢复回测试表单。",
+        "feature12.title": "Examples 页签", "feature12.desc": "已保存示例的表格化列表（环境 / 名称列），支持内联改名、删除、搜索与一键填充回请求表单。",
+        "feature13.title": "所有接口页签", "feature13.desc": "JCheckBox 接口列表，支持行号定位跳转、导出，打开 YAML 文件时自动加载。",
         "how.label": "使用流程", "how.title": "4 步从规范到响应", "how.subtitle": "无需配置文件，无需外部工具 —— 只需你的 OpenAPI YAML 和 APICue。",
         "step1.title": "打开 OpenAPI YAML 文件", "step1.desc": "任何有效的 OpenAPI 3.0 语法的 <code>.yaml</code> 或 <code>.yml</code> 文件。APICue 即时解析。",
         "step2.title": "点击编辑器图标", "step2.desc": "每个 API 操作旁出现绿色 ▶ 按钮。点击后 APICue Tester 工具窗口立即打开。",
@@ -681,6 +699,9 @@ const translations = {
         "feature8.title": "APIドキュメント出力", "feature8.desc": "OpenAPI仕様を<strong>Markdown</strong>または<strong>HTML</strong>ドキュメントとして出力 — ツールウィンドウのツールバーまたはYAMLファイルの右クリックから直接。検索/フィルタダイアログ、設定可能なセクション、目次付き。",
         "feature9.title": "$Ref ファイル間解決", "feature9.desc": "YAMLファイル間の<code>$ref</code>参照を完全解決（例：<code>$ref: 'model.yml#/…'</code>）。キャッシュと循環参照検出に対応。",
         "feature10.title": "i18n（11言語）", "feature10.desc": "<strong>EN、中文、日本語、한국어、Español、Português、Deutsch、Français、Русский、Tiếng Việt、Türkçe</strong>に対応。IDEの言語設定に自動一致。グローバルチームに最適。",
+        "feature11.title": "履歴パネル", "feature11.desc": "送信したすべてのリクエストが表形式リストに自動記録され、検索と削除に対応。ダブルクリックで完全なリクエスト（認証、パラメータ、ヘッダー、ボディ）をテストフォームに復元します。",
+        "feature12.title": "Examples タブ", "feature12.desc": "保存済み実例の表形式リスト（環境 / 名前列）。インライン改名、削除、検索、ワンクリックでリクエストフォームに反映。",
+        "feature13.title": "全エンドポイントタブ", "feature13.desc": "チェックボックス式エンドポイントリスト。行番号ナビゲーション、エクスポート、YAMLファイルを開くと自動読み込み。",
         "how.label": "使い方", "how.title": "4ステップで仕様から応答へ", "how.subtitle": "設定ファイル不要、外部ツール不要 — OpenAPI YAMLとAPICueだけ。",
         "step1.title": "OpenAPI YAMLファイルを開く", "step1.desc": "有効なOpenAPI 3.0構文の<code>.yaml</code>または<code>.yml</code>ファイル。APICueが即座に解析。",
         "step2.title": "ガターアイコンをクリック", "step2.desc": "緑色の▶ボタンが各API操作の横に表示。クリックするとAPICue Testerツールウィンドウが即座に開く。",
@@ -724,6 +745,9 @@ const translations = {
         "feature8.title": "API 문서 내보내기", "feature8.desc": "OpenAPI 사양을 <strong>Markdown</strong> 또는 <strong>HTML</strong> 문서로 내보내기 — 도구 창 도구 모음이나 YAML 파일 우클릭에서 직접 가능합니다. 검색/필터 대화상자, 설정 가능한 섹션, 목차가 포함됩니다.",
         "feature9.title": "$Ref 파일 간 해석", "feature9.desc": "YAML 파일 간의 <code>$ref</code> 참조를 완전히 해석합니다(예: <code>$ref: 'model.yml#/…'</code>). 캐싱과 순환 참조 감지를 지원합니다.",
         "feature10.title": "i18n (11개 언어)", "feature10.desc": "<strong>EN, 中文, 日本語, 한국어, Español, Português, Deutsch, Français, Русский, Tiếng Việt, Türkçe</strong>를 지원합니다. IDE 언어 설정을 자동으로 따라갑니다. 글로벌 팀에 최적입니다.",
+        "feature11.title": "기록 패널", "feature11.desc": "보낸 모든 요청이 테이블 목록에 자동 기록되며 검색과 삭제를 지원합니다. 더블 클릭하면 전체 요청(인증, 파라미터, 헤더, 본문)이 테스트 폼으로 복원됩니다.",
+        "feature12.title": "예제 탭", "feature12.desc": "저장된 예제의 테이블 목록(환경/이름 열). 인라인 이름 변경, 삭제, 검색, 원클릭으로 요청 폼에 채우기.",
+        "feature13.title": "모든 엔드포인트 탭", "feature13.desc": "체크박스 엔드포인트 목록. 줄 번호 탐색, 내보내기, YAML 파일을 열면 자동 로드.",
         "how.label": "사용 방법", "how.title": "4단계로 사양에서 응답까지", "how.subtitle": "설정 파일도 외부 도구도 필요 없습니다 — OpenAPI YAML과 APICue만 있으면 됩니다.",
         "step1.title": "OpenAPI YAML 파일 열기", "step1.desc": "유효한 OpenAPI 3.0 구문의 <code>.yaml</code> 또는 <code>.yml</code> 파일. APICue가 즉시 해석합니다.",
         "step2.title": "거터 아이콘 클릭", "step2.desc": "녹색 ▶ 버튼이 각 API 작업 옆에 나타납니다. 클릭하면 APICue Tester 도구 창이 즉시 열립니다.",
@@ -767,6 +791,9 @@ const translations = {
         "feature8.title": "Exportar documento API", "feature8.desc": "Exporta tu especificación OpenAPI como documento <strong>Markdown</strong> o <strong>HTML</strong> — desde la barra de herramientas o haciendo clic derecho en el archivo YAML. Incluye diálogo de búsqueda/filtro, secciones configurables y tabla de contenidos.",
         "feature9.title": "Resolución $Ref entre archivos", "feature9.desc": "Resuelve referencias <code>$ref</code> entre archivos YAML (ej. <code>$ref: 'model.yml#/…'</code>) con caché y detección de referencias circulares.",
         "feature10.title": "i18n (11 idiomas)", "feature10.desc": "Soporta <strong>EN, 中文, 日本語, 한국어, Español, Português, Deutsch, Français, Русский, Tiếng Việt, Türkçe</strong>. Coincide automáticamente con el idioma del IDE.",
+        "feature11.title": "Panel de historial", "feature11.desc": "Cada solicitud enviada se registra automáticamente en una lista tabular con búsqueda y borrado. Doble clic para restaurar la solicitud completa (auth, parámetros, cabeceras, cuerpo) en el formulario.",
+        "feature12.title": "Pestaña de ejemplos", "feature12.desc": "Lista tabular de ejemplos guardados (Entorno/Nombre) con renombrado en línea, borrado, búsqueda y relleno con un clic.",
+        "feature13.title": "Pestaña de todos los endpoints", "feature13.desc": "Lista de endpoints con casillas de verificación, navegación por número de línea, exportación y carga automática al abrir un archivo YAML.",
         "how.label": "Cómo funciona", "how.title": "De la especificación a la respuesta en 4 pasos", "how.subtitle": "Sin archivos de configuración, sin herramientas externas — solo tu YAML OpenAPI y APICue.",
         "step1.title": "Abrir un archivo YAML OpenAPI", "step1.desc": "Cualquier archivo <code>.yaml</code> o <code>.yml</code> con sintaxis OpenAPI 3.0 válida. APICue lo analiza al instante.",
         "step2.title": "Hacer clic en el icono", "step2.desc": "Aparecen botones verdes ▶ junto a cada operación. Haz clic y el panel APICue Tester se abre al instante.",
@@ -810,6 +837,9 @@ const translations = {
         "feature8.title": "Exportar documento da API", "feature8.desc": "Exporte sua especificação OpenAPI como documento <strong>Markdown</strong> ou <strong>HTML</strong> — da barra de ferramentas ou clicando com botão direito no arquivo YAML. Inclui diálogo de busca/filtro, seções configuráveis e sumário.",
         "feature9.title": "Resolução $Ref entre arquivos", "feature9.desc": "Resolve referências <code>$ref</code> entre arquivos YAML (ex. <code>$ref: 'model.yml#/…'</code>) com cache e detecção de referências circulares.",
         "feature10.title": "i18n (11 idiomas)", "feature10.desc": "Suporta <strong>EN, 中文, 日本語, 한국어, Español, Português, Deutsch, Français, Русский, Tiếng Việt, Türkçe</strong>. Corresponde automaticamente ao idioma do IDE.",
+        "feature11.title": "Painel de histórico", "feature11.desc": "Cada solicitação enviada é registrada automaticamente em uma lista tabular com busca e exclusão. Duplo clique para restaurar a solicitação completa (auth, parâmetros, cabeçalhos, corpo) no formulário.",
+        "feature12.title": "Aba de exemplos", "feature12.desc": "Lista tabular de exemplos salvos (Ambiente/Nome) com renomeação inline, exclusão, busca e preenchimento com um clique.",
+        "feature13.title": "Aba de todos os endpoints", "feature13.desc": "Lista de endpoints com caixas de seleção, navegação por número de linha, exportação e carregamento automático ao abrir um arquivo YAML.",
         "how.label": "Como funciona", "how.title": "Da especificação à resposta em 4 passos", "how.subtitle": "Sem arquivos de configuração, sem ferramentas externas — apenas seu YAML OpenAPI e APICue.",
         "step1.title": "Abrir arquivo YAML OpenAPI", "step1.desc": "Qualquer arquivo <code>.yaml</code> ou <code>.yml</code> com sintaxe OpenAPI 3.0 válida. APICue analisa instantaneamente.",
         "step2.title": "Clicar no ícone", "step2.desc": "Botões verdes ▶ aparecem ao lado de cada operação. Clique e o painel APICue Tester abre instantaneamente.",
@@ -853,6 +883,9 @@ const translations = {
         "feature8.title": "API-Dokument exportieren", "feature8.desc": "Exportieren Sie Ihre OpenAPI-Spezifikation als <strong>Markdown</strong>- oder <strong>HTML</strong>-Dokument — direkt von der Toolbar oder per Rechtsklick auf die YAML-Datei. Inklusive Such-/Filterdialog, konfigurierbaren Abschnitten und Inhaltsverzeichnis.",
         "feature9.title": "$Ref Dateiübergreifende Auflösung", "feature9.desc": "Löst <code>$ref</code>-Referenzen zwischen YAML-Dateien vollständig auf (z.B. <code>$ref: 'model.yml#/…'</code>) mit Caching und Zirkelreferenz-Erkennung.",
         "feature10.title": "i18n (11 Sprachen)", "feature10.desc": "Unterstützt <strong>EN, 中文, 日本語, 한국어, Español, Português, Deutsch, Français, Русский, Tiếng Việt, Türkçe</strong>. Passt sich automatisch der IDE-Sprache an.",
+        "feature11.title": "Verlaufspanel", "feature11.desc": "Jede gesendete Anfrage wird automatisch in einer tabellenbasierten Liste mit Suche und Löschen aufgezeichnet. Doppelklick stellt die vollständige Anfrage (Auth, Parameter, Header, Body) im Testformular wieder her.",
+        "feature12.title": "Beispiele-Registerkarte", "feature12.desc": "Tabellenbasierte Liste gespeicherter Beispiele (Umgebung/Name) mit Inline-Umbenennen, Löschen, Suche und Ein-Klick-Übernahme.",
+        "feature13.title": "Alle-Endpunkte-Registerkarte", "feature13.desc": "Checkbox-Endpunktliste mit Zeilennummern-Navigation, Export und automatischem Laden beim Öffnen einer YAML-Datei.",
         "how.label": "So funktioniert's", "how.title": "Vom Spec zur Antwort in 4 Schritten", "how.subtitle": "Keine Konfigurationsdateien, keine externen Tools — nur Ihr OpenAPI YAML und APICue.",
         "step1.title": "OpenAPI YAML-Datei öffnen", "step1.desc": "Jede <code>.yaml</code>- oder <code>.yml</code>-Datei mit gültiger OpenAPI 3.0-Syntax. APICue parst sie sofort.",
         "step2.title": "Gutter-Symbol klicken", "step2.desc": "Grüne ▶-Buttons erscheinen neben jeder API-Operation. Ein Klick öffnet sofort das APICue-Tester-Tool-Fenster.",
@@ -896,6 +929,9 @@ const translations = {
         "feature8.title": "Exporter le document API", "feature8.desc": "Exportez votre spécification OpenAPI en document <strong>Markdown</strong> ou <strong>HTML</strong> — depuis la barre d'outils ou en cliquant droit sur le fichier YAML. Inclut une boîte de dialogue de recherche/filtre, des sections configurables et une table des matières.",
         "feature9.title": "Résolution $Ref inter-fichiers", "feature9.desc": "Résout complètement les références <code>$ref</code> entre fichiers YAML (ex. <code>$ref: 'model.yml#/…'</code>) avec mise en cache et détection de références circulaires.",
         "feature10.title": "i18n (11 langues)", "feature10.desc": "Prend en charge <strong>EN, 中文, 日本語, 한국어, Español, Português, Deutsch, Français, Русский, Tiếng Việt, Türkçe</strong>. Correspond automatiquement à la langue de l'IDE.",
+        "feature11.title": "Panneau d'historique", "feature11.desc": "Chaque requête envoyée est enregistrée automatiquement dans une liste tabulaire avec recherche et suppression. Double-cliquez pour restaurer la requête complète (auth, paramètres, en-têtes, corps) dans le formulaire.",
+        "feature12.title": "Onglet Exemples", "feature12.desc": "Liste tabulaire des exemples enregistrés (Environnement/Nom) avec renommage en ligne, suppression, recherche et remplissage en un clic.",
+        "feature13.title": "Onglet Tous les endpoints", "feature13.desc": "Liste d'endpoints à cases à cocher avec navigation par numéro de ligne, export et chargement automatique à l'ouverture d'un fichier YAML.",
         "how.label": "Fonctionnement", "how.title": "Du spec à la réponse en 4 étapes", "how.subtitle": "Pas de fichiers de configuration, pas d'outils externes — seulement votre YAML OpenAPI et APICue.",
         "step1.title": "Ouvrir un fichier YAML OpenAPI", "step1.desc": "Tout fichier <code>.yaml</code> ou <code>.yml</code> avec une syntaxe OpenAPI 3.0 valide. APICue l'analyse instantanément.",
         "step2.title": "Cliquer sur l'icône", "step2.desc": "Des boutons verts ▶ apparaissent à côté de chaque opération. Cliquez et le panneau APICue Tester s'ouvre instantanément.",
@@ -939,6 +975,9 @@ const translations = {
         "feature8.title": "Экспорт документации API", "feature8.desc": "Экспортируйте спецификацию OpenAPI в <strong>Markdown</strong> или <strong>HTML</strong> — прямо из панели инструментов или по правому клику на YAML-файл. Включает диалог поиска/фильтрации, настраиваемые разделы и оглавление.",
         "feature9.title": "Разрешение $Ref между файлами", "feature9.desc": "Полностью разрешает ссылки <code>$ref</code> между YAML-файлами (например, <code>$ref: 'model.yml#/…'</code>) с кешированием и обнаружением циклических ссылок.",
         "feature10.title": "i18n (11 языков)", "feature10.desc": "Поддерживает <strong>EN, 中文, 日本語, 한국어, Español, Português, Deutsch, Français, Русский, Tiếng Việt, Türkçe</strong>. Автоматически соответствует языку IDE.",
+        "feature11.title": "Панель истории", "feature11.desc": "Каждый отправленный запрос автоматически записывается в табличный список с поиском и удалением. Двойной клик восстанавливает полный запрос (auth, параметры, заголовки, тело) в форму тестирования.",
+        "feature12.title": "Вкладка «Примеры»", "feature12.desc": "Табличный список сохранённых примеров (Окружение/Имя) с переименованием на месте, удалением, поиском и заполнением в один клик.",
+        "feature13.title": "Вкладка «Все endpoints»", "feature13.desc": "Список endpoints с флажками, навигация по номерам строк, экспорт и автозагрузка при открытии YAML-файла.",
         "how.label": "Как это работает", "how.title": "От спецификации к ответу за 4 шага", "how.subtitle": "Никаких конфигурационных файлов, никаких внешних инструментов — только ваш OpenAPI YAML и APICue.",
         "step1.title": "Откройте YAML-файл OpenAPI", "step1.desc": "Любой файл <code>.yaml</code> или <code>.yml</code> с синтаксисом OpenAPI 3.0. APICue анализирует его на лету.",
         "step2.title": "Нажмите на иконку", "step2.desc": "Зелёные кнопки ▶ появляются рядом с каждой операцией. Нажмите — окно инструментов APICue Tester откроется мгновенно.",
@@ -982,6 +1021,9 @@ const translations = {
         "feature8.title": "Xuất tài liệu API", "feature8.desc": "Xuất đặc tả OpenAPI thành tài liệu <strong>Markdown</strong> hoặc <strong>HTML</strong> — trực tiếp từ thanh công cụ hoặc nhấp chuột phải vào tệp YAML. Bao gồm hộp thoại tìm kiếm/lọc, các phần có thể cấu hình và mục lục.",
         "feature9.title": "Giải quyết $Ref liên tệp", "feature9.desc": "Giải quyết hoàn toàn các tham chiếu <code>$ref</code> giữa các tệp YAML (ví dụ: <code>$ref: 'model.yml#/…'</code>) với bộ nhớ đệm và phát hiện tham chiếu vòng.",
         "feature10.title": "i18n (11 ngôn ngữ)", "feature10.desc": "Hỗ trợ <strong>EN, 中文, 日本語, 한국어, Español, Português, Deutsch, Français, Русский, Tiếng Việt, Türkçe</strong>. Tự động khớp với cài đặt ngôn ngữ của IDE.",
+        "feature11.title": "Bảng lịch sử", "feature11.desc": "Mỗi yêu cầu bạn gửi được tự động ghi lại trong danh sách dạng bảng có tìm kiếm và xóa. Nhấp đúp để khôi phục toàn bộ yêu cầu (auth, tham số, header, body) vào biểu mẫu.",
+        "feature12.title": "Tab Ví dụ", "feature12.desc": "Danh sách dạng bảng các ví dụ đã lưu (Môi trường/Tên) với đổi tên nội tuyến, xóa, tìm kiếm và điền bằng một cú nhấp.",
+        "feature13.title": "Tab Tất cả Endpoints", "feature13.desc": "Danh sách endpoints có hộp kiểm, điều hướng theo số dòng, xuất và tự động tải khi mở tệp YAML.",
         "how.label": "Cách hoạt động", "how.title": "Từ đặc tả đến phản hồi trong 4 bước", "how.subtitle": "Không cần tệp cấu hình, không cần công cụ bên ngoài — chỉ cần OpenAPI YAML và APICue.",
         "step1.title": "Mở tệp YAML OpenAPI", "step1.desc": "Bất kỳ tệp <code>.yaml</code> hoặc <code>.yml</code> nào có cú pháp OpenAPI 3.0 hợp lệ. APICue phân tích ngay lập tức.",
         "step2.title": "Nhấp vào biểu tượng lề", "step2.desc": "Nút ▶ màu xanh xuất hiện bên cạnh mỗi thao tác API. Nhấp vào — cửa sổ công cụ APICue Tester mở ra ngay lập tức.",
@@ -1025,6 +1067,9 @@ const translations = {
         "feature8.title": "API Dokümanı Dışa Aktar", "feature8.desc": "OpenAPI belirtiminizi <strong>Markdown</strong> veya <strong>HTML</strong> dokümanı olarak dışa aktarın — doğrudan araç çubuğundan veya YAML dosyasına sağ tıklayarak. Arama/filtre iletişim kutusu, yapılandırılabilir bölümler ve içindekiler tablosu içerir.",
         "feature9.title": "$Ref Dosyalar Arası Çözümleme", "feature9.desc": "YAML dosyaları arasındaki <code>$ref</code> referanslarını tamamen çözümler (örn. <code>$ref: 'model.yml#/…'</code>), önbellekleme ve döngüsel referans algılama ile.",
         "feature10.title": "i18n (11 Dil)", "feature10.desc": "<strong>EN, 中文, 日本語, 한국어, Español, Português, Deutsch, Français, Русский, Tiếng Việt, Türkçe</strong> dillerini destekler. IDE dil ayarıyla otomatik eşleşir.",
+        "feature11.title": "Geçmiş Paneli", "feature11.desc": "Gönderdiğiniz her istek, arama ve silme destekli tablo tabanlı bir listede otomatik kaydedilir. Çift tıklama, isteğin tamamını (auth, parametreler, başlıklar, gövde) test formuna geri yükler.",
+        "feature12.title": "Örnekler Sekmesi", "feature12.desc": "Kaydedilen örneklerin tablo tabanlı listesi (Ortam/Ad), satır içi yeniden adlandırma, silme, arama ve tek tıkla formu doldurma.",
+        "feature13.title": "Tüm Endpoint'ler Sekmesi", "feature13.desc": "Onay kutulu endpoint listesi, satır numarasıyla gezinme, dışa aktarma ve YAML dosyası açıldığında otomatik yükleme.",
         "how.label": "Nasıl Çalışır", "how.title": "Belirtimden Yanıta 4 Adımda", "how.subtitle": "Yapılandırma dosyası yok, harici araç yok — sadece OpenAPI YAML ve APICue.",
         "step1.title": "OpenAPI YAML Dosyasını Açın", "step1.desc": "Geçerli OpenAPI 3.0 sözdizimine sahip herhangi bir <code>.yaml</code> veya <code>.yml</code> dosyası. APICue anında ayrıştırır.",
         "step2.title": "Kenar Simgesine Tıklayın", "step2.desc": "Her API işleminin yanında yeşil ▶ düğmeleri belirir. Birine tıklayın — APICue Tester araç penceresi anında açılır.",
